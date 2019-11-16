@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、Linux文件系统的运作数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。1. 为了解决效率的问题，Linux使用的方式：异步处理当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内">
+<meta name="keywords" content="鸟哥的私房菜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第7章：Linux磁盘与文件系统管理（2）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、Linux文件系统的运作数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。1. 为了解决效率的问题，Linux使用的方式：异步处理当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67267523-0af49500-f4e5-11e9-8501-f42fb08d5c8e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67268050-20b68a00-f4e6-11e9-8c73-0ffe96a35ffb.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67269139-b4895580-f4e8-11e9-826d-7cc0e477bbc6.png">
+<meta property="og:updated_time" content="2019-11-16T05:36:44.624Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>第7章：Linux磁盘与文件系统管理（2） | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第7章：Linux磁盘与文件系统管理（2）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-16 13:35:37 / 修改时间：13:36:44" itemprop="dateCreated datePublished" datetime="2019-11-16T13:35:37+08:00">2019-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、Linux文件系统的运作"><a href="#一、Linux文件系统的运作" class="headerlink" title="一、Linux文件系统的运作"></a>一、Linux文件系统的运作</h3><p>数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。<br><strong>1. 为了解决效率的问题，Linux使用的方式：异步处理</strong><br>当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内存中设定为dirty的数据写回磁盘，以保证磁盘与内存数据的一致性。</p><a id="more"></a>
+<p><strong>2. 内存速度快于磁盘，若将常用的文件放到内存中，会极大增加系统性能：</strong></p>
+<ul>
+<li>系统会将常用的文件数据放置到主存的缓冲区，以加速文件系统的读/写</li>
+<li>呈上，因为Linux的物理内存最后被用光，这是正常情况，可加速系统性能</li>
+<li>可以手动sync来强迫内存中设定为Dirty的文件写回磁盘</li>
+<li>若正常关机，关机命令会主动呼叫sync来将内存的数据写回磁盘</li>
+<li>若非正常关机，由于数据未写回磁盘，重启会花费时间进行磁盘检验。</li>
+</ul>
+<h3 id="二、磁盘与目录的容量"><a href="#二、磁盘与目录的容量" class="headerlink" title="二、磁盘与目录的容量"></a>二、磁盘与目录的容量</h3><ul>
+<li>df：列出文件系统的整体磁盘使用量</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/56629574/67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png" alt="1571727658(1)"></p>
+<ul>
+<li>du：评估文件系统的磁盘使用量（常用在推估目录所占容量）<br>搜寻所有的文件数据</li>
+</ul>
+<h3 id="三、Hard-Link（实体链接，硬链接或实际链接）"><a href="#三、Hard-Link（实体链接，硬链接或实际链接）" class="headerlink" title="三、Hard Link（实体链接，硬链接或实际链接）"></a>三、Hard Link（实体链接，硬链接或实际链接）</h3><p>由之前的知识知道，文件名只与目录有关，但是文件内容与inode有关。硬链接就是多个文档名对应同一个inode。<br><img src="https://user-images.githubusercontent.com/56629574/67267523-0af49500-f4e5-11e9-8501-f42fb08d5c8e.png" alt="1571731133(1)"><br><strong>上图中连接数变为2，指的是有多少文档链接到这个inode号码</strong><br><img src="https://user-images.githubusercontent.com/56629574/67268050-20b68a00-f4e6-11e9-8c73-0ffe96a35ffb.png" alt="1571731653(1)"></p>
+<ul>
+<li><p>因为均指向同一个inode，所以无论谁对文档修改，都可看到修改结果；</p>
+</li>
+<li><p>其中一个删除也没事，增加了安全性；但又没增加inode、block，只是在目录下的block多写了关联数据</p>
+</li>
+</ul>
+<p>-注意不能跨文件系统、不能创建硬链接目录</p>
+<h3 id="四、Symbolic-Link（符号链接，或快捷方式）"><a href="#四、Symbolic-Link（符号链接，或快捷方式）" class="headerlink" title="四、Symbolic Link（符号链接，或快捷方式）"></a>四、Symbolic Link（符号链接，或快捷方式）</h3><p>Symbolic Link是建立一个独立的文件，而这个文件会让数据的读取指向它link的那个文件名</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/67269139-b4895580-f4e8-11e9-826d-7cc0e477bbc6.png" alt="1571732779(1)"></p>
+<ul>
+<li><p>因为两个文件的inode不同，所以两个文件单独存在，连接文档重要内容就是写上目标文件的文件名</p>
+</li>
+<li><p>若删除-&gt;后的文件，则头文件是打不开的</p>
+</li>
+<li><p>建立连接文件，是独立的新文件，会用掉inode、block</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89/" rel="next" title="第7章：Linux磁盘与文件系统管理（1）">
+                  <i class="fa fa-chevron-left"></i> 第7章：Linux磁盘与文件系统管理（1）
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/16/%E7%AC%AC8%E7%AB%A0%EF%BC%9ALinux%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/" rel="prev" title="第8章：Linux压缩与解压">
+                  第8章：Linux压缩与解压 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Linux文件系统的运作"><span class="nav-text">一、Linux文件系统的运作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、磁盘与目录的容量"><span class="nav-text">二、磁盘与目录的容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Hard-Link（实体链接，硬链接或实际链接）"><span class="nav-text">三、Hard Link（实体链接，硬链接或实际链接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Symbolic-Link（符号链接，或快捷方式）"><span class="nav-text">四、Symbolic Link（符号链接，或快捷方式）</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>

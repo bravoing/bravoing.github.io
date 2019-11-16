@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、文件系统特性文件系统运作方式这与操作系统的文件数据有关。较新的操作系统的文件数据除了文件实际内容，通常会含有非常多的属性，例如Linux操作系统的文件权限（rwx）与文件属性（拥有者、群组、时间参数等）。文件系统通常会将这两部分的数据存放在不同的区块，权限与属性放置到inode，实际数据放在data  block区块中。此外，还有一个超级区别会记录文件系统的整体信息，包括inode与block">
+<meta name="keywords" content="鸟哥的私房菜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第7章：Linux磁盘与文件系统管理（1）">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、文件系统特性文件系统运作方式这与操作系统的文件数据有关。较新的操作系统的文件数据除了文件实际内容，通常会含有非常多的属性，例如Linux操作系统的文件权限（rwx）与文件属性（拥有者、群组、时间参数等）。文件系统通常会将这两部分的数据存放在不同的区块，权限与属性放置到inode，实际数据放在data  block区块中。此外，还有一个超级区别会记录文件系统的整体信息，包括inode与block">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67255341-272c0e00-f4b4-11e9-9b77-b2e51ef2b399.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67255679-dc12fa80-f4b5-11e9-9fe3-4b350f147619.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67256617-b3413400-f4ba-11e9-91c9-d4225b733d5e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67256690-fb605680-f4ba-11e9-8e73-c15a983ad8bc.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67257410-695a4d00-f4be-11e9-90c2-ee042c175152.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67257515-f00f2a00-f4be-11e9-82f2-bb5f12891d82.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67261145-01156680-f4d2-11e9-806b-3ab98e3ac640.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67261636-24d9ac00-f4d4-11e9-8c81-2ef7185bb174.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67262138-3f148980-f4d6-11e9-95e9-66ec84488a43.png">
+<meta property="og:updated_time" content="2019-11-16T05:34:05.700Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67255341-272c0e00-f4b4-11e9-9b77-b2e51ef2b399.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>第7章：Linux磁盘与文件系统管理（1） | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第7章：Linux磁盘与文件系统管理（1）
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-16 13:33:13 / 修改时间：13:34:05" itemprop="dateCreated datePublished" datetime="2019-11-16T13:33:13+08:00">2019-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、文件系统特性"><a href="#一、文件系统特性" class="headerlink" title="一、文件系统特性"></a>一、文件系统特性</h3><p><strong>文件系统运作方式</strong><br>这与操作系统的文件数据有关。较新的操作系统的文件数据除了文件实际内容，通常会含有非常多的属性，例如Linux操作系统的文件权限（rwx）与文件属性（拥有者、群组、时间参数等）。文件系统通常会将这两部分的数据存放在不同的区块，权限与属性放置到inode，实际数据放在data  block区块中。此外，还有一个超级区别会记录文件系统的整体信息，包括inode与block的总量、使用量、剩余量等。</p><a id="more"></a>
+<ul>
+<li>inode：记录文件的属性，一个文件占用1个inode，同时记录此文件的数据所在的block号码</li>
+<li>block：实际记录文件的内容，若文件较大，则会占用多个block</li>
+</ul>
+<p>inode存放block号码的好处：磁盘能够在较短时间内读取出全部的数据，读写效率高<br><strong>这种数据存取的方法称为索引式文件系统</strong><br><img src="https://user-images.githubusercontent.com/56629574/67255341-272c0e00-f4b4-11e9-9b77-b2e51ef2b399.png" alt="1571710186(1)"></p>
+<p><strong>碎片出现的原因：文件写入的block太过离散，使得文件读取的效能将变得很差。FAT文件系统需要碎片整理，而Ext2索引式文件系统基本不用。</strong></p>
+<p><img src="https://user-images.githubusercontent.com/56629574/67255679-dc12fa80-f4b5-11e9-9fe3-4b350f147619.png" alt="1571710933(1)"><br>FAT这种格式的文件系统没有inode，所以没办法一下子读取出来，每个block号码都记录在前一个block当中。若记录分散，则需要多次转磁盘，读取效率差。</p>
+<h3 id="二、Linux的EXT2文件系统（inode）"><a href="#二、Linux的EXT2文件系统（inode）" class="headerlink" title="二、Linux的EXT2文件系统（inode）"></a>二、Linux的EXT2文件系统（inode）</h3><p>文件系统一开始就将inode与block<br>规划好了，但是若文件系统GB，则将所有的inode与block放在一起是不明智的，为此将文件系统格式化为多个区块<br><img src="https://user-images.githubusercontent.com/56629574/67256617-b3413400-f4ba-11e9-91c9-d4225b733d5e.png" alt="1571713022(1)"></p>
+<h3 id="三、data-block（数据块）"><a href="#三、data-block（数据块）" class="headerlink" title="三、data block（数据块）"></a>三、data block（数据块）</h3><p><img src="https://user-images.githubusercontent.com/56629574/67256690-fb605680-f4ba-11e9-8e73-c15a983ad8bc.png" alt="1571713132(1)"></p>
+<ul>
+<li><p>原则上，block的大小与数量在格式化完就不能再改变了（除非重新格式化）</p>
+</li>
+<li><p>每个block内自多只能放置一个文件的数据</p>
+</li>
+<li><p>如果文件大于block，则一个文件用多个block块</p>
+</li>
+<li><p>若文件小于block，则block剩余容量不能再被使用（磁盘空间浪费）</p>
+<h3 id="四、inode-table（inode-表格）"><a href="#四、inode-table（inode-表格）" class="headerlink" title="四、inode table（inode 表格）"></a>四、inode table（inode 表格）</h3></li>
+<li><p>inode数量与大小在格式化时已经固定</p>
+</li>
+<li><p>每个inode大小固定为128bytes</p>
+</li>
+<li><p>每个文件都仅会占用一个inode而已</p>
+</li>
+<li><p>文件系统能建立的文件数目与inode数量有关</p>
+</li>
+<li><p>系统读取文件时，先找到inode，并分析inode所记录的权限与用户是否符合，若符合才能开始实际读取block的内容</p>
+</li>
+<li><p>每个inode是128bytes，记录一个block用掉4byte<br><img src="https://user-images.githubusercontent.com/56629574/67257410-695a4d00-f4be-11e9-90c2-ee042c175152.png" alt="1571714606(1)"><br>每个inode是128bytes，里面有12个直接指向block号码的对照，能直接取得block号码。<br>间接是再拿一个block来当作记录block号码的记录区，若文件太大，则用间接的block来记录编号。<br><img src="https://user-images.githubusercontent.com/56629574/67257515-f00f2a00-f4be-11e9-82f2-bb5f12891d82.png" alt="1571714840(1)"></p>
+</li>
+</ul>
+<h3 id="五、inode剩余部分"><a href="#五、inode剩余部分" class="headerlink" title="五、inode剩余部分"></a>五、inode剩余部分</h3><ul>
+<li>block bitmap（区块对照表）：比如新增文件用到block，需要知道哪些block是空的</li>
+<li>inode bitmap：与上类似</li>
+<li>superblock：记录此filesystem 的整体信息，包括inode/block的总量、使用量、剩余量， 以及档案系统的格式与相关信息等；</li>
+<li>Filesystem Description：每个区组的开始、结束的block号码以及每个区段（superblock、bitmap、inodemap、data block）分别介于哪一个block号码之间。<h3 id="六、目录"><a href="#六、目录" class="headerlink" title="六、目录"></a>六、目录</h3>创建目录，文件系统会分配一个inode与至少一块block给该目录。其中，inode记录该目录的相关权限与属性，并可记录分配到的block号码；block则记录在该目录下的文件名占用的inode号码数据。所以，inode并没有记录文件名：<br><img src="https://user-images.githubusercontent.com/56629574/67261145-01156680-f4d2-11e9-806b-3ab98e3ac640.png" alt="1571723030(1)"></li>
+</ul>
+<p><strong>inode并不记录文件名，文件名记录在目录的block中。所以新增/删除/更改文件名与目录的w权限有关。</strong><br>因为文件名记录在目录的block块中，因此当我们要读取某个文件时，就必会经过目录的inode与block，然后才能找到待读取的inode号码，最终才会读到正确的文件的block内的数据。</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/67261636-24d9ac00-f4d4-11e9-8c81-2ef7185bb174.png" alt="1571723948(1)"></p>
+<h3 id="七、EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能"><a href="#七、EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能" class="headerlink" title="七、EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能"></a>七、EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能</h3><p><strong>新建文件或目录</strong></p>
+<p><img src="https://user-images.githubusercontent.com/56629574/67262138-3f148980-f4d6-11e9-95e9-66ec84488a43.png" alt="1571724857(1)"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/11/16/%E7%AC%AC6%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" rel="next" title="第6章：Linux的文件与目录管理">
+                  <i class="fa fa-chevron-left"></i> 第6章：Linux的文件与目录管理
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/" rel="prev" title="第7章：Linux磁盘与文件系统管理（2）">
+                  第7章：Linux磁盘与文件系统管理（2） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、文件系统特性"><span class="nav-text">一、文件系统特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Linux的EXT2文件系统（inode）"><span class="nav-text">二、Linux的EXT2文件系统（inode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、data-block（数据块）"><span class="nav-text">三、data block（数据块）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、inode-table（inode-表格）"><span class="nav-text">四、inode table（inode 表格）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、inode剩余部分"><span class="nav-text">五、inode剩余部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、目录"><span class="nav-text">六、目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能"><span class="nav-text">七、EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>

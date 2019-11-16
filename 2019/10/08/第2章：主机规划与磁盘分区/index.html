@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="Linux、Mac、Windows不同点　操作系统是针对硬件来设计的，硬件函数不同，无法一套系统在不同平台上运行　Windows是x86架构的硬件设计的，不能在其他硬件上运行　Mac是x86架构，可能可以安装Windows　Linux是开源的操作系统，代码可以改成适合任何机器上面运行，所以具有很好的移植性">
+<meta name="keywords" content="鸟哥的私房菜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第2章：主机规划与磁盘分区">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;08&#x2F;%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Linux、Mac、Windows不同点　操作系统是针对硬件来设计的，硬件函数不同，无法一套系统在不同平台上运行　Windows是x86架构的硬件设计的，不能在其他硬件上运行　Mac是x86架构，可能可以安装Windows　Linux是开源的操作系统，代码可以改成适合任何机器上面运行，所以具有很好的移植性">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67063144-449d6700-f198-11e9-9d4d-ea455ceca7d3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67064479-4584c780-f19d-11e9-9887-142778af18de.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67071044-22b1dd80-f1b4-11e9-885e-4e61c402260d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67073020-c1403d80-f1b8-11e9-8efb-c7ef24c12fc8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67075451-bfc54400-f1bd-11e9-894d-8bcaa62c8bae.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67076407-ab824680-f1bf-11e9-8113-8a0eea4e84e2.png">
+<meta property="og:updated_time" content="2019-11-16T09:34:50.977Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67063144-449d6700-f198-11e9-9d4d-ea455ceca7d3.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/10/08/%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>第2章：主机规划与磁盘分区 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/08/%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第2章：主机规划与磁盘分区
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-10-08 11:20:00" itemprop="dateCreated datePublished" datetime="2019-10-08T11:20:00+08:00">2019-10-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-11-16 17:34:50" itemprop="dateModified" datetime="2019-11-16T17:34:50+08:00">2019-11-16</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>Linux、Mac、Windows不同点</strong><br>　操作系统是针对硬件来设计的，硬件函数不同，无法一套系统在不同平台上运行<br>　Windows是x86架构的硬件设计的，不能在其他硬件上运行<br>　Mac是x86架构，可能可以安装Windows<br>　Linux是开源的操作系统，代码可以改成适合任何机器上面运行，所以具有很好的移植性</p><a id="more"></a>
+<h3 id="一、MSDOS-MBR"><a href="#一、MSDOS-MBR" class="headerlink" title="一、MSDOS(MBR)"></a>一、MSDOS(MBR)</h3><p><img src="https://user-images.githubusercontent.com/56629574/67063144-449d6700-f198-11e9-9d4d-ea455ceca7d3.png" alt="1571368372(1)"><br><strong>1. 为什么要分区？</strong></p>
+<ul>
+<li><p>数据安全性：比如要重装系统，把重要信息放到另一分区中</p>
+</li>
+<li><p>系统的效能考虑：数据读写，都是要参考分区表的，缩小了查找范围</p>
+</li>
+</ul>
+<p><strong>2. MSDOS分区表格式与限制</strong><br>①位置：磁盘第一个扇区（512bytes）<br>②记录：MBR安装开机管理程序446bytes；分区表记录整个磁盘分区情况64bytes<br><img src="https://user-images.githubusercontent.com/56629574/67064479-4584c780-f19d-11e9-9887-142778af18de.png" alt="1571369003(1)"></p>
+<ul>
+<li><p>最多有4个分区（因为每个分区16字节，16x4=64），每个分区记录了该区段的开始与结束的磁柱号码（这里假设磁柱400个，1-100是第一分区）</p>
+</li>
+<li><p>磁盘盘的同一个磁道称为磁柱，通常是文件系统的最小单位，也是分区的最小单位。所以一个文件系统可以有多个磁道。（参考上图的开始磁道、结束磁道）<br>比如一块SCSI硬盘，a:是机器上的第一块硬盘，如果还有其他硬盘，则显示为b。1、2、3表示：硬盘的第一分区，第二分区….<br>③并不是说一个磁盘最多4个分区，此时用到拓展分区（Extended）<br>磁盘第一个扇区所在的分区表只能有4笔数据，可以用其他扇区记录更多的分区信息<br><img src="https://user-images.githubusercontent.com/56629574/67071044-22b1dd80-f1b4-11e9-885e-4e61c402260d.png" alt="1571379090(1)"></p>
+</li>
+</ul>
+<ul>
+<li>注意此图，1<del>100是主分区；101</del>400是延伸分区（根据计算机设计，延伸分区只能1个）</li>
+<li>通过延伸分区划分出5个逻辑分区</li>
+</ul>
+<p><strong>3. 对主分区、延伸分区、逻辑分区总结</strong><br>①主分区和延伸分区最多4个（硬盘限制）<br>②延伸分区最多一个（操作系统限制）<br>③逻辑分区时由延伸分区持续切割出来的分区<br>④能够被格式化，作为数据存取的分区时主分区和逻辑分区，延伸分区不可格式化<br>⑤逻辑分区的数量依操作系统而不同，在Linux中SATA硬盘已经突破63个以上的分区限制<br><strong>4. 加深理解~</strong><br>①若一块SATA硬盘，划分成6个分区（可以格式化，存储数据）<br>方法一：P+P+P+E<br>/dev/sda1  /dev/sda2 /dev/sda3  /dev/sda5  /dev/sda6  /dev/sda7<br>方法二：P+E<br>/dev/sda1     /dev/sda5  /dev/sda6  /dev/sda7   /dev/sda8  /dev/sda9<br>②同一磁盘的逻辑分区可以合并，但是主分区和逻辑分区不可合并。<br>这样会把延伸破坏掉，延伸分区破坏，逻辑分区将全部删除。</p>
+<h3 id="二、GPT-GUID-partition-table"><a href="#二、GPT-GUID-partition-table" class="headerlink" title="二、GPT(GUID partition table)"></a>二、GPT(GUID partition table)</h3><p><strong>为什么出现GPT？</strong><br>磁盘的第一个扇区记录了整棵磁盘的重要信息，早期称为MBR(Master Boot Record)，只能识别磁盘前面2.2TB左右的空间，随着磁盘容量扩大，造成读写空间浪费，因此有新了GPT<br><strong>1. MBR与GPT区别</strong></p>
+<ul>
+<li><p>扇区：过去扇区512bytes，现在已经有4K的扇区，为了兼容所有的磁盘，用逻辑区块地址（logical block address LBA）。GPT将磁盘所有区块以此LBA（预设512bytes）来规划，第一块称为LBA0….</p>
+</li>
+<li><p>MBR只是使用512bytes区块来记录，GPT使用34个LBA区块记录分区信息，从而避免了MBR坏掉，整个系统都坏掉危险，最后33个用于备份</p>
+</li>
+</ul>
+<p><strong>2. GPT分区表的结构示意图</strong><br><img src="https://user-images.githubusercontent.com/56629574/67073020-c1403d80-f1b8-11e9-8efb-c7ef24c12fc8.png" alt="1571382329(1)"></p>
+<ul>
+<li><p>LBA0:与MBR类似，分为存储开机管理程序和GPT标志位，非常重要，一般不动</p>
+</li>
+<li><p>LBA1（GPT表头记录）:记录分区表位置大小；备份用的GPT分区放置的位置；分区表的校验机制码。操作系统用这个判断GPT是否正常，若有误，则用备份恢复</p>
+</li>
+<li><p>LBA2-33（实际记录分区信息处）：每个LBA记录4笔，所以总共4x32=128比分区，每个LBA有512bytes，所以每笔用128bytes。每笔包含标识符、记录、64bit记录开始/结束扇区号<br>所以一个分区最大容量：2^64x512byte=8ZB （1ZB=2^30TB）【512byte是一个扇区容量】</p>
+</li>
+</ul>
+<h3 id="三、Linux安装模式下，磁盘分区的选择"><a href="#三、Linux安装模式下，磁盘分区的选择" class="headerlink" title="三、Linux安装模式下，磁盘分区的选择"></a>三、Linux安装模式下，磁盘分区的选择</h3><p><strong>1. Linux系统使用的是目录树结构</strong><br>Linux所有数据包括磁盘等都是以文件的形式来呈现的 根目录为【/】<br><img src="https://user-images.githubusercontent.com/56629574/67075451-bfc54400-f1bd-11e9-894d-8bcaa62c8bae.png" alt="1571384467(1)"></p>
+<p>说明：长方形是目录，波浪是文件<br><strong>2. 文件系统与目录树的关系（挂载）</strong><br>文件数据是放在磁盘分区内的。<br><strong>挂载：</strong>利用一个目录当成进入点，将磁盘分区的数据放置在该目录下；也就是说，进入该目录就可以读取该分区的意思。动作叫挂载；进入点的目录叫挂载点<br>【设备挂载到目录，就可以从这目录读取设备数据（命令行才能读到）】</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/67076407-ab824680-f1bf-11e9-8113-8a0eea4e84e2.png" alt="1571385301(1)"><br>比如光盘默认是放置到/media/cdrom中  则光盘里文件名为1.png的文件路径是/media/cdrom/1.png</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/04/24/%E7%AC%AC0%E7%AB%A0%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" rel="next" title="第0章：计算机基础知识">
+                  <i class="fa fa-chevron-left"></i> 第0章：计算机基础知识
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/16/%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/" rel="prev" title="第5章：Linux的文件权限与目录配置">
+                  第5章：Linux的文件权限与目录配置 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、MSDOS-MBR"><span class="nav-text">一、MSDOS(MBR)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、GPT-GUID-partition-table"><span class="nav-text">二、GPT(GUID partition table)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Linux安装模式下，磁盘分区的选择"><span class="nav-text">三、Linux安装模式下，磁盘分区的选择</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>

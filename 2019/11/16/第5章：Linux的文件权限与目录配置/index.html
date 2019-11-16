@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="任何文件都有属主、属组、其他人的权限一、文件属性1. 文件类型 d：目录 -：文件 l：链接文档 b：装置文件里的可供储存的接口设备（可随机读取设备） c：装置文件里面的串行端口设备，例如键盘、鼠标（一次性读取设备） 2. 用户权限 rw-：文件所有者具备的权限  r–：加入此群组的账号的权限  r–：非本人且没加入该组的其他账号的权限无论是属主、属组、其他人的权限都是针对账号来设计的">
+<meta name="keywords" content="鸟哥的私房菜">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第5章：Linux的文件权限与目录配置">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="任何文件都有属主、属组、其他人的权限一、文件属性1. 文件类型 d：目录 -：文件 l：链接文档 b：装置文件里的可供储存的接口设备（可随机读取设备） c：装置文件里面的串行端口设备，例如键盘、鼠标（一次性读取设备） 2. 用户权限 rw-：文件所有者具备的权限  r–：加入此群组的账号的权限  r–：非本人且没加入该组的其他账号的权限无论是属主、属组、其他人的权限都是针对账号来设计的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67087562-bcd64d80-f1d5-11e9-9988-8c0c0a26664e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67172362-a276bc80-f3ed-11e9-9def-36ef957cc594.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67173657-01d6cb80-f3f2-11e9-88ca-1ff3284d9092.png">
+<meta property="og:updated_time" content="2019-11-16T05:29:30.011Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67087562-bcd64d80-f1d5-11e9-9988-8c0c0a26664e.png">
+
+<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>第5章：Linux的文件权限与目录配置 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          第5章：Linux的文件权限与目录配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2019-11-16 13:28:23 / 修改时间：13:29:30" itemprop="dateCreated datePublished" datetime="2019-11-16T13:28:23+08:00">2019-11-16</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="任何文件都有属主、属组、其他人的权限"><a href="#任何文件都有属主、属组、其他人的权限" class="headerlink" title="任何文件都有属主、属组、其他人的权限"></a>任何文件都有属主、属组、其他人的权限</h3><h3 id="一、文件属性"><a href="#一、文件属性" class="headerlink" title="一、文件属性"></a>一、文件属性</h3><p><img src="https://user-images.githubusercontent.com/56629574/67087562-bcd64d80-f1d5-11e9-9988-8c0c0a26664e.png" alt="1571393625(1)"></p><p><strong>1. 文件类型</strong></p><ul>
+<li>d：目录</li>
+<li>-：文件</li>
+<li>l：链接文档</li>
+<li>b：装置文件里的可供储存的接口设备（可随机读取设备）</li>
+<li>c：装置文件里面的串行端口设备，例如键盘、鼠标（一次性读取设备）</li>
+</ul><p><strong>2. 用户权限</strong></p><ul>
+<li><p>rw-：文件所有者具备的权限</p>
+</li>
+<li><p>r–：加入此群组的账号的权限</p>
+</li>
+<li><p>r–：非本人且没加入该组的其他账号的权限<br>无论是属主、属组、其他人的权限都是针对账号来设计的</p>
+</li>
+</ul><a id="more"></a>
+
+
+
+
+<p><strong>3. 改变文件属性（属主、属组）</strong></p>
+<ul>
+<li>chgrp：改变文件所属群组</li>
+<li>chown：改变文件所有者、属组</li>
+</ul>
+<p><code>chgrp -R group dirname/filename</code>  （-R是递归修改整个目录及文件的属组）<br><code>chown [OPTION]...  [OWNER][:[GROUP]] FILE...</code><br><strong>4. 改变文件权限</strong></p>
+<ul>
+<li>chmod：改变文件的权限，SUID、SGID、STID等<br>在复制文件，给他人时，会复制执行者的属性与权限，<br>比如文件原权限是-rw-r–r– j user1<br>经root用户复制到另一个地方后为-rw-r–r– root root  到user2用户路径下<br>则user2还是不能修改这个文件，因为user2属于其他人。<br>所以，此时就要修改复制后的文件的权限、属主、属组<br><code>chmod 770  filename 数字类型改变权限</code><br><code>符号类型改变文件权限  u g o  a   u=rw  u+x  a-r</code><h3 id="二、目录与文件的权限意义"><a href="#二、目录与文件的权限意义" class="headerlink" title="二、目录与文件的权限意义"></a>二、目录与文件的权限意义</h3></li>
+</ul>
+<p><strong>1. 权限对文件的意义（理解重点：文件权限是针对的实际内容或数据，与此文档的存在与否无关）</strong></p>
+<ul>
+<li><p>r：可读取此文件内容</p>
+</li>
+<li><p>w：编辑、新增、修改文件内容</p>
+</li>
+<li><p>x：文件具有被系统执行的权限（注意点：文件是否可执行，要看权限，而不是看拓展名，在Linux中，拓展名只是方便记忆，没有实际意义）</p>
+</li>
+</ul>
+<p><strong>2. 权限对目录的意义（文件名列表）</strong></p>
+<ul>
+<li><p>r：读取目录结构列表</p>
+</li>
+<li><p>w：异动该目录结构列表  增加、删除、更改命名、搬移该目录内的文件、目录位置</p>
+</li>
+<li><p>x：目录不能用来执行，代表用户是否能进此目录成为工作目录，就是能cd进入的（非常重要的概念）<br><img src="https://user-images.githubusercontent.com/56629574/67172362-a276bc80-f3ed-11e9-9def-36ef957cc594.png" alt="1571624948(1)"></p>
+</li>
+</ul>
+<p><strong>注意：若某目录不具有x的权限，那么就无法切换到该目录，也就无法执行该目录下的任何命令，即使有该目录的r、w。所以在开放目录给任何人浏览时，至少加r、x。只有w，是无法浏览目录结构的，只是能切到该目录</strong></p>
+<p><strong>3.  用户操作功能与权限</strong><br><img src="https://user-images.githubusercontent.com/56629574/67173657-01d6cb80-f3f2-11e9-88ca-1ff3284d9092.png" alt="1571626808(1)"><br>要读一个文件，要具备这个文件所在目录的x权限，所以通常开放目录，至少具备rx这两个权限</p>
+<h3 id="三、Linux文件种类"><a href="#三、Linux文件种类" class="headerlink" title="三、Linux文件种类"></a>三、Linux文件种类</h3><p><strong>1. 正规文件 ls -al 第一个字符为-的</strong></p>
+<ul>
+<li>纯文本文档</li>
+<li>二进制文件：可执行文件</li>
+<li>数据格式文件：读出出来是乱码</li>
+</ul>
+<p><strong>2.  目录 “d”</strong></p>
+<p><strong>3. 连接文件  “l”</strong><br>类似于Windows下的快捷方式</p>
+<p><strong>4.设备与装置文件 /dev</strong></p>
+<ul>
+<li><p>区块设备档“b”：一些储存数据，以提供系统随机存取的接口设备，比如：硬盘</p>
+</li>
+<li><p>字符设备文件”c”：串行端口的接口设备，比如键盘、鼠标</p>
+<h3 id="四、Linux文件拓展名"><a href="#四、Linux文件拓展名" class="headerlink" title="四、Linux文件拓展名"></a>四、Linux文件拓展名</h3></li>
+</ul>
+<ol>
+<li>文件是否可执行，要看权限，而不是看拓展名，在Linux中，拓展名只是方便记忆，没有实际意义</li>
+<li>-x是有可执行的权限，与可以执行是两回事。<br>当有-x和文件是可执行的程序代码，才可以执行<h3 id="五、绝对路径与相对路径"><a href="#五、绝对路径与相对路径" class="headerlink" title="五、绝对路径与相对路径"></a>五、绝对路径与相对路径</h3>比如当前目录是/home/j/dir1</li>
+</ol>
+<ul>
+<li>.：代表当前目录 （比如要去/home/j/dir1/a.txt，则./a.txt）</li>
+<li>..：代表上一层目录（比如要去/home/j/dir2，则../dir2）</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2019/10/08/%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/" rel="next" title="第2章：主机规划与磁盘分区">
+                  <i class="fa fa-chevron-left"></i> 第2章：主机规划与磁盘分区
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2019/11/16/%E7%AC%AC6%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" rel="prev" title="第6章：Linux的文件与目录管理">
+                  第6章：Linux的文件与目录管理 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#任何文件都有属主、属组、其他人的权限"><span class="nav-text">任何文件都有属主、属组、其他人的权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、文件属性"><span class="nav-text">一、文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、目录与文件的权限意义"><span class="nav-text">二、目录与文件的权限意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Linux文件种类"><span class="nav-text">三、Linux文件种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Linux文件拓展名"><span class="nav-text">四、Linux文件拓展名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、绝对路径与相对路径"><span class="nav-text">五、绝对路径与相对路径</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
