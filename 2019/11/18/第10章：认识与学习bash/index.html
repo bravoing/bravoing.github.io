@@ -46,22 +46,27 @@
   };
 </script>
 
-  <meta name="description" content="任何文件都有属主、属组、其他人的权限一、文件属性1. 文件类型 d：目录 -：文件 l：链接文档 b：装置文件里的可供储存的接口设备（可随机读取设备） c：装置文件里面的串行端口设备，例如键盘、鼠标（一次性读取设备） 2. 用户权限 rw-：文件所有者具备的权限  r–：加入此群组的账号的权限  r–：非本人且没加入该组的其他账号的权限无论是属主、属组、其他人的权限都是针对账号来设计的">
+  <meta name="description" content="一、硬件、核心、Shell操作系统是一组软件，控制整个硬件与管理系统的活动检测。操作系统不能被用户随意操作，若使用不当，则会造成系统崩溃。但是我们总是需要让用户操作系统的，所以就有了应用程序。用户通过应用程序来指挥核心，让核心达成我们所需要的硬件任务。所以应用程序（shell）如同鸡蛋（kernel）的外壳一样。">
 <meta name="keywords" content="鸟哥的私房菜">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第5章：Linux的文件权限与目录配置">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE&#x2F;index.html">
+<meta property="og:title" content="第10章：认识与学习bash">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;18&#x2F;%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E8%AE%A4%E8%AF%86%E4%B8%8E%E5%AD%A6%E4%B9%A0bash&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="任何文件都有属主、属组、其他人的权限一、文件属性1. 文件类型 d：目录 -：文件 l：链接文档 b：装置文件里的可供储存的接口设备（可随机读取设备） c：装置文件里面的串行端口设备，例如键盘、鼠标（一次性读取设备） 2. 用户权限 rw-：文件所有者具备的权限  r–：加入此群组的账号的权限  r–：非本人且没加入该组的其他账号的权限无论是属主、属组、其他人的权限都是针对账号来设计的">
+<meta property="og:description" content="一、硬件、核心、Shell操作系统是一组软件，控制整个硬件与管理系统的活动检测。操作系统不能被用户随意操作，若使用不当，则会造成系统崩溃。但是我们总是需要让用户操作系统的，所以就有了应用程序。用户通过应用程序来指挥核心，让核心达成我们所需要的硬件任务。所以应用程序（shell）如同鸡蛋（kernel）的外壳一样。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67087562-bcd64d80-f1d5-11e9-9988-8c0c0a26664e.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67172362-a276bc80-f3ed-11e9-9def-36ef957cc594.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67173657-01d6cb80-f3f2-11e9-88ca-1ff3284d9092.png">
-<meta property="og:updated_time" content="2019-11-16T05:29:30.011Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67351116-417eee00-f57f-11e9-8a5a-b00c6ace12eb.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67351652-996a2480-f580-11e9-827d-479f344179c0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69022181-671fdb80-09f5-11ea-865d-76546eb4f480.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69023567-2d050880-09fa-11ea-88ee-047062981e66.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69030162-baa02280-0a11-11ea-9411-722aa78de094.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69034663-c7764380-0a1c-11ea-9020-183e680e13c0.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69036046-f9d57000-0a1f-11ea-8dcb-0f98527e9984.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69036922-c562b380-0a21-11ea-8c30-38fafae76a91.png">
+<meta property="og:updated_time" content="2019-11-18T08:44:36.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67087562-bcd64d80-f1d5-11e9-9988-8c0c0a26664e.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67351116-417eee00-f57f-11e9-8a5a-b00c6ace12eb.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">
+<link rel="canonical" href="http://yoursite.com/2019/11/18/%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E8%AE%A4%E8%AF%86%E4%B8%8E%E5%AD%A6%E4%B9%A0bash/">
 
 
 <script id="page-configurations">
@@ -75,7 +80,7 @@
   };
 </script>
 
-  <title>第5章：Linux的文件权限与目录配置 | Hexo</title>
+  <title>第10章：认识与学习bash | Hexo</title>
   
 
 
@@ -199,7 +204,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/18/%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E8%AE%A4%E8%AF%86%E4%B8%8E%E5%AD%A6%E4%B9%A0bash/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -212,7 +217,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第5章：Linux的文件权限与目录配置
+          第10章：认识与学习bash
         </h1>
 
         <div class="post-meta">
@@ -223,7 +228,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-16 13:28:23 / 修改时间：13:29:30" itemprop="dateCreated datePublished" datetime="2019-11-16T13:28:23+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-18 16:42:58 / 修改时间：16:44:36" itemprop="dateCreated datePublished" datetime="2019-11-18T16:42:58+08:00">2019-11-18</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -255,75 +260,47 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="任何文件都有属主、属组、其他人的权限"><a href="#任何文件都有属主、属组、其他人的权限" class="headerlink" title="任何文件都有属主、属组、其他人的权限"></a>任何文件都有属主、属组、其他人的权限</h3><h3 id="一、文件属性"><a href="#一、文件属性" class="headerlink" title="一、文件属性"></a>一、文件属性</h3><p><img src="https://user-images.githubusercontent.com/56629574/67087562-bcd64d80-f1d5-11e9-9988-8c0c0a26664e.png" alt="1571393625(1)"></p><p><strong>1. 文件类型</strong></p><ul>
-<li>d：目录</li>
-<li>-：文件</li>
-<li>l：链接文档</li>
-<li>b：装置文件里的可供储存的接口设备（可随机读取设备）</li>
-<li>c：装置文件里面的串行端口设备，例如键盘、鼠标（一次性读取设备）</li>
-</ul><p><strong>2. 用户权限</strong></p><ul>
-<li><p>rw-：文件所有者具备的权限</p>
-</li>
-<li><p>r–：加入此群组的账号的权限</p>
-</li>
-<li><p>r–：非本人且没加入该组的其他账号的权限<br>无论是属主、属组、其他人的权限都是针对账号来设计的</p>
-</li>
-</ul><a id="more"></a>
-
-
-
-
-<p><strong>3. 改变文件属性（属主、属组）</strong></p>
+        <h3 id="一、硬件、核心、Shell"><a href="#一、硬件、核心、Shell" class="headerlink" title="一、硬件、核心、Shell"></a>一、硬件、核心、Shell</h3><p>操作系统是一组软件，控制整个硬件与管理系统的活动检测。操作系统不能被用户随意操作，若使用不当，则会造成系统崩溃。但是我们总是需要让用户操作系统的，所以就有了应用程序。用户通过应用程序来指挥核心，让核心达成我们所需要的硬件任务。所以应用程序（shell）如同鸡蛋（kernel）的外壳一样。</p><a id="more"></a>
 <ul>
-<li>chgrp：改变文件所属群组</li>
-<li>chown：改变文件所有者、属组</li>
+<li>壳程序的功能只是提供用户操作系统的一个接口，狭义：指令列方面的软件，比如bash；广义：图形接口的软件</li>
 </ul>
-<p><code>chgrp -R group dirname/filename</code>  （-R是递归修改整个目录及文件的属组）<br><code>chown [OPTION]...  [OWNER][:[GROUP]] FILE...</code><br><strong>4. 改变文件权限</strong></p>
+<h3 id="二、为何要学文字接口的shell"><a href="#二、为何要学文字接口的shell" class="headerlink" title="二、为何要学文字接口的shell"></a>二、为何要学文字接口的shell</h3><p>shell作为应用程序，就有很多版本，/etc/shells文件是可以使用的shells<br><img src="https://user-images.githubusercontent.com/56629574/67351116-417eee00-f57f-11e9-8a5a-b00c6ace12eb.png" alt="1571797445(1)"><br>使用者预设的shell是/etc/passwd中的<br><img src="https://user-images.githubusercontent.com/56629574/67351652-996a2480-f580-11e9-827d-479f344179c0.png" alt="1571797982(1)"></p>
+<h3 id="三、变量"><a href="#三、变量" class="headerlink" title="三、变量"></a>三、变量</h3><p><strong>1. 变量的用法</strong></p>
 <ul>
-<li>chmod：改变文件的权限，SUID、SGID、STID等<br>在复制文件，给他人时，会复制执行者的属性与权限，<br>比如文件原权限是-rw-r–r– j user1<br>经root用户复制到另一个地方后为-rw-r–r– root root  到user2用户路径下<br>则user2还是不能修改这个文件，因为user2属于其他人。<br>所以，此时就要修改复制后的文件的权限、属主、属组<br><code>chmod 770  filename 数字类型改变权限</code><br><code>符号类型改变文件权限  u g o  a   u=rw  u+x  a-r</code><h3 id="二、目录与文件的权限意义"><a href="#二、目录与文件的权限意义" class="headerlink" title="二、目录与文件的权限意义"></a>二、目录与文件的权限意义</h3></li>
+<li>变量的取用：echo $variable</li>
+<li>变量的设定：变量名=变量值</li>
+<li>取消变量：unset 变量名</li>
+<li>在bash环境下，未定义的变量名，echo 显示为空</li>
 </ul>
-<p><strong>1. 权限对文件的意义（理解重点：文件权限是针对的实际内容或数据，与此文档的存在与否无关）</strong></p>
+<p><strong>应用：</strong>  比如经常去一个目录工作，/a/b/c/d/<br>则可以work=”/a/b/c/d”<br>则每次进入工作则用 cd $work<br><strong>2. 变量查看</strong></p>
 <ul>
-<li><p>r：可读取此文件内容</p>
-</li>
-<li><p>w：编辑、新增、修改文件内容</p>
-</li>
-<li><p>x：文件具有被系统执行的权限（注意点：文件是否可执行，要看权限，而不是看拓展名，在Linux中，拓展名只是方便记忆，没有实际意义）</p>
-</li>
+<li>查看环境变量：env</li>
+<li>查看环境变量和自定义变量：set</li>
+<li>自定义变量转换为环境变量：export 变量名</li>
+<li>环境变量转换为自定义变量：declare  -x 变量名</li>
 </ul>
-<p><strong>2. 权限对目录的意义（文件名列表）</strong></p>
+<p><strong>为什么要将自定义变量转换为环境变量呢？</strong><br><img src="https://user-images.githubusercontent.com/56629574/69022181-671fdb80-09f5-11ea-865d-76546eb4f480.png" alt="1574047211(1)"><br>因为bash是shell（应用程序接口）的一种，在此bash下达的指令都是此bash衍生的，也就是子程序。若执行子bash，则环境接口就是子bash的环境，原bash暂停。若想回到父程序，则要将第二个bash结束掉（下达exit或logout）<br><strong>子程序仅会继承父程序的环境变量，子程序不会继承父程序的自定义变量，所以在原bash下的</strong><br><strong>自定义变量在子bash下会消失，一直道离开子程序回到父程序，这些自定义变量才会出现。</strong></p>
+<p><strong>3. 变量键盘读取、数组与宣告</strong><br>在2中可以用预设的方式设置变量，也可以用键盘读取的方式来设置变量</p>
 <ul>
-<li><p>r：读取目录结构列表</p>
-</li>
-<li><p>w：异动该目录结构列表  增加、删除、更改命名、搬移该目录内的文件、目录位置</p>
-</li>
-<li><p>x：目录不能用来执行，代表用户是否能进此目录成为工作目录，就是能cd进入的（非常重要的概念）<br><img src="https://user-images.githubusercontent.com/56629574/67172362-a276bc80-f3ed-11e9-9def-36ef957cc594.png" alt="1571624948(1)"></p>
-</li>
+<li>键盘读取：read [-pt] 变量名<br>变量默认是字符串类型，若想要其他类型（比如数组、数值），则要变量宣告</li>
+<li>宣告变量类型：declare [-aixr] 变量名</li>
 </ul>
-<p><strong>注意：若某目录不具有x的权限，那么就无法切换到该目录，也就无法执行该目录下的任何命令，即使有该目录的r、w。所以在开放目录给任何人浏览时，至少加r、x。只有w，是无法浏览目录结构的，只是能切到该目录</strong></p>
-<p><strong>3.  用户操作功能与权限</strong><br><img src="https://user-images.githubusercontent.com/56629574/67173657-01d6cb80-f3f2-11e9-88ca-1ff3284d9092.png" alt="1571626808(1)"><br>要读一个文件，要具备这个文件所在目录的x权限，所以通常开放目录，至少具备rx这两个权限</p>
-<h3 id="三、Linux文件种类"><a href="#三、Linux文件种类" class="headerlink" title="三、Linux文件种类"></a>三、Linux文件种类</h3><p><strong>1. 正规文件 ls -al 第一个字符为-的</strong></p>
+<p><img src="https://user-images.githubusercontent.com/56629574/69023567-2d050880-09fa-11ea-88ee-047062981e66.png" alt="1574049135(1)"></p>
+<p><strong>4. 变量内容的删除、取代与替换</strong></p>
+<h3 id="四、命令别名与历史命令"><a href="#四、命令别名与历史命令" class="headerlink" title="四、命令别名与历史命令"></a>四、命令别名与历史命令</h3><p><strong>1. 命令别名设定：alias、unalias</strong><br>alias lm=’ls -al | more’<br>好处：①简化命令长度  ②防止误删操作 比如alias rm=’rm -i’则可以在每次删除时，都提示是否要删除，而不是直接就删除文件。</p>
+<p><strong>命令别名与变量区别</strong>：命令别名是命令，可以直接使用；变量需要用echo<br><strong>2. 命令搜寻顺序</strong></p>
 <ul>
-<li>纯文本文档</li>
-<li>二进制文件：可执行文件</li>
-<li>数据格式文件：读出出来是乱码</li>
+<li>以相对/绝对路径执行命令</li>
+<li>由alias找到该命令来执行</li>
+<li>由bash内建的（builtin）指令来执行</li>
+<li>透过$PATH这个变量的顺序搜寻到的第一个指令来执行<br><img src="https://user-images.githubusercontent.com/56629574/69030162-baa02280-0a11-11ea-9411-722aa78de094.png" alt="1574059365(1)"><br>所以有了ls与/bin/ls执行结果不同的情况<h3 id="五、数据流重定向"><a href="#五、数据流重定向" class="headerlink" title="五、数据流重定向"></a>五、数据流重定向</h3>将原本命令执行后输出在屏幕上内容，输出到文件或者装置中</li>
 </ul>
-<p><strong>2.  目录 “d”</strong></p>
-<p><strong>3. 连接文件  “l”</strong><br>类似于Windows下的快捷方式</p>
-<p><strong>4.设备与装置文件 /dev</strong></p>
+<p><strong>1. 标准输出：</strong>代码为0 &gt;或者&gt;&gt;  区别：&gt;会覆盖掉原文件内容<br>将原本输出在屏幕的，输出到文件中<br>比如：ls &gt;&gt; a.txt<br><strong>2. 标准错误输出：</strong> 代码为1，&gt;或者&gt;&gt;</p>
+<p><strong>3. 标准输入：</strong> &lt;或&lt;&lt;   &lt;&lt;是指定键盘输入终止符<br>将原本在键盘输入的，由文件输入（必须是文件）<br>cat &gt; b.txt &lt; a.txt<br>键盘输入：<br><img src="https://user-images.githubusercontent.com/56629574/69034663-c7764380-0a1c-11ea-9020-183e680e13c0.png" alt="1574064087(1)"><br><strong>4. 命令执行的判断依据：；&amp;&amp; ||</strong></p>
 <ul>
-<li><p>区块设备档“b”：一些储存数据，以提供系统随机存取的接口设备，比如：硬盘</p>
-</li>
-<li><p>字符设备文件”c”：串行端口的接口设备，比如键盘、鼠标</p>
-<h3 id="四、Linux文件拓展名"><a href="#四、Linux文件拓展名" class="headerlink" title="四、Linux文件拓展名"></a>四、Linux文件拓展名</h3></li>
-</ul>
-<ol>
-<li>文件是否可执行，要看权限，而不是看拓展名，在Linux中，拓展名只是方便记忆，没有实际意义</li>
-<li>-x是有可执行的权限，与可以执行是两回事。<br>当有-x和文件是可执行的程序代码，才可以执行<h3 id="五、绝对路径与相对路径"><a href="#五、绝对路径与相对路径" class="headerlink" title="五、绝对路径与相对路径"></a>五、绝对路径与相对路径</h3>比如当前目录是/home/j/dir1</li>
-</ol>
-<ul>
-<li>.：代表当前目录 （比如要去/home/j/dir1/a.txt，则./a.txt）</li>
-<li>..：代表上一层目录（比如要去/home/j/dir2，则../dir2）</li>
+<li>不考虑命令相关性cmd;cmd（不管命令是否执行成功）</li>
+<li>考虑命令相关性&amp;&amp;：前面正确执行，后面才会执行</li>
+<li>考虑命令相关性||：短路原理 前执行成功，后不会执行；前错误，后才执行<br>举例：以ls 测试/a/b是否存在，若存在则显示“exist”；若不存在，则显示“not exist”<br><img src="https://user-images.githubusercontent.com/56629574/69036046-f9d57000-0a1f-11ea-8dcb-0f98527e9984.png" alt="1574065483(1)"><h3 id="六、管道命令（pipe）"><a href="#六、管道命令（pipe）" class="headerlink" title="六、管道命令（pipe）"></a>六、管道命令（pipe）</h3>管道与上述五.4不同 管道是前一个命令的输出是下一个命令的输入；五.4命令间是不存在相互影响的<br><img src="https://user-images.githubusercontent.com/56629574/69036922-c562b380-0a21-11ea-8c30-38fafae76a91.png" alt="1574066264(1)"></li>
 </ul>
 
     </div>
@@ -341,17 +318,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/10/08/%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/" rel="next" title="第2章：主机规划与磁盘分区">
-                  <i class="fa fa-chevron-left"></i> 第2章：主机规划与磁盘分区
+                <a href="/2019/11/16/%E7%AC%AC4%E7%AB%A0%EF%BC%9ALinux%E5%91%BD%E4%BB%A4%E7%83%AD%E9%94%AE%E3%80%81%E5%B8%AE%E5%8A%A9/" rel="next" title="第4章：Linux命令热键、帮助">
+                  <i class="fa fa-chevron-left"></i> 第4章：Linux命令热键、帮助
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC6%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/" rel="prev" title="第6章：Linux的文件与目录管理">
-                  第6章：Linux的文件与目录管理 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -395,7 +369,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#任何文件都有属主、属组、其他人的权限"><span class="nav-text">任何文件都有属主、属组、其他人的权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、文件属性"><span class="nav-text">一、文件属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、目录与文件的权限意义"><span class="nav-text">二、目录与文件的权限意义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Linux文件种类"><span class="nav-text">三、Linux文件种类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Linux文件拓展名"><span class="nav-text">四、Linux文件拓展名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、绝对路径与相对路径"><span class="nav-text">五、绝对路径与相对路径</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、硬件、核心、Shell"><span class="nav-text">一、硬件、核心、Shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、为何要学文字接口的shell"><span class="nav-text">二、为何要学文字接口的shell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、变量"><span class="nav-text">三、变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、命令别名与历史命令"><span class="nav-text">四、命令别名与历史命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、数据流重定向"><span class="nav-text">五、数据流重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、管道命令（pipe）"><span class="nav-text">六、管道命令（pipe）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
