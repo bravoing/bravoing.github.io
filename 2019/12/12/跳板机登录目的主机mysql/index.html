@@ -46,21 +46,23 @@
   };
 </script>
 
-  <meta name="description" content="一、执行文件路径的变量：$PATH1. 文件一般要在用相对路径或绝对路径打开，为什么ls这些可以在任何路径下打开，而不提示找不到文件呢？答：PATH文件2. 可执行文件均放在PATH文件中&#x2F;usr&#x2F;local&#x2F;sbin：&#x2F;usr&#x2F;local&#x2F;bin：&#x2F;sbin：&#x2F;bin：&#x2F;usr&#x2F;sbin：&#x2F;root&#x2F;bin若多个路径下有相同命令，则第一次找到的执行此命令注意：可执行命令，必须放到PATH文件里面">
-<meta name="keywords" content="鸟哥的私房菜">
+  <meta name="description" content="一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。二、端口号 此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）  sshd的端口号如何查看 netstat -tap |">
+<meta name="keywords" content="原理或遇到问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第6章：Linux的文件与目录管理">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC6%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86&#x2F;index.html">
+<meta property="og:title" content="跳板机登录目的主机mysql">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;12&#x2F;%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、执行文件路径的变量：$PATH1. 文件一般要在用相对路径或绝对路径打开，为什么ls这些可以在任何路径下打开，而不提示找不到文件呢？答：PATH文件2. 可执行文件均放在PATH文件中&#x2F;usr&#x2F;local&#x2F;sbin：&#x2F;usr&#x2F;local&#x2F;bin：&#x2F;sbin：&#x2F;bin：&#x2F;usr&#x2F;sbin：&#x2F;root&#x2F;bin若多个路径下有相同命令，则第一次找到的执行此命令注意：可执行命令，必须放到PATH文件里面">
+<meta property="og:description" content="一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。二、端口号 此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）  sshd的端口号如何查看 netstat -tap |">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67197787-2782c580-f430-11e9-81d2-398e24692efd.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67254340-15943780-f4af-11e9-88ef-f1149ddbce99.png">
-<meta property="og:updated_time" content="2019-11-16T05:32:18.387Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70693485-83fbb600-1cf8-11ea-8aa9-1f8b5afb2878.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70694096-c40f6880-1cf9-11ea-8a48-826c3c155f8b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70694189-fd47d880-1cf9-11ea-8187-34e7466d555e.png">
+<meta property="og:updated_time" content="2019-12-12T08:16:52.354Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67197787-2782c580-f430-11e9-81d2-398e24692efd.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC6%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2019/12/12/%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql/">
 
 
 <script id="page-configurations">
@@ -74,7 +76,7 @@
   };
 </script>
 
-  <title>第6章：Linux的文件与目录管理 | Hexo</title>
+  <title>跳板机登录目的主机mysql | Hexo</title>
   
 
 
@@ -198,7 +200,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC6%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E4%B8%8E%E7%9B%AE%E5%BD%95%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/12/%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -211,7 +213,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第6章：Linux的文件与目录管理
+          跳板机登录目的主机mysql
         </h1>
 
         <div class="post-meta">
@@ -222,7 +224,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-16 13:31:28 / 修改时间：13:32:18" itemprop="dateCreated datePublished" datetime="2019-11-16T13:31:28+08:00">2019-11-16</time>
+              <time title="创建时间：2019-12-12 16:15:34 / 修改时间：16:16:52" itemprop="dateCreated datePublished" datetime="2019-12-12T16:15:34+08:00">2019-12-12</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,8 +232,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
                   </a>
                 </span>
             </span>
@@ -254,32 +256,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、执行文件路径的变量：-PATH"><a href="#一、执行文件路径的变量：-PATH" class="headerlink" title="一、执行文件路径的变量：$PATH"></a>一、执行文件路径的变量：$PATH</h3><p><strong>1. 文件一般要在用相对路径或绝对路径打开，为什么ls这些可以在任何路径下打开，而不提示找不到文件呢？</strong><br>答：PATH文件<br><strong>2. 可执行文件均放在PATH文件中</strong><br>/usr/local/sbin：/usr/local/bin：/sbin：/bin：/usr/sbin：/root/bin<br>若多个路径下有相同命令，则第一次找到的执行此命令<br>注意：可执行命令，必须放到PATH文件里面或者用绝对路径，否则命令无法执行<br>比如：ls 命令在/usr/sbin中，若移动到/root目录下，并且当前工作目录也是/root<br>①执行ls，并不能显示文件列表（因为没在PATH路径中）<br>②通过相对路径或绝对路径可以执行 /root/ls 或./ls<br>③若想直接用ls，则可以将/root路径加到PATH中<br>PATH=”${PATH}:/root”</p><a id="more"></a>
-<h3 id="二、文件查阅"><a href="#二、文件查阅" class="headerlink" title="二、文件查阅"></a>二、文件查阅</h3><ul>
-<li>cat ：由第一行开始显示文件内容 -n显示行号</li>
-<li>tac：从最后一行显示文件内容</li>
-<li>nl：显示的时候，也显示行号</li>
-<li>more：一页一页的显示文件内容   </li>
-<li>less：可以往前翻页</li>
-<li>head：只看头几行 head [-n number] 文件</li>
-<li>tail：只看尾部几行<br>练习：显示/etc/man_db.conf的第11到第20行，并且显示行号<br>head -n 20 /etc/man_db.conf | tail -n 10  | nl</li>
-</ul>
-<h3 id="三、修改文件时间或新建文档touch"><a href="#三、修改文件时间或新建文档touch" class="headerlink" title="三、修改文件时间或新建文档touch"></a>三、修改文件时间或新建文档touch</h3><p><strong>1.时间</strong></p>
-<ul>
-<li>modification time（mtime）：当文件内容数据变更时，更改这个时间（ls -l 显示的时间）注意：命令中没有这个时间</li>
-<li>status time（ctime）:权限、属性</li>
-<li>access time（atime）:读取时间<br><code>ls -l --time=atime 目录</code></li>
-</ul>
-<p><strong>2. touch</strong><br>文档时间可能来自未来，因为时区不同，所以有修改时间的必要<br>touch  [acdmt] 文件</p>
-<h3 id="三、文件与目录的默认权限与隐私权限"><a href="#三、文件与目录的默认权限与隐私权限" class="headerlink" title="三、文件与目录的默认权限与隐私权限"></a>三、文件与目录的默认权限与隐私权限</h3><p><strong>umask：用户在创建文件或目录时的权限默认值</strong><br><strong>1. 目录与文件权限默认不同</strong><br>文件一般不是可执行文件，所以x是非必须的；目录一个重要权限是x，必须要有。所以：<br>文件的默认最大权限是-rw-rw-rw-<br>目录的默认最大权限是drwxrwxrwx<br><strong>2. 实例</strong><br><img src="https://user-images.githubusercontent.com/56629574/67197787-2782c580-f430-11e9-81d2-398e24692efd.png" alt="1571653452(1)"><br>注意：umask是权限减后的结果<br>文件：（-rw-rw-rw-）-（——-w-）=-rw-rw-r–<br>目录：（drwxrwxrwx）-（d——-w-）=drwxrwxr-x</p>
-<h3 id="四、指令与文件的搜寻"><a href="#四、指令与文件的搜寻" class="headerlink" title="四、指令与文件的搜寻"></a>四、指令与文件的搜寻</h3><p><strong>1. 脚本文件名的搜寻</strong><br><code>which 命令</code>（必须是PATH路径下的，才能用这种方式搜到）<br><strong>2. 文件名的搜寻</strong></p>
-<ul>
-<li><p>whereis：只搜寻几个特定的目录主要是/bin/sbin、/usr/share/man下的man page文件<br>可通过whereis -l查看搜哪些文档</p>
+        <h3 id="一、跳板机的作用（跳板机：用作跳板的机器）"><a href="#一、跳板机的作用（跳板机：用作跳板的机器）" class="headerlink" title="一、跳板机的作用（跳板机：用作跳板的机器）"></a>一、跳板机的作用（跳板机：用作跳板的机器）</h3><p>在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。</p><h3 id="二、端口号"><a href="#二、端口号" class="headerlink" title="二、端口号"></a>二、端口号</h3><p><img src="https://user-images.githubusercontent.com/56629574/70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png" alt="1576117035(1)"></p><ul>
+<li><p>此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）</p>
 </li>
-<li><p>locate ：搜寻已建立的数据库/var/lib/mlocate，默认更新时间是1天，所以新建的文档，并不会立刻找到，此时要以管理员身份更细数据库，用命令updatedb。</p>
+<li><p>sshd的端口号如何查看 netstat -tap | grep sshd 中第三个字段</p>
 </li>
+<li><p>如何修改sshd的端口号 /etc/ssh/sshd_config<br>在修改后，切记要重启服务：service sshd restart</p>
+<h3 id="三、跳板机登录mysql配置"><a href="#三、跳板机登录mysql配置" class="headerlink" title="三、跳板机登录mysql配置"></a>三、跳板机登录mysql配置</h3><p><img src="https://user-images.githubusercontent.com/56629574/70693485-83fbb600-1cf8-11ea-8aa9-1f8b5afb2878.png" alt="1576137529(1)"></p>
+</li>
+<li><p>在目的主机授权某个用户只能用跳板机服务器登录</p>
+</li>
+</ul><a id="more"></a>
+
+
+<p>GRANT ALL PRIVILEGES ON <em>.</em> TO <a href="mailto:aa@192.168.86.161" target="_blank" rel="noopener">aa@192.168.86.161</a>  IDENTIFIED BY “12345678”;</p>
+<ul>
+<li>将客户端的公钥放跳板机里，将跳板机公钥放到目的服务器中</li>
+<li>为什么需要用到隧道<br>因为要客户端的Navicat连接目的主机的mysql数据库<br>虽然登录到跳板机能登上目的主机并查看表信息，但是是命令行界面，并不容易浏览</li>
+<li>注意，在远程数据库使用过程中，要保证跳板机是工作状态<h3 id="四、隧道"><a href="#四、隧道" class="headerlink" title="四、隧道"></a>四、隧道</h3><img src="https://user-images.githubusercontent.com/56629574/70694096-c40f6880-1cf9-11ea-8a48-826c3c155f8b.png" alt="1576138150(1)"><br><img src="https://user-images.githubusercontent.com/56629574/70694189-fd47d880-1cf9-11ea-8187-34e7466d555e.png" alt="1576138233(1)"><br>用通俗的话讲, 这里的隧道在做这么一件事: 服务器A上有个程序, 监听3306端口, 存在一台服务器B分别和你的工作机以及服务器A的网络相通, 你在服务器A和服务器B上都有登陆权限, <strong>隧道可以帮你把服务器A的3306端口映射到服务器B或者你的工作机上, 连接映射后的3306端口就等同于连接服务器A的3306端口.</strong></li>
 </ul>
-<h3 id="五、权限与指令的关系"><a href="#五、权限与指令的关系" class="headerlink" title="五、权限与指令的关系"></a>五、权限与指令的关系</h3><p><img src="https://user-images.githubusercontent.com/56629574/67254340-15943780-f4af-11e9-88ef-f1149ddbce99.png" alt="无标题"></p>
+<p>参考：<a href="https://www.jianshu.com/p/90c10a242199" target="_blank" rel="noopener">https://www.jianshu.com/p/90c10a242199</a></p>
 
     </div>
 
@@ -289,24 +285,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
+              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" rel="tag"># 原理或遇到问题</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC5%E7%AB%A0%EF%BC%9ALinux%E7%9A%84%E6%96%87%E4%BB%B6%E6%9D%83%E9%99%90%E4%B8%8E%E7%9B%AE%E5%BD%95%E9%85%8D%E7%BD%AE/" rel="next" title="第5章：Linux的文件权限与目录配置">
-                  <i class="fa fa-chevron-left"></i> 第5章：Linux的文件权限与目录配置
+                <a href="/2019/12/12/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/" rel="next" title="网络命令">
+                  <i class="fa fa-chevron-left"></i> 网络命令
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89/" rel="prev" title="第7章：Linux磁盘与文件系统管理（1）">
-                  第7章：Linux磁盘与文件系统管理（1） <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -350,7 +343,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、执行文件路径的变量：-PATH"><span class="nav-text">一、执行文件路径的变量：$PATH</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、文件查阅"><span class="nav-text">二、文件查阅</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、修改文件时间或新建文档touch"><span class="nav-text">三、修改文件时间或新建文档touch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、文件与目录的默认权限与隐私权限"><span class="nav-text">三、文件与目录的默认权限与隐私权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、指令与文件的搜寻"><span class="nav-text">四、指令与文件的搜寻</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、权限与指令的关系"><span class="nav-text">五、权限与指令的关系</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、跳板机的作用（跳板机：用作跳板的机器）"><span class="nav-text">一、跳板机的作用（跳板机：用作跳板的机器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、端口号"><span class="nav-text">二、端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、跳板机登录mysql配置"><span class="nav-text">三、跳板机登录mysql配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、隧道"><span class="nav-text">四、隧道</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
