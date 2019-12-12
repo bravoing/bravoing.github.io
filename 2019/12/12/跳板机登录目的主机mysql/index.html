@@ -46,19 +46,18 @@
   };
 </script>
 
-  <meta name="description" content="一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。二、端口号 此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）  sshd的端口号如何查看 netstat -tap |">
-<meta name="keywords" content="原理或遇到问题">
+  <meta name="description" content="title: 跳板机登录目的主机mysqldate: 2019-12-12 16:15:34categories:           - Linuxtags:           - 原理或遇到问题—### 一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器">
 <meta property="og:type" content="article">
 <meta property="og:title" content="跳板机登录目的主机mysql">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;12&#x2F;%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。二、端口号 此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）  sshd的端口号如何查看 netstat -tap |">
+<meta property="og:description" content="title: 跳板机登录目的主机mysqldate: 2019-12-12 16:15:34categories:           - Linuxtags:           - 原理或遇到问题—### 一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70693485-83fbb600-1cf8-11ea-8aa9-1f8b5afb2878.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70694096-c40f6880-1cf9-11ea-8a48-826c3c155f8b.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70694189-fd47d880-1cf9-11ea-8187-34e7466d555e.png">
-<meta property="og:updated_time" content="2019-12-12T08:19:15.240Z">
+<meta property="og:updated_time" content="2019-12-12T08:20:24.266Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png">
 
@@ -224,18 +223,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-12 16:15:34 / 修改时间：16:19:15" itemprop="dateCreated datePublished" datetime="2019-12-12T16:15:34+08:00">2019-12-12</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
-                  </a>
-                </span>
+              <time title="创建时间：2019-12-12 16:15:34 / 修改时间：16:20:24" itemprop="dateCreated datePublished" datetime="2019-12-12T16:15:34+08:00">2019-12-12</time>
             </span>
 
           
@@ -256,7 +244,11 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、跳板机的作用（跳板机：用作跳板的机器）"><a href="#一、跳板机的作用（跳板机：用作跳板的机器）" class="headerlink" title="一、跳板机的作用（跳板机：用作跳板的机器）"></a>一、跳板机的作用（跳板机：用作跳板的机器）</h3><p>在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。</p><h3 id="二、端口号"><a href="#二、端口号" class="headerlink" title="二、端口号"></a>二、端口号</h3><p><img src="https://user-images.githubusercontent.com/56629574/70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png" alt="1576117035(1)"></p><ul>
+        <hr><p>title: 跳板机登录目的主机mysql<br>date: 2019-12-12 16:15:34</p><p>categories:<br>           - Linux<br>tags:<br>           - 原理或遇到问题<br>—### 一、跳板机的作用（跳板机：用作跳板的机器）<br>在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。</p><a id="more"></a>
+
+
+<h3 id="二、端口号"><a href="#二、端口号" class="headerlink" title="二、端口号"></a>二、端口号</h3><p><img src="https://user-images.githubusercontent.com/56629574/70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png" alt="1576117035(1)"></p>
+<ul>
 <li><p>此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）</p>
 </li>
 <li><p>sshd的端口号如何查看 netstat -tap | grep sshd 中第三个字段</p>
@@ -266,9 +258,7 @@
 </li>
 <li><p>在目的主机授权某个用户只能用跳板机服务器登录</p>
 </li>
-</ul><a id="more"></a>
-
-
+</ul>
 <p>GRANT ALL PRIVILEGES ON <em>.</em> TO <a href="mailto:aa@192.168.86.161" target="_blank" rel="noopener">aa@192.168.86.161</a>  IDENTIFIED BY “12345678”;</p>
 <ul>
 <li>将客户端的公钥放跳板机里，将跳板机公钥放到目的服务器中</li>
@@ -284,9 +274,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" rel="tag"># 原理或遇到问题</a>
-          </div>
 
         
 
@@ -343,7 +330,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、跳板机的作用（跳板机：用作跳板的机器）"><span class="nav-text">一、跳板机的作用（跳板机：用作跳板的机器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、端口号"><span class="nav-text">二、端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、跳板机登录mysql配置"><span class="nav-text">三、跳板机登录mysql配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、隧道"><span class="nav-text">四、隧道</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#二、端口号"><span class="nav-text">二、端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、跳板机登录mysql配置"><span class="nav-text">三、跳板机登录mysql配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、隧道"><span class="nav-text">四、隧道</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
