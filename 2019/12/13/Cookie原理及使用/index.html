@@ -58,7 +58,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70763788-4fd3d400-1d90-11ea-86dd-907d5cdb0b11.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70763428-fae38e00-1d8e-11ea-82b9-fd3381b0b7e9.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70765212-0d60c600-1d95-11ea-9fee-c73fca37ae76.png">
-<meta property="og:updated_time" content="2019-12-13T06:05:37.555Z">
+<meta property="og:updated_time" content="2019-12-13T09:06:16.745Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70771793-62103b00-1dad-11ea-82c8-63af1d380f6e.png">
 
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-13 11:06:42 / 修改时间：14:05:37" itemprop="dateCreated datePublished" datetime="2019-12-13T11:06:42+08:00">2019-12-13</time>
+              <time title="创建时间：2019-12-13 11:06:42 / 修改时间：17:06:16" itemprop="dateCreated datePublished" datetime="2019-12-13T11:06:42+08:00">2019-12-13</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,8 +283,11 @@
 </ul>
 <ol>
 <li>Cookie数量和长度的限制。每个domain最多只能有20条cookie，每个cookie长度不能超过4KB，否则会被截掉。</li>
-<li>安全性问题。如果cookie被人拦截了，那人就可以取得所有的cookie信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。<br>（cookie是服务端给客户端的用户标识，而不是进行身份认证）</li>
+<li>安全性问题。如果cookie被人拦截了，那人就可以取得所有的cookie信息。即使加密也与事无补，因为拦截者并不需要知道cookie的意义，他只要原样转发cookie就可以达到目的了。<br>（cookie是服务端给客户端的用户标识，而不是进行身份认证）<h3 id="七、Cookie不可跨域名性"><a href="#七、Cookie不可跨域名性" class="headerlink" title="七、Cookie不可跨域名性"></a>七、Cookie不可跨域名性</h3></li>
 </ol>
+<ul>
+<li>在访问Servlet的时候浏览器并不是把所有的Cookie都带给服务器，也不会修改别的网站Cookie<br>浏览器判断一个网站是否能操作另一个网站的Cookie的依据是域名，所以当访问baidu时候，浏览器只会将baidu的cookie带过去。<br>Cookie由浏览器管理，浏览器能保证Google只会操作Google的。<br>看看：<a href="https://segmentfault.com/a/1190000013129480" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013129480</a></li>
+</ul>
 
     </div>
 
@@ -355,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、保持网络状态"><span class="nav-text">一、保持网络状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、cookie的状态管理"><span class="nav-text">二、cookie的状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、字段"><span class="nav-text">三、字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Cookie的用途"><span class="nav-text">四、Cookie的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、Cookie代码（购物车）"><span class="nav-text">五、Cookie代码（购物车）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、Cookie的限制"><span class="nav-text">六、Cookie的限制</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、保持网络状态"><span class="nav-text">一、保持网络状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、cookie的状态管理"><span class="nav-text">二、cookie的状态管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、字段"><span class="nav-text">三、字段</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Cookie的用途"><span class="nav-text">四、Cookie的用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、Cookie代码（购物车）"><span class="nav-text">五、Cookie代码（购物车）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、Cookie的限制"><span class="nav-text">六、Cookie的限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、Cookie不可跨域名性"><span class="nav-text">七、Cookie不可跨域名性</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
