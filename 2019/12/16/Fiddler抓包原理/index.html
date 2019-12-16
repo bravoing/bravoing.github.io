@@ -46,23 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。二、端口号 此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）  sshd的端口号如何查看 netstat -tap |">
+  <meta name="description" content="一、Fidder适用范围 只能抓取HTTP、HTTPS数据包 二、原理在了解Fiddler解密https的原理之前，我们首先要知道标准的https通信原理。https:&#x2F;&#x2F;bravoing.github.io&#x2F;2019&#x2F;12&#x2F;16&#x2F;HTTPS%E5%8E%9F%E7%90%86&#x2F;了解以上常识后我们再看Fiddler解密https的过程其实不难：">
 <meta name="keywords" content="原理或遇到问题">
 <meta property="og:type" content="article">
-<meta property="og:title" content="跳板机登录目的主机mysql">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;12&#x2F;%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql&#x2F;index.html">
+<meta property="og:title" content="Fiddler抓包原理">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;16&#x2F;Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、跳板机的作用（跳板机：用作跳板的机器）在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。二、端口号 此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）  sshd的端口号如何查看 netstat -tap |">
+<meta property="og:description" content="一、Fidder适用范围 只能抓取HTTP、HTTPS数据包 二、原理在了解Fiddler解密https的原理之前，我们首先要知道标准的https通信原理。https:&#x2F;&#x2F;bravoing.github.io&#x2F;2019&#x2F;12&#x2F;16&#x2F;HTTPS%E5%8E%9F%E7%90%86&#x2F;了解以上常识后我们再看Fiddler解密https的过程其实不难：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70693485-83fbb600-1cf8-11ea-8aa9-1f8b5afb2878.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70694096-c40f6880-1cf9-11ea-8a48-826c3c155f8b.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70694189-fd47d880-1cf9-11ea-8187-34e7466d555e.png">
-<meta property="og:updated_time" content="2019-12-12T09:03:54.811Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70893293-c50c0700-2025-11ea-87be-0f88d03150fc.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70897048-da386400-202c-11ea-8c9b-d205b6d91ab1.png">
+<meta property="og:updated_time" content="2019-12-16T10:07:24.781Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70893293-c50c0700-2025-11ea-87be-0f88d03150fc.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/12/%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql/">
+<link rel="canonical" href="http://yoursite.com/2019/12/16/Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/">
 
 
 <script id="page-configurations">
@@ -76,7 +74,7 @@
   };
 </script>
 
-  <title>跳板机登录目的主机mysql | Hexo</title>
+  <title>Fiddler抓包原理 | Hexo</title>
   
 
 
@@ -200,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/12/%E8%B7%B3%E6%9D%BF%E6%9C%BA%E7%99%BB%E5%BD%95%E7%9B%AE%E7%9A%84%E4%B8%BB%E6%9C%BAmysql/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -213,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          跳板机登录目的主机mysql
+          Fiddler抓包原理
         </h1>
 
         <div class="post-meta">
@@ -224,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-12 16:24:11 / 修改时间：17:03:54" itemprop="dateCreated datePublished" datetime="2019-12-12T16:24:11+08:00">2019-12-12</time>
+              <time title="创建时间：2019-12-16 18:06:42 / 修改时间：18:07:24" itemprop="dateCreated datePublished" datetime="2019-12-16T18:06:42+08:00">2019-12-16</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,8 +230,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
                   </a>
                 </span>
             </span>
@@ -256,26 +254,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、跳板机的作用（跳板机：用作跳板的机器）"><a href="#一、跳板机的作用（跳板机：用作跳板的机器）" class="headerlink" title="一、跳板机的作用（跳板机：用作跳板的机器）"></a>一、跳板机的作用（跳板机：用作跳板的机器）</h3><p>在管理外网服务器时，出于安全等因素的考虑，我们一般不会把所有服务器都设置成可ssh直连，而是会从中挑选出一台机器作为跳板机，当我们想要连接外网服务器时，我们要先通过ssh登录到跳板机，再从跳板机登录到目标服务器。</p><h3 id="二、端口号"><a href="#二、端口号" class="headerlink" title="二、端口号"></a>二、端口号</h3><p><img src="https://user-images.githubusercontent.com/56629574/70676919-a544ae00-1cc8-11ea-81d5-70e4d8c71ef9.png" alt="1576117035(1)"></p><ul>
-<li><p>此处的端口号是待连接主机的sshd服务的端口号（因为端口是针对某一服务的）</p>
-</li>
-<li><p>sshd的端口号如何查看 netstat -tap | grep sshd 中第三个字段</p>
-</li>
-<li><p>如何修改sshd的端口号 /etc/ssh/sshd_config<br>在修改后，切记要重启服务：service sshd restart</p>
-<h3 id="三、跳板机登录mysql配置"><a href="#三、跳板机登录mysql配置" class="headerlink" title="三、跳板机登录mysql配置"></a>三、跳板机登录mysql配置</h3><p><img src="https://user-images.githubusercontent.com/56629574/70693485-83fbb600-1cf8-11ea-8aa9-1f8b5afb2878.png" alt="1576137529(1)"></p>
-</li>
-<li><p>在目的主机授权某个用户只能用跳板机服务器登录</p>
-</li>
-</ul><a id="more"></a>
+        <h3 id="一、Fidder适用范围"><a href="#一、Fidder适用范围" class="headerlink" title="一、Fidder适用范围"></a>一、Fidder适用范围</h3><ul>
+<li>只能抓取HTTP、HTTPS数据包</li>
+</ul><h3 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h3><p><img src="https://user-images.githubusercontent.com/56629574/70893293-c50c0700-2025-11ea-87be-0f88d03150fc.png" alt="1576486892(1)"><br>在了解Fiddler解密https的原理之前，我们首先要知道标准的https通信原理。<br><a href="https://bravoing.github.io/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">https://bravoing.github.io/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/</a></p><p>了解以上常识后我们再看Fiddler解密https的过程其实不难：</p><a id="more"></a>
 
 
-<p>GRANT ALL PRIVILEGES ON <em>.</em> TO <a href="mailto:aa@192.168.86.161" target="_blank" rel="noopener">aa@192.168.86.161</a>  IDENTIFIED BY “12345678”;</p>
-<ul>
-<li>将客户端的公钥放跳板机里，将跳板机公钥放到目的服务器中</li>
-<li>为什么需要用到隧道<br>因为要客户端的Navicat连接目的主机的mysql数据库<br>虽然登录到跳板机能登上目的主机并查看表信息，但是是命令行界面，并不容易浏览</li>
-<li>注意，在远程数据库使用过程中，要保证跳板机是工作状态<h3 id="四、隧道"><a href="#四、隧道" class="headerlink" title="四、隧道"></a>四、隧道</h3><img src="https://user-images.githubusercontent.com/56629574/70694096-c40f6880-1cf9-11ea-8a48-826c3c155f8b.png" alt="1576138150(1)"><br><img src="https://user-images.githubusercontent.com/56629574/70694189-fd47d880-1cf9-11ea-8187-34e7466d555e.png" alt="1576138233(1)"><br>用通俗的话讲, 这里的隧道在做这么一件事: 服务器A上有个程序, 监听3306端口, 存在一台服务器B分别和你的工作机以及服务器A的网络相通, 你在服务器A和服务器B上都有登陆权限, <strong>隧道可以帮你把服务器A的3306端口映射到服务器B或者你的工作机上, 连接映射后的3306端口就等同于连接服务器A的3306端口.</strong></li>
+<p>客户端发起请求，中间人（Fiddler）会拦截来自客户端的请求，并将伪造的ca证书派发给客户端。同时Fiddler向服务器请求，获得服务器的ca证书。</p>
+<p>客户端接收到来自中间人（Fiddler）的证书，还傻傻的以为这个证书是来自服务器的，并且使用证书里的公钥（其实是Fiddler的公钥）对生成的通信秘钥（对称密钥）加密，发送给服务器。可怜的是这个数据包也会被中间人（Fiddler）拦截。</p>
+<p>中间人（Fiddler）使用自己的私钥将数据包解密，很轻松地得到了通信秘钥。之后使用服务器的RSA公钥对通信密钥加密后传输给服务器。</p>
+<p>服务器接收到“客户端”（其实是Fiddler）发送给自己的密钥，使用RSA私钥解密得到明文密钥后，建立信任。握手完成。使用对称密钥加密消息， 开始通信。</p>
+<p>后面的事情大家应该就明白了，由于Fiddler持有通信秘钥，客户端和服务器的通信对其始终是透明的。</p>
+<h3 id="三、Fiddler代理服务器（中间人）"><a href="#三、Fiddler代理服务器（中间人）" class="headerlink" title="三、Fiddler代理服务器（中间人）"></a>三、Fiddler代理服务器（中间人）</h3><ul>
+<li>既然是主机，则必有地址，此地址为127.0.0.1 端口8888</li>
+<li>Fiddler开启后打开IE，其PROXY自动变为代理地址，但是火狐等需要手动设置<br><img src="https://user-images.githubusercontent.com/56629574/70897048-da386400-202c-11ea-8c9b-d205b6d91ab1.png" alt="1576489946(1)"></li>
+<li>浏览器退出，则自动注销代理，并不会影响使用。但是若Fiddler非正常退出，导致浏览器的代理服务器地址没有注销，会造成网页打不开。（理由：此时端口还在侦听，但代理服务器不能将请求发给真正服务器）<br>所有我们要手动将浏览器的代理关掉。<h3 id="四、Fiddler证书配置"><a href="#四、Fiddler证书配置" class="headerlink" title="四、Fiddler证书配置"></a>四、Fiddler证书配置</h3>Tools–Fiddler Options–HTTPS–Action–Trust Root Certificate</li>
 </ul>
-<p>参考：<a href="https://www.jianshu.com/p/90c10a242199" target="_blank" rel="noopener">https://www.jianshu.com/p/90c10a242199</a></p>
 
     </div>
 
@@ -292,17 +285,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/12/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/" rel="next" title="网络命令">
-                  <i class="fa fa-chevron-left"></i> 网络命令
+                <a href="/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/" rel="next" title="HTTPS原理">
+                  <i class="fa fa-chevron-left"></i> HTTPS原理
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/12/13/Cookie%E5%8E%9F%E7%90%86%E5%8F%8A%E4%BD%BF%E7%94%A8/" rel="prev" title="Cookie原理及使用">
-                  Cookie原理及使用 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -346,7 +336,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、跳板机的作用（跳板机：用作跳板的机器）"><span class="nav-text">一、跳板机的作用（跳板机：用作跳板的机器）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、端口号"><span class="nav-text">二、端口号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、跳板机登录mysql配置"><span class="nav-text">三、跳板机登录mysql配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、隧道"><span class="nav-text">四、隧道</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Fidder适用范围"><span class="nav-text">一、Fidder适用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、原理"><span class="nav-text">二、原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Fiddler代理服务器（中间人）"><span class="nav-text">三、Fiddler代理服务器（中间人）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Fiddler证书配置"><span class="nav-text">四、Fiddler证书配置</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
