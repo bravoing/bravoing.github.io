@@ -46,23 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="一、Linux文件系统的运作数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。1. 为了解决效率的问题，Linux使用的方式：异步处理当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内">
-<meta name="keywords" content="鸟哥的私房菜">
+  <meta name="description" content="一、接口 接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）; 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 参数类型：分为数值型（int、long、float、double）、字符串、数组或链">
+<meta name="keywords" content="总结">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第7章：Linux磁盘与文件系统管理（2）">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89&#x2F;index.html">
+<meta property="og:title" content="接口测试总结">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;25&#x2F;%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、Linux文件系统的运作数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。1. 为了解决效率的问题，Linux使用的方式：异步处理当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内">
+<meta property="og:description" content="一、接口 接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）; 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 参数类型：分为数值型（int、long、float、double）、字符串、数组或链">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67267523-0af49500-f4e5-11e9-8501-f42fb08d5c8e.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67268050-20b68a00-f4e6-11e9-8c73-0ffe96a35ffb.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67269139-b4895580-f4e8-11e9-826d-7cc0e477bbc6.png">
-<meta property="og:updated_time" content="2019-11-16T05:36:44.624Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png">
+<meta property="og:updated_time" content="2019-12-25T03:31:13.848Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/">
+<link rel="canonical" href="http://yoursite.com/2019/12/25/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
 
 
 <script id="page-configurations">
@@ -76,7 +73,7 @@
   };
 </script>
 
-  <title>第7章：Linux磁盘与文件系统管理（2） | Hexo</title>
+  <title>接口测试总结 | Hexo</title>
   
 
 
@@ -200,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/25/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -213,7 +210,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第7章：Linux磁盘与文件系统管理（2）
+          接口测试总结
         </h1>
 
         <div class="post-meta">
@@ -224,7 +221,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-16 13:35:37 / 修改时间：13:36:44" itemprop="dateCreated datePublished" datetime="2019-11-16T13:35:37+08:00">2019-11-16</time>
+              <time title="创建时间：2019-12-25 11:23:38 / 修改时间：11:31:13" itemprop="dateCreated datePublished" datetime="2019-12-25T11:23:38+08:00">2019-12-25</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,8 +229,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
                   </a>
                 </span>
             </span>
@@ -256,40 +253,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、Linux文件系统的运作"><a href="#一、Linux文件系统的运作" class="headerlink" title="一、Linux文件系统的运作"></a>一、Linux文件系统的运作</h3><p>数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。<br><strong>1. 为了解决效率的问题，Linux使用的方式：异步处理</strong><br>当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内存中设定为dirty的数据写回磁盘，以保证磁盘与内存数据的一致性。</p><a id="more"></a>
-<p><strong>2. 内存速度快于磁盘，若将常用的文件放到内存中，会极大增加系统性能：</strong></p>
+        <h3 id="一、接口"><a href="#一、接口" class="headerlink" title="一、接口"></a>一、接口</h3><ul>
+<li><p>接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）;</p>
+<h3 id="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><a href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑：" class="headerlink" title="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："></a>二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</h3></li>
+<li><p>针对输入，可按照参数类型进行设计；</p>
+</li>
+<li><p>针对接口处理，可按照逻辑进行用例设计；</p>
+</li>
+<li><p>针对输出，可根据结果进行分析设计。</p>
+<h3 id="三、针对输入参数类型设计测试用例"><a href="#三、针对输入参数类型设计测试用例" class="headerlink" title="三、针对输入参数类型设计测试用例"></a>三、针对输入参数类型设计测试用例</h3></li>
+<li><p>参数类型：分为数值型（int、long、float、double）、字符串、数组或链表、结构体</p>
+</li>
+<li><p><strong>①参数值合法性</strong></p>
+</li>
+</ul><a id="more"></a>
+<p>1.具体每种参数类型测试用例角度：参考<a href="https://blog.csdn.net/qq_18808965/article/details/82556436" target="_blank" rel="noopener">https://blog.csdn.net/qq_18808965/article/details/82556436</a></p>
 <ul>
-<li>系统会将常用的文件数据放置到主存的缓冲区，以加速文件系统的读/写</li>
-<li>呈上，因为Linux的物理内存最后被用光，这是正常情况，可加速系统性能</li>
-<li>可以手动sync来强迫内存中设定为Dirty的文件写回磁盘</li>
-<li>若正常关机，关机命令会主动呼叫sync来将内存的数据写回磁盘</li>
-<li>若非正常关机，由于数据未写回磁盘，重启会花费时间进行磁盘检验。</li>
+<li>字符串未规定长度测试注意点<br><img src="https://user-images.githubusercontent.com/56629574/71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png" alt="1577239285(1)"></li>
+<li>在字符串中特殊字符还包含转义字符比如//.、 &ensp; （空格）这些</li>
+<li><strong>②必填字段</strong>：<br>必填参数与非必填参数：必填参数一定要测试传参与不传参时接口是否报错；必填参数各种测试情况覆盖；非必填根据实际情况测试非正常情况。</li>
+<li><strong>③逻辑</strong></li>
 </ul>
-<h3 id="二、磁盘与目录的容量"><a href="#二、磁盘与目录的容量" class="headerlink" title="二、磁盘与目录的容量"></a>二、磁盘与目录的容量</h3><ul>
-<li>df：列出文件系统的整体磁盘使用量</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/56629574/67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png" alt="1571727658(1)"></p>
+<ol>
+<li>单独接口：有些参数需要相互配合着才起作用，如“offset”和“count”组合起来进行翻页，这个时候要组合起来进行测试；参数之间关联：省，市，县（区），尤其注意非法（无效）的关联</li>
+<li>接口之间，存在约束关系：先A后B，则要测试正常情况先A后B和异常情况先B后A</li>
+</ol>
 <ul>
-<li>du：评估文件系统的磁盘使用量（常用在推估目录所占容量）<br>搜寻所有的文件数据</li>
+<li><strong>④安全性</strong></li>
 </ul>
-<h3 id="三、Hard-Link（实体链接，硬链接或实际链接）"><a href="#三、Hard-Link（实体链接，硬链接或实际链接）" class="headerlink" title="三、Hard Link（实体链接，硬链接或实际链接）"></a>三、Hard Link（实体链接，硬链接或实际链接）</h3><p>由之前的知识知道，文件名只与目录有关，但是文件内容与inode有关。硬链接就是多个文档名对应同一个inode。<br><img src="https://user-images.githubusercontent.com/56629574/67267523-0af49500-f4e5-11e9-8501-f42fb08d5c8e.png" alt="1571731133(1)"><br><strong>上图中连接数变为2，指的是有多少文档链接到这个inode号码</strong><br><img src="https://user-images.githubusercontent.com/56629574/67268050-20b68a00-f4e6-11e9-8c73-0ffe96a35ffb.png" alt="1571731653(1)"></p>
-<ul>
-<li><p>因为均指向同一个inode，所以无论谁对文档修改，都可看到修改结果；</p>
-</li>
-<li><p>其中一个删除也没事，增加了安全性；但又没增加inode、block，只是在目录下的block多写了关联数据</p>
-</li>
-</ul>
-<p>-注意不能跨文件系统、不能创建硬链接目录</p>
-<h3 id="四、Symbolic-Link（符号链接，或快捷方式）"><a href="#四、Symbolic-Link（符号链接，或快捷方式）" class="headerlink" title="四、Symbolic Link（符号链接，或快捷方式）"></a>四、Symbolic Link（符号链接，或快捷方式）</h3><p>Symbolic Link是建立一个独立的文件，而这个文件会让数据的读取指向它link的那个文件名</p>
-<p><img src="https://user-images.githubusercontent.com/56629574/67269139-b4895580-f4e8-11e9-826d-7cc0e477bbc6.png" alt="1571732779(1)"></p>
-<ul>
-<li><p>因为两个文件的inode不同，所以两个文件单独存在，连接文档重要内容就是写上目标文件的文件名</p>
-</li>
-<li><p>若删除-&gt;后的文件，则头文件是打不开的</p>
-</li>
-<li><p>建立连接文件，是独立的新文件，会用掉inode、block</p>
-</li>
-</ul>
+<ol>
+<li>SQL注入、XSS注入</li>
+</ol>
 
     </div>
 
@@ -299,24 +293,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
+              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89/" rel="next" title="第7章：Linux磁盘与文件系统管理（1）">
-                  <i class="fa fa-chevron-left"></i> 第7章：Linux磁盘与文件系统管理（1）
+                <a href="/2019/12/17/Fiddler%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" rel="next" title="Fiddler常见用法总结">
+                  <i class="fa fa-chevron-left"></i> Fiddler常见用法总结
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC8%E7%AB%A0%EF%BC%9ALinux%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/" rel="prev" title="第8章：Linux压缩与解压">
-                  第8章：Linux压缩与解压 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -360,7 +351,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Linux文件系统的运作"><span class="nav-text">一、Linux文件系统的运作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、磁盘与目录的容量"><span class="nav-text">二、磁盘与目录的容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Hard-Link（实体链接，硬链接或实际链接）"><span class="nav-text">三、Hard Link（实体链接，硬链接或实际链接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Symbolic-Link（符号链接，或快捷方式）"><span class="nav-text">四、Symbolic Link（符号链接，或快捷方式）</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、接口"><span class="nav-text">一、接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><span class="nav-text">二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、针对输入参数类型设计测试用例"><span class="nav-text">三、针对输入参数类型设计测试用例</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
