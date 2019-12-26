@@ -46,18 +46,27 @@
   };
 </script>
 
-  <meta name="description" content="一、接口 接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）; 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 参数类型：分为数值型（int、long、float、double）、字符串、数组或链">
+  <meta name="description" content="一、接口 客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 3.1 数值型例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值">
 <meta name="keywords" content="总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="接口测试总结">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;25&#x2F;%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、接口 接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）; 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 参数类型：分为数值型（int、long、float、double）、字符串、数组或链">
+<meta property="og:description" content="一、接口 客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 3.1 数值型例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452258-32eec600-27be-11ea-9411-ef2e8193154f.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png">
-<meta property="og:updated_time" content="2019-12-25T03:34:55.102Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452401-beb52200-27bf-11ea-8550-b9ab3c6b8524.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452563-1902b280-27c1-11ea-8b68-3e1767617cbe.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452718-4b60df80-27c2-11ea-8fe4-01a67be82caa.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452856-44869c80-27c3-11ea-8076-2c2cf292b31f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452912-8dd6ec00-27c3-11ea-98f1-8fdb2cde13a1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452996-0e95e800-27c4-11ea-861a-6b31e7e8ec0e.png">
+<meta property="og:updated_time" content="2019-12-26T02:05:29.567Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png">
 
 <link rel="canonical" href="http://yoursite.com/2019/12/25/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
 
@@ -219,10 +228,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-25 11:23:38 / 修改时间：11:34:55" itemprop="dateCreated datePublished" datetime="2019-12-25T11:23:38+08:00">2019-12-25</time>
+              <time title="创建时间：2019-12-25 11:23:38" itemprop="dateCreated datePublished" datetime="2019-12-25T11:23:38+08:00">2019-12-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-26 10:05:29" itemprop="dateModified" datetime="2019-12-26T10:05:29+08:00">2019-12-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -254,36 +269,118 @@
 
       
         <h3 id="一、接口"><a href="#一、接口" class="headerlink" title="一、接口"></a>一、接口</h3><ul>
-<li><p>接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）;</p>
-<h3 id="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><a href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑：" class="headerlink" title="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："></a>二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</h3></li>
+<li>客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用<br><img src="https://user-images.githubusercontent.com/56629574/71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png" alt="1577319964(1)"></li>
+</ul><h3 id="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><a href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑：" class="headerlink" title="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："></a>二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</h3><ul>
 <li><p>针对输入，可按照参数类型进行设计；</p>
 </li>
 <li><p>针对接口处理，可按照逻辑进行用例设计；</p>
 </li>
 <li><p>针对输出，可根据结果进行分析设计。</p>
 <h3 id="三、针对输入参数类型设计测试用例"><a href="#三、针对输入参数类型设计测试用例" class="headerlink" title="三、针对输入参数类型设计测试用例"></a>三、针对输入参数类型设计测试用例</h3></li>
-<li><p>参数类型：分为数值型（int、long、float、double）、字符串、数组或链表、结构体</p>
-</li>
-<li><p><strong>①参数值合法性</strong></p>
-</li>
-</ul><a id="more"></a>
-<p>1.具体每种参数类型测试用例角度：参考<a href="https://blog.csdn.net/qq_18808965/article/details/82556436" target="_blank" rel="noopener">https://blog.csdn.net/qq_18808965/article/details/82556436</a></p>
+</ul><p><strong>3.1 数值型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png" alt="1577321452(1)"><br>例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值范围是1-35，那么设计时考虑：</p><a id="more"></a>
+
+
 <ul>
-<li>字符串未规定长度测试注意点<br><img src="https://user-images.githubusercontent.com/56629574/71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png" alt="1577239285(1)"></li>
-<li>在字符串中特殊字符还包含转义字符比如//.、 &ensp; （空格）这些</li>
-<li><strong>②必填字段</strong>：<br>必填参数与非必填参数：必填参数一定要测试传参与不传参时接口是否报错；必填参数各种测试情况覆盖；非必填根据实际情况测试非正常情况。</li>
-<li><strong>③逻辑</strong></li>
+<li><p>1-35范围内和范围外的值；</p>
+</li>
+<li><p>1-35的边界：0，1,35,36；</p>
+</li>
+<li><p>类型的特殊值：-1,0</p>
+</li>
+<li><p>数据类型的边界值：int的最小值最大值；</p>
+</li>
+<li><p>因为1-35代码的权限ID不同，可能需要遍历1-35的每个值。</p>
+</li>
 </ul>
-<ol>
-<li>单独接口：有些参数需要相互配合着才起作用，如“offset”和“count”组合起来进行翻页，这个时候要组合起来进行测试；参数之间关联：省，市，县（区），尤其注意非法（无效）的关联</li>
-<li>接口之间，存在约束关系：先A后B，则要测试正常情况先A后B和异常情况先B后A</li>
-</ol>
+<p>　　<strong>常见问题和风险：</strong></p>
 <ul>
-<li><strong>④安全性</strong></li>
+<li><p>任务ID&gt;35也能提交成功</p>
+</li>
+<li><p>类型边界溢出，比如int类型最大值时读出和写入不一致（原因：接口内对其处理，导致溢出）</p>
+</li>
+<li><p>购买数量为负数也可以购买</p>
+</li>
 </ul>
-<ol>
-<li>SQL注入、XSS注入</li>
-</ol>
+<p><strong>3.2 字符串类型</strong><br>字符串型的参数，主要考虑字符串的长度和内容：<br><img src="https://user-images.githubusercontent.com/56629574/71452258-32eec600-27be-11ea-9411-ef2e8193154f.png" alt="1577322037(1)"><br>例如接口转换设置闹钟的接口DateUtil.getDayOfDDHH(String ddhh)，用例可以考虑：</p>
+<ul>
+<li><p>长度为4位，比4位少，比4位多；</p>
+</li>
+<li><p>边界值：String的最大长度；</p>
+</li>
+<li><p>特殊值：空字符；</p>
+</li>
+<li><p>字符串内容可考虑类型：数字，非数字；</p>
+</li>
+<li><p>特殊字符（还包含关键字、转义字符比如//.、 &ensp; （空格）），字符串未规定长度测试注意点<br><img src="https://user-images.githubusercontent.com/56629574/71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png" alt="1577239285(1)"></p>
+</li>
+<li><p>如果是输入用户输入且其他用户可见（昵称、评论、公告）的内容，则还需要考虑敏感字是否被正常过滤。</p>
+</li>
+</ul>
+<p><strong>可能出现的问题和风险：</strong></p>
+<ul>
+<li><p>修改公告可以超过限定120字</p>
+</li>
+<li><p>超长字符未进行处理，导致存储、显示等异常</p>
+</li>
+<li><p>【在特定类型中】获取日期接口入参是int类型，若传入String时会crash（从前端获取是String，若直接转换为int，里面有string就会crash）</p>
+</li>
+</ul>
+<p><strong>3.3 数组或链表类型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452401-beb52200-27bf-11ea-8550-b9ab3c6b8524.png" alt="1577322694(1)"><br>例如批量提交任务的接口submitTask(int[] taskID)，参数用例设计考虑：</p>
+<ul>
+<li><p>正常取值：1-5个权限，范围外：6个权限；</p>
+</li>
+<li><p>边界值：1-35的边界值，请求允许最大最小值；</p>
+</li>
+<li><p>特殊值：0个；</p>
+</li>
+<li><p>合法ID和不合法的；</p>
+</li>
+<li><p>重复的ID等。</p>
+</li>
+</ul>
+<p><strong>可能存在的问题和风险：</strong></p>
+<ul>
+<li><p>0个item时程序异常退出；</p>
+</li>
+<li><p>重复的item处理时未去重导致结果异常等。</p>
+<h3 id="四、接口处理逻辑"><a href="#四、接口处理逻辑" class="headerlink" title="四、接口处理逻辑"></a>四、接口处理逻辑</h3></li>
+</ul>
+<p><strong>4.1 约束条件分析</strong></p>
+<ul>
+<li>数值限制：分数限制、金币限制、等级限制等等。</li>
+</ul>
+<p>兑换Q币活动要求积分&gt;50才可参与。</p>
+<ul>
+<li>状态限制：登录状态等。</li>
+</ul>
+<p>同步用户信息需要先登录账号。</p>
+<ul>
+<li>关系限制：绑定的关系，好友关系等。</li>
+</ul>
+<p>帮家人防骗功能只能查询绑定家人的来电信息。</p>
+<ul>
+<li>权限限制：管理员等。</li>
+</ul>
+<p><strong>4.2 操作对象</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452563-1902b280-27c1-11ea-8b68-3e1767617cbe.png" alt="1577323243(1)"><br>此时用户、电话、话费都是操作对象，正常情况用户A绑定P1，查询A&amp;P1的话费<br>异常情况用户A绑定P1，查询P2的话费</p>
+<ul>
+<li>问题和风险<br>可访问非权限内的其他用户信息、敏感信息，利用信息谋取利益</li>
+</ul>
+<p><strong>4.3 状态转换分析</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452718-4b60df80-27c2-11ea-8fe4-01a67be82caa.png" alt="1577323792(1)"><br>测试点：</p>
+<ul>
+<li>状态为2，调用Fun23，状态切换到3</li>
+<li>状态为1,3时，调用Fun23，状态不能切换</li>
+</ul>
+<p><strong>问题和风险</strong><br>可通过特殊手段达到访问原本不能的状态，从而谋取利益</p>
+<p>举例：已经加入家族的玩家（未退出家族），还可以申请加入其它家族</p>
+<p><strong>4.4 时序分析</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452856-44869c80-27c3-11ea-8076-2c2cf292b31f.png" alt="1577324168(1)"></p>
+<h3 id="五、其它"><a href="#五、其它" class="headerlink" title="五、其它"></a>五、其它</h3><p><strong>5.1 已废弃接口</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452912-8dd6ec00-27c3-11ea-98f1-8fdb2cde13a1.png" alt="1577324333(1)"><br><strong>- 问题和风险：</strong>接口未及时处理，可继续访问，调用接口，获取额外利益<br><strong>- 已废弃的接口不维护  那么旧版本无法兼容怎么办？</strong><br>答：已废弃的接口，指之前有使用，由于一些原因不再使用的接口。一些情况下确实还需要考虑旧版本兼容的问题，这种情况通常的处理方式有几种：<br>（1） 旧版本不支持继续访问，提醒用户升级版本；<br>（2） 接口请求时判断版本号，只有特定的版本才能访问。<br><strong>5.2 接口设计合理性</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452996-0e95e800-27c4-11ea-861a-6b31e7e8ec0e.png" alt="1577324538(1)"></p>
+<p><strong>5.3 单独接口字段间逻辑</strong><br>有些参数需要相互配合着才起作用，如“offset”和“count”组合起来进行翻页，这个时候要组合起来进行测试；参数之间关联：省，市，县（区），尤其注意非法（无效）的关联</p>
+<h3 id="六、接口测试中常见问题"><a href="#六、接口测试中常见问题" class="headerlink" title="六、接口测试中常见问题"></a>六、接口测试中常见问题</h3><p><strong>6.1 异常的测试有必要做那么多吗？</strong><br>答：一些情况下异常测试是非常必要的，而在一些情况下的确是不需要这么多。<br>例如，在游戏测试中，客户端和后台的接口，需要要做充分的异常测试。协议通常有加密，但是因为游戏有利益可图，总有一些人去破解（协议都是可被破解的，只是时间和成本问题），那么一旦破解，就可以绕过客户端直接访问后台接口，如果后台逻辑有漏洞，就有利可图了。因此在很多游戏中，需要保证后台逻辑的健壮性。还有，<strong>一些提供给外部使用的接口，也需要做好异常测试，因为你不清楚调用者会怎么使用，那么作为一个可靠的提供方，保证自己的稳定和健壮是非常有必要的。另外一些情况，可能这些异常是外部无法触发的，那么这种情况下，异常问题就没有那么高的优先级去解决。<br>测试中，通常需要去权衡测试成本和产品质量，找到一个平衡点。</strong></p>
+<p><strong>6.2 接口测试断言时，需要与数据库记录比对吗？</strong></p>
+<p>答：接口测试中，测试一个接口的时候预期得到什么结果，设计的时候是清楚的。这个预期结果可能是返回成功或某个错误码；<strong>可能接口需要对某个数据进行操作，那么这个时候接口测试也是同时需要验证数据的正确性，这种情况就需要校验数据（校验数据库或者数据存储）。</strong>其他需要检查的预期也是类似，在接口测试时同时检查。</p>
+<p><strong>6.3 单元测试与接口测试区别</strong><br>答：接口测试的测试对象是接口，单元测试指对软件中的最小可测试单元进行检查和验证。从概念上来讲，接口测试比单元测试更广泛。单元测试的测试单位通常是函数，也就是说广泛意义的接口测试，包含了单元测试。<strong>接口测试用例设计思想不单单是针对接口的功能，还需要考量跟接口相关调用者或者多个接口交互；单元测试用例可能更多的是针对该函数内部处理逻辑。接口测试通常是测试人员来进行，单元测试更多是开发来进行。</strong></p>
+<p><strong>6.4 接口测试是否有必要测试人员阅读源码，再根据源码设计测试用例？</strong></p>
+<p>答：最好可以阅读源码，这可以帮助测试人员更好的了解被测系统和程序实现。还有一个额外收益：测试在阅读源码（CodeReview）的时候也可以发现一些缺陷。我们可以根据源码来设计测试用例，同时，测试人员也需要特别注意避免被开发的思维限制，也需要跳出源码，从黑盒测试的角度出发，去设计和思考用例。</p>
 
     </div>
 
@@ -351,7 +448,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、接口"><span class="nav-text">一、接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><span class="nav-text">二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、针对输入参数类型设计测试用例"><span class="nav-text">三、针对输入参数类型设计测试用例</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、接口"><span class="nav-text">一、接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><span class="nav-text">二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、针对输入参数类型设计测试用例"><span class="nav-text">三、针对输入参数类型设计测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、接口处理逻辑"><span class="nav-text">四、接口处理逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、其它"><span class="nav-text">五、其它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、接口测试中常见问题"><span class="nav-text">六、接口测试中常见问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

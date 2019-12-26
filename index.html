@@ -214,10 +214,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-12-25 11:23:38 / 修改时间：11:34:55" itemprop="dateCreated datePublished" datetime="2019-12-25T11:23:38+08:00">2019-12-25</time>
+              <time title="创建时间：2019-12-25 11:23:38" itemprop="dateCreated datePublished" datetime="2019-12-25T11:23:38+08:00">2019-12-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-12-26 10:05:29" itemprop="dateModified" datetime="2019-12-26T10:05:29+08:00">2019-12-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -242,19 +248,15 @@
 
       
           <h3 id="一、接口"><a href="#一、接口" class="headerlink" title="一、接口"></a>一、接口</h3><ul>
-<li><p>接口就是一个函数：修饰符 返回值类型 函数名（参数类型 形式参数1， 参数类型 形式参数2，）;</p>
-<h3 id="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><a href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑：" class="headerlink" title="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："></a>二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</h3></li>
+<li>客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用<br><img src="https://user-images.githubusercontent.com/56629574/71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png" alt="1577319964(1)"></li>
+</ul><h3 id="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："><a href="#二、接口测试的用例设计，主要从输入和接口处理两方面考虑：" class="headerlink" title="二、接口测试的用例设计，主要从输入和接口处理两方面考虑："></a>二、接口测试的用例设计，主要从输入和接口处理两方面考虑：</h3><ul>
 <li><p>针对输入，可按照参数类型进行设计；</p>
 </li>
 <li><p>针对接口处理，可按照逻辑进行用例设计；</p>
 </li>
 <li><p>针对输出，可根据结果进行分析设计。</p>
 <h3 id="三、针对输入参数类型设计测试用例"><a href="#三、针对输入参数类型设计测试用例" class="headerlink" title="三、针对输入参数类型设计测试用例"></a>三、针对输入参数类型设计测试用例</h3></li>
-<li><p>参数类型：分为数值型（int、long、float、double）、字符串、数组或链表、结构体</p>
-</li>
-<li><p><strong>①参数值合法性</strong></p>
-</li>
-</ul>
+</ul><p><strong>3.1 数值型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png" alt="1577321452(1)"><br>例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值范围是1-35，那么设计时考虑：</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2019/12/25/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/#more" rel="contents">
