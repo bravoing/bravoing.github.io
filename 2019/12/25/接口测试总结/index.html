@@ -46,13 +46,13 @@
   };
 </script>
 
-  <meta name="description" content="一、接口 客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 3.1 数值型例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值">
+  <meta name="description" content="一、接口 客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。  三、针对输入参数类型设计测试用例3.1 数值型例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值">
 <meta name="keywords" content="总结">
 <meta property="og:type" content="article">
 <meta property="og:title" content="接口测试总结">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;25&#x2F;%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、接口 客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。 三、针对输入参数类型设计测试用例 3.1 数值型例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值">
+<meta property="og:description" content="一、接口 客户端与后台接口、服务器间接口、AB两个模块间接口、函数调用 二、接口测试的用例设计，主要从输入和接口处理两方面考虑： 针对输入，可按照参数类型进行设计；  针对接口处理，可按照逻辑进行用例设计；  针对输出，可根据结果进行分析设计。  三、针对输入参数类型设计测试用例3.1 数值型例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png">
@@ -64,7 +64,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452856-44869c80-27c3-11ea-8076-2c2cf292b31f.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452912-8dd6ec00-27c3-11ea-98f1-8fdb2cde13a1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452996-0e95e800-27c4-11ea-861a-6b31e7e8ec0e.png">
-<meta property="og:updated_time" content="2019-12-26T02:40:02.618Z">
+<meta property="og:updated_time" content="2019-12-26T02:43:00.378Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png">
 
@@ -236,7 +236,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-26 10:40:02" itemprop="dateModified" datetime="2019-12-26T10:40:02+08:00">2019-12-26</time>
+                <time title="修改时间：2019-12-26 10:43:00" itemprop="dateModified" datetime="2019-12-26T10:43:00+08:00">2019-12-26</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -276,8 +276,8 @@
 <li><p>针对接口处理，可按照逻辑进行用例设计；</p>
 </li>
 <li><p>针对输出，可根据结果进行分析设计。</p>
-<h3 id="三、针对输入参数类型设计测试用例"><a href="#三、针对输入参数类型设计测试用例" class="headerlink" title="三、针对输入参数类型设计测试用例"></a>三、针对输入参数类型设计测试用例</h3></li>
-</ul><p><strong>3.1 数值型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png" alt="1577321452(1)"><br>例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值范围是1-35，那么设计时考虑：</p><a id="more"></a>
+</li>
+</ul><h3 id="三、针对输入参数类型设计测试用例"><a href="#三、针对输入参数类型设计测试用例" class="headerlink" title="三、针对输入参数类型设计测试用例"></a>三、针对输入参数类型设计测试用例</h3><p><strong>3.1 数值型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png" alt="1577321452(1)"><br>例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值范围是1-35，那么设计时考虑：</p><a id="more"></a>
 
 
 <ul>
@@ -343,9 +343,9 @@
 <li><p>0个item时程序异常退出；</p>
 </li>
 <li><p>重复的item处理时未去重导致结果异常等。</p>
-<h3 id="四、接口处理逻辑"><a href="#四、接口处理逻辑" class="headerlink" title="四、接口处理逻辑"></a>四、接口处理逻辑</h3></li>
+</li>
 </ul>
-<p><strong>4.1 约束条件分析</strong></p>
+<h3 id="四、接口处理逻辑"><a href="#四、接口处理逻辑" class="headerlink" title="四、接口处理逻辑"></a>四、接口处理逻辑</h3><p><strong>4.1 约束条件分析</strong></p>
 <ul>
 <li>数值限制：分数限制、金币限制、等级限制等等。</li>
 </ul>
