@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="文章分类">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;categories&#x2F;index.html">
+  <meta name="description" content="一、标题 缺陷位置+缺陷结果（在什么样的位置，什么样的条件下，发生什么样的结果） bug标题清晰易懂，一眼就明白需要反馈的问题 二、测试环境 测试环境：如：浏览器及版本号，操作系统，手机app或微信公众号测试明确手机型号，版本号，微信版本号等三、必要的步骤描述 描述要以第三方的角度进行描述，最好能无脑操作一遍（步骤要准确、简短） 每一个步骤尽量只记录一个操作 描述复现步骤中的页面切换为避免出现描述">
+<meta name="keywords" content="总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bug提交规范">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;03&#x2F;bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、标题 缺陷位置+缺陷结果（在什么样的位置，什么样的条件下，发生什么样的结果） bug标题清晰易懂，一眼就明白需要反馈的问题 二、测试环境 测试环境：如：浏览器及版本号，操作系统，手机app或微信公众号测试明确手机型号，版本号，微信版本号等三、必要的步骤描述 描述要以第三方的角度进行描述，最好能无脑操作一遍（步骤要准确、简短） 每一个步骤尽量只记录一个操作 描述复现步骤中的页面切换为避免出现描述">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-15T09:48:29.889Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71712770-b1440b80-2e41-11ea-8c92-83032fb84061.png">
+<meta property="og:updated_time" content="2020-01-03T08:07:54.193Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71712770-b1440b80-2e41-11ea-8c92-83032fb84061.png">
 
-<link rel="canonical" href="http://yoursite.com/categories/">
+<link rel="canonical" href="http://yoursite.com/2020/01/03/bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/">
 
 
 <script id="page-configurations">
@@ -62,14 +67,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>文章分类 | Hexo
-  </title>
+  <title>bug提交规范 | Hexo</title>
   
 
 
@@ -184,52 +188,121 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">文章分类
-</h1>
-
-<div class="post-meta">
+      
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bug提交规范
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-03 16:06:50 / 修改时间：16:07:54" itemprop="dateCreated datePublished" datetime="2020-01-03T16:06:50+08:00">2020-01-03</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 5 个分类
+        <h3 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h3><ul>
+<li>缺陷位置+缺陷结果（在什么样的位置，什么样的条件下，发生什么样的结果）</li>
+<li>bug标题清晰易懂，一眼就明白需要反馈的问题</li>
+</ul><h3 id="二、测试环境"><a href="#二、测试环境" class="headerlink" title="二、测试环境"></a>二、测试环境</h3><ul>
+<li>测试环境：如：浏览器及版本号，操作系统，手机app或微信公众号测试明确手机型号，版本号，微信版本号等<h3 id="三、必要的步骤描述"><a href="#三、必要的步骤描述" class="headerlink" title="三、必要的步骤描述"></a>三、必要的步骤描述</h3></li>
+<li>描述要以第三方的角度进行描述，最好能无脑操作一遍（步骤要准确、简短）</li>
+<li>每一个步骤尽量只记录一个操作</li>
+<li>描述复现步骤中的页面切换为避免出现描述不清晰或者有歧义，需用“-&gt;”符号连接 正确示例：（首页-&gt;我的-&gt;我的订单-&gt;未支付，点击一个未支付订单，进入订单详情页）</li>
+</ul><a id="more"></a>
+
+<h3 id="四、预期结果、实际结果"><a href="#四、预期结果、实际结果" class="headerlink" title="四、预期结果、实际结果"></a>四、预期结果、实际结果</h3><h3 id="五、关联场景的验证"><a href="#五、关联场景的验证" class="headerlink" title="五、关联场景的验证"></a>五、关联场景的验证</h3><ul>
+<li>尽可能确定出现问题的关键因素，可以把验证过的场景补充在bug说明中<br>比如说发布文章，有两种方式：①新建文章  ②当写完一篇文章，点击“再写一篇”<br>若是在②出现的问题，则要把①没有问题，进行说明</li>
+</ul>
+<h3 id="六、确定关键因素后，-尽可能的去定位问题出现的技术实现原因-，避免只是表面描述"><a href="#六、确定关键因素后，-尽可能的去定位问题出现的技术实现原因-，避免只是表面描述" class="headerlink" title="六、确定关键因素后，_尽可能的去定位问题出现的技术实现原因_，避免只是表面描述"></a>六、确定关键因素后，_尽可能的去定位问题出现的技术实现原因_，避免只是表面描述</h3><h3 id="七、就算问题简单，也要截图为证（并把bug位置标注），必要时进行录屏"><a href="#七、就算问题简单，也要截图为证（并把bug位置标注），必要时进行录屏" class="headerlink" title="七、就算问题简单，也要截图为证（并把bug位置标注），必要时进行录屏"></a>七、就算问题简单，也要截图为证（并把bug位置标注），必要时进行录屏</h3><ul>
+<li>附件命名与bug有关，不要用图片随机生成的名称</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/56629574/71712770-b1440b80-2e41-11ea-8c92-83032fb84061.png" alt="1578038219(1)"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/03/%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/" rel="next" title="需求评审">
+                  <i class="fa fa-chevron-left"></i> 需求评审
+                </a>
             </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP%E5%8D%8F%E8%AE%AE/">HTTP协议</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95/">移动端测试</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/">软件测试</a><span class="category-list-count">4</span></li></ul>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
             </div>
           </div>
-        
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
   </div>
 
 
@@ -264,6 +337,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、标题"><span class="nav-text">一、标题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、测试环境"><span class="nav-text">二、测试环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、必要的步骤描述"><span class="nav-text">三、必要的步骤描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、预期结果、实际结果"><span class="nav-text">四、预期结果、实际结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、关联场景的验证"><span class="nav-text">五、关联场景的验证</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、确定关键因素后，-尽可能的去定位问题出现的技术实现原因-，避免只是表面描述"><span class="nav-text">六、确定关键因素后，_尽可能的去定位问题出现的技术实现原因_，避免只是表面描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、就算问题简单，也要截图为证（并把bug位置标注），必要时进行录屏"><span class="nav-text">七、就算问题简单，也要截图为证（并把bug位置标注），必要时进行录屏</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
