@@ -46,22 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="单个场景测试用例设计参考：http:&#x2F;&#x2F;www.softtest.com&#x2F;test&#x2F;case&#x2F;13097.html一、自动化测试 自动化维护的成本：自动化能够提高用例执行速度和覆盖度；需要投入时间成本（比如执行环境的维护、测试脚本维护、问题的跟进修复）。有时需要开发的配合或者有时需要绕开软件自身的逻辑来保证自动化执行的效果。 自动化目前的应用范围：目前，大部分自动化需要明确的输入来验证明确的输出，">
-<meta name="keywords" content="总结">
+  <meta name="description" content="中台一、为什么需要中台 中台出现是因为公司业务高速发展，各个项目相对独立，许多项目都在重复发明相同的轮子，让项目本身越来越臃肿，也让开发效率降低[比如对于阿里，一开始只有淘宝，后来上线了1688、聚划算、天猫，业务针对的领域不同，但都有订单、商品、库存、价格、物流等功能，所以将各个业务部门重复使用、重复建设的功能统一的进行规划和管理] 已用户为中心，快速响应用户需求、快速创新、快速迭代。也就是快速">
+<meta name="keywords" content="技术">
 <meta property="og:type" content="article">
-<meta property="og:title" content="接口回归场景测试总结">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;26&#x2F;%E6%8E%A5%E5%8F%A3%E5%9B%9E%E5%BD%92%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93&#x2F;index.html">
+<meta property="og:title" content="中台与测试关系">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;04&#x2F;%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="单个场景测试用例设计参考：http:&#x2F;&#x2F;www.softtest.com&#x2F;test&#x2F;case&#x2F;13097.html一、自动化测试 自动化维护的成本：自动化能够提高用例执行速度和覆盖度；需要投入时间成本（比如执行环境的维护、测试脚本维护、问题的跟进修复）。有时需要开发的配合或者有时需要绕开软件自身的逻辑来保证自动化执行的效果。 自动化目前的应用范围：目前，大部分自动化需要明确的输入来验证明确的输出，">
+<meta property="og:description" content="中台一、为什么需要中台 中台出现是因为公司业务高速发展，各个项目相对独立，许多项目都在重复发明相同的轮子，让项目本身越来越臃肿，也让开发效率降低[比如对于阿里，一开始只有淘宝，后来上线了1688、聚划算、天猫，业务针对的领域不同，但都有订单、商品、库存、价格、物流等功能，所以将各个业务部门重复使用、重复建设的功能统一的进行规划和管理] 已用户为中心，快速响应用户需求、快速创新、快速迭代。也就是快速">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464395-32712200-27f4-11ea-9caa-32fc7a71d90c.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464484-795f1780-27f4-11ea-8ac7-b79a7049dd7b.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464574-e2df2600-27f4-11ea-932d-feb9ba4949c2.png">
-<meta property="og:updated_time" content="2020-01-04T00:54:27.599Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71758241-409bfe00-2ed8-11ea-9333-9b49bd481054.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71758918-6e854080-2ee0-11ea-934d-0101ad7cc3d1.png">
+<meta property="og:updated_time" content="2020-01-04T03:10:12.863Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464395-32712200-27f4-11ea-9caa-32fc7a71d90c.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71758241-409bfe00-2ed8-11ea-9333-9b49bd481054.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/26/%E6%8E%A5%E5%8F%A3%E5%9B%9E%E5%BD%92%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
+<link rel="canonical" href="http://yoursite.com/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/">
 
 
 <script id="page-configurations">
@@ -75,7 +74,7 @@
   };
 </script>
 
-  <title>接口回归场景测试总结 | Hexo</title>
+  <title>中台与测试关系 | Hexo</title>
   
 
 
@@ -199,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E6%8E%A5%E5%8F%A3%E5%9B%9E%E5%BD%92%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -212,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          接口回归场景测试总结
+          中台与测试关系
         </h1>
 
         <div class="post-meta">
@@ -221,16 +220,10 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-26 15:52:54" itemprop="dateCreated datePublished" datetime="2019-12-26T15:52:54+08:00">2019-12-26</time>
+              <time title="创建时间：2020-01-04 11:07:57 / 修改时间：11:10:12" itemprop="dateCreated datePublished" datetime="2020-01-04T11:07:57+08:00">2020-01-04</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-04 08:54:27" itemprop="dateModified" datetime="2020-01-04T08:54:27+08:00">2020-01-04</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -261,37 +254,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="单个场景测试用例设计"><a href="#单个场景测试用例设计" class="headerlink" title="单个场景测试用例设计"></a>单个场景测试用例设计</h3><p>参考：<a href="http://www.softtest.com/test/case/13097.html" target="_blank" rel="noopener">http://www.softtest.com/test/case/13097.html</a></p><h3 id="一、自动化测试"><a href="#一、自动化测试" class="headerlink" title="一、自动化测试"></a>一、自动化测试</h3><ul>
-<li><strong>自动化维护的成本：</strong>自动化能够提高用例执行速度和覆盖度；需要投入时间成本（比如执行环境的维护、测试脚本维护、问题的跟进修复）。有时需要开发的配合或者有时需要绕开软件自身的逻辑来保证自动化执行的效果。</li>
-<li>自动化目前的应用范围：目前，大部分自动化需要明确的输入来验证明确的输出，这个特性决定了它只能做回归测试。</li>
-<li>自动化无法进行探索性测试：比如前几天我测试一个逻辑 A，在检测日志信息时，偶尔发现了另一个逻辑的日志有点异常，于是就去跟进了一下，从而发现了一个问题，如果是自动化，他根本不可能在测试 A 逻辑的时候还去关注 B 逻辑的问题。<h3 id="二、基于场景的接口测试用例设计流程"><a href="#二、基于场景的接口测试用例设计流程" class="headerlink" title="二、基于场景的接口测试用例设计流程"></a>二、基于场景的接口测试用例设计流程</h3></li>
-<li>自动化测试<br><img src="https://user-images.githubusercontent.com/56629574/71464395-32712200-27f4-11ea-9caa-32fc7a71d90c.png" alt="1577345226(1)"><h3 id="三、简单场景实例（回帖）"><a href="#三、简单场景实例（回帖）" class="headerlink" title="三、简单场景实例（回帖）"></a>三、简单场景实例（回帖）</h3></li>
+        <h3 id="中台"><a href="#中台" class="headerlink" title="中台"></a>中台</h3><h3 id="一、为什么需要中台"><a href="#一、为什么需要中台" class="headerlink" title="一、为什么需要中台"></a>一、为什么需要中台</h3><ul>
+<li>中台出现是因为公司业务高速发展，各个项目相对独立，许多项目都在重复发明相同的轮子，让项目本身越来越臃肿，也让开发效率降低<br>[比如对于阿里，一开始只有淘宝，后来上线了1688、聚划算、天猫，业务针对的领域不同，但都有订单、商品、库存、价格、物流等功能，所以将各个业务部门重复使用、重复建设的功能统一的进行规划和管理]</li>
+<li>已用户为中心，快速响应用户需求、快速创新、快速迭代。也就是快速建设、错了就推翻重来（试错）、不要耗费太大成本</li>
 </ul><a id="more"></a>
-
-<p><strong>3.1 画流程图</strong><br><img src="https://user-images.githubusercontent.com/56629574/71464484-795f1780-27f4-11ea-8ac7-b79a7049dd7b.png" alt="1577345329(1)"><br><strong>3.2 根据流程图，梳理出具体的场景</strong></p>
+<h3 id="二、理解中台"><a href="#二、理解中台" class="headerlink" title="二、理解中台"></a>二、理解中台</h3><p><img src="https://user-images.githubusercontent.com/56629574/71758241-409bfe00-2ed8-11ea-9333-9b49bd481054.png" alt="1578102657(1)"></p>
 <ul>
-<li><p>场景1: 首页获取帖子列表 》选择某个帖子 》获取帖子详情 》不回帖</p>
-</li>
-<li><p>场景2: 首页获取帖子列表 》选择某个帖子 》获取帖子详情 》回帖 》未登陆</p>
-</li>
-<li><p>场景3: 首页获取帖子列表 》选择某个忒子 》获取帖子详情 》回帖 》登陆 》回帖成功</p>
-</li>
+<li>中台是被别人集成的，要爬在各个项目上。</li>
 </ul>
-<p>综合覆盖的路径，场景三的路径已经覆盖了场景一和二的路径，所以场景一和场景二可以去掉，剩余场景三为有效场景</p>
-<p><strong>3.3 根据场景，梳理调用的接口</strong></p>
-<p>场景3： 获取帖子列表接口 》获取单个帖子详情接口 》调用回帖接口 》调用登陆接口 》调用回帖，回帖成功<br><strong>3.4 编写用例</strong><br><img src="https://user-images.githubusercontent.com/56629574/71464574-e2df2600-27f4-11ea-932d-feb9ba4949c2.png" alt="1577345486(1)"></p>
-<h3 id="针对整个系统设计"><a href="#针对整个系统设计" class="headerlink" title="针对整个系统设计"></a>针对整个系统设计</h3><p>参考：<a href="https://testerhome.com/topics/19643" target="_blank" rel="noopener">https://testerhome.com/topics/19643</a><br>接口测试当中数据准备工作需要消耗较大工作量，而接口的功能，大体上可以分为增删改查几类功能，本文简单介绍一下这几种功能的接口脚本设计思路，<strong>主要是涉及数据准备的一些思路，目的是减少冗余的数据准备，同时减少由于接口脚本导致测试环境脏数据的出现。</strong></p>
-<ul>
-<li><p>增：接口的功能是在服务器数据库里新增一些数据，为了避免脚本重复执行时不断插入新数据、同时为了避免准备的数据过多或者冲突，建议在脚本中包含以下操作<br>a. 查询数据库中是否已存在准备新增的数据，如果有的话，需要删除；<br>b. 使用准备好的数据调用待测接口进行新增操作；<br>c. 断言中检查数据库中是否成功新增了测试数据；<br>d. 第三步成功的话需要在数据库中删除测试数据以便后续重复执行该脚本；</p>
-</li>
-<li><p>删：接口的功能是在服务器数据库里删除一些数据，建议脚本包含以下操作<br>a. 查询数据库中是否存在待删除数据；<br>b. 如果不存在的话，需要先新增；<br>c. 调用待测接口进行删除操作；<br>d. 断言判断是否删除成功；</p>
-</li>
-<li><p>改：接口的功能是在服务器数据库里修改一些数据，为了确保数据库中存在待修改数据、脚本可重复执行，建议在脚本中包含以下操作<br>a. 查询数据库中是否已存在待修改的数据，如果没有的话，需要新增待修改的数据；<br>b. 调用待测接口进行修改操作；<br>c. 断言检查数据库中是否成功修改了测试数据；<br>d. 第三步成功的话需要在数据库中把数据修改恢复成原数据以便后续重复执行该脚本；</p>
-</li>
-<li><p>查：接口的功能是在服务器数据库里查询出一些数据，这在四种类型中是最简单的一种，正常不需要修改数据库，建议脚本包含以下操作<br>a. 为了确保数据库中有待查数据，先查询是否存在待查数据；<br>b. 如果不存在的话，需要先新增；<br>c. 调用待测接口进行查询操作；<br>d. 断言判断查询出的结果与上面步骤中从数据库查出的结果完全一致；</p>
-</li>
+<h3 id="三、中台分类"><a href="#三、中台分类" class="headerlink" title="三、中台分类"></a>三、中台分类</h3><p><img src="https://user-images.githubusercontent.com/56629574/71758918-6e854080-2ee0-11ea-934d-0101ad7cc3d1.png" alt="无标题"></p>
+<h3 id="中台与测试关系"><a href="#中台与测试关系" class="headerlink" title="中台与测试关系"></a>中台与测试关系</h3><h3 id="一、中台中测试侧重点：更加注重接口测试"><a href="#一、中台中测试侧重点：更加注重接口测试" class="headerlink" title="一、中台中测试侧重点：更加注重接口测试"></a>一、中台中测试侧重点：更加注重接口测试</h3><ul>
+<li>单业务直接关联的接口功能测试</li>
+<li>接口兼容性：指同一接口被不同调用者的兼容支持</li>
+<li>接口实现（接口场景测试）：接口与业务场景关联</li>
 </ul>
-<p>其他参考：<a href="https://blog.csdn.net/jiangshangchunjiezi/article/details/97525990" target="_blank" rel="noopener">https://blog.csdn.net/jiangshangchunjiezi/article/details/97525990</a><br>（主要是公共参数的管理）</p>
 
     </div>
 
@@ -301,24 +277,21 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+              <a href="/tags/%E6%8A%80%E6%9C%AF/" rel="tag"># 技术</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/25/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/" rel="next" title="接口测试总结">
-                  <i class="fa fa-chevron-left"></i> 接口测试总结
+                <a href="/2020/01/03/bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/" rel="next" title="bug提交规范">
+                  <i class="fa fa-chevron-left"></i> bug提交规范
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/01/02/%E6%89%8B%E6%9C%BAAPP%E5%88%86%E7%B1%BB%E5%8F%8A%E5%8C%BA%E5%88%AB/" rel="prev" title="手机APP分类及区别">
-                  手机APP分类及区别 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -362,7 +335,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单个场景测试用例设计"><span class="nav-text">单个场景测试用例设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、自动化测试"><span class="nav-text">一、自动化测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基于场景的接口测试用例设计流程"><span class="nav-text">二、基于场景的接口测试用例设计流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、简单场景实例（回帖）"><span class="nav-text">三、简单场景实例（回帖）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对整个系统设计"><span class="nav-text">针对整个系统设计</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#中台"><span class="nav-text">中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、为什么需要中台"><span class="nav-text">一、为什么需要中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、理解中台"><span class="nav-text">二、理解中台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、中台分类"><span class="nav-text">三、中台分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#中台与测试关系"><span class="nav-text">中台与测试关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、中台中测试侧重点：更加注重接口测试"><span class="nav-text">一、中台中测试侧重点：更加注重接口测试</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
