@@ -54,7 +54,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="需求评审 作用：同步产品对于需求的详细设计；收集大家对于需求的各种反馈（重点） 站在用户角度考虑问题的合理性 （包含产品设计和开发实现逻辑）【比如之前阿里云出现泄漏企业源代码问题：托管提供internal、public、private三个访问权限，平台认为的internal是阿里云平台内登陆可见，而用户认为是公司内部，这不算bug，但属于用户体验类。所以设计者要充分考虑使用者使用场景出现的问题。】">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-03T08:44:25.646Z">
+<meta property="og:updated_time" content="2020-01-04T08:29:51.394Z">
 <meta name="twitter:card" content="summary">
 
 <link rel="canonical" href="http://yoursite.com/2020/01/03/%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/">
@@ -217,10 +217,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-01-03 11:37:22 / 修改时间：16:44:25" itemprop="dateCreated datePublished" datetime="2020-01-03T11:37:22+08:00">2020-01-03</time>
+              <time title="创建时间：2020-01-03 11:37:22" itemprop="dateCreated datePublished" datetime="2020-01-03T11:37:22+08:00">2020-01-03</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-04 16:29:51" itemprop="dateModified" datetime="2020-01-04T16:29:51+08:00">2020-01-04</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -271,6 +277,7 @@
 <ul>
 <li>这个需求是明确了参数类型和参数个数，从而很容易想到①三个参数正常、异常情况 ②参数个数正常、异常情况</li>
 <li>隐式需求是参数间分隔符，开发可能以自己以为的方式实现，比如默认是空格。但是在实际应用中，可能也有很多用户使用逗号、分号等分割，此时要明确是什么分隔符。</li>
+<li>除数为0</li>
 </ul>
 
     </div>
