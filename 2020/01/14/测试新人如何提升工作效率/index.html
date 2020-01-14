@@ -46,27 +46,17 @@
   };
 </script>
 
-  <meta name="description" content="一、SSH分客户端openssh-client和openssh-server 若只想登录其他的机器，则安装openssh-client 若想本机开放ssh，供别人登录，则安装openssh-server二、查看ssh是否开启指令：ps -ef | grep sshd其中&#x2F;usr&#x2F;sbin&#x2F;sshd为ssh clinet&#x2F;server中server端的守护进程，如果上述结果中没有sshd出现，那么可">
-<meta name="keywords" content="原理或遇到问题">
+  <meta name="description" content="A同学现在有个测试任务正做着，突然来了一个PM，说有需求要宣讲，二话不说跟着去了，需求刚宣讲完，屁股没坐热乎，另一个PM发邮件说线上有个bug帮确认复现一下，接着又搞这个了，不知不觉，时间过去2个多小时了，测试任务还未有实质性的进展，突然QQ亮了，哎呀是暗恋的一个大学MM，荷尔蒙急剧升高，聊会儿吧。。。有人叫一起吃饭去了，一看时间，午饭时间快到了。午饭归来，浏览下网页，看看微薄，接着干活，测着测着">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ssh原理及命令">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;06&#x2F;ssh%E5%8E%9F%E7%90%86%E5%8F%8A%E5%91%BD%E4%BB%A4&#x2F;index.html">
+<meta property="og:title" content="测试新人如何提升工作效率">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;14&#x2F;%E6%B5%8B%E8%AF%95%E6%96%B0%E4%BA%BA%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、SSH分客户端openssh-client和openssh-server 若只想登录其他的机器，则安装openssh-client 若想本机开放ssh，供别人登录，则安装openssh-server二、查看ssh是否开启指令：ps -ef | grep sshd其中&#x2F;usr&#x2F;sbin&#x2F;sshd为ssh clinet&#x2F;server中server端的守护进程，如果上述结果中没有sshd出现，那么可">
+<meta property="og:description" content="A同学现在有个测试任务正做着，突然来了一个PM，说有需求要宣讲，二话不说跟着去了，需求刚宣讲完，屁股没坐热乎，另一个PM发邮件说线上有个bug帮确认复现一下，接着又搞这个了，不知不觉，时间过去2个多小时了，测试任务还未有实质性的进展，突然QQ亮了，哎呀是暗恋的一个大学MM，荷尔蒙急剧升高，聊会儿吧。。。有人叫一起吃饭去了，一看时间，午饭时间快到了。午饭归来，浏览下网页，看看微薄，接着干活，测着测着">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70307457-2a9d0e00-1844-11ea-9be3-c222c4bd0990.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70308719-d34c6d00-1846-11ea-8e7b-c5ae6e4abd7d.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70311443-a26f3680-184c-11ea-8a81-661e10c65cf9.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70311481-b7e46080-184c-11ea-8126-3614e2419ead.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70309397-68039a80-1848-11ea-86e8-38dc0847050b.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70309585-ccbef500-1848-11ea-80de-02641288b71e.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70309774-37703080-1849-11ea-9d40-3bea58a08122.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70311721-29241380-184d-11ea-8323-154b38396718.png">
-<meta property="og:updated_time" content="2019-12-12T02:11:53.408Z">
+<meta property="og:updated_time" content="2020-01-14T14:03:28.276Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70307457-2a9d0e00-1844-11ea-9be3-c222c4bd0990.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/06/ssh%E5%8E%9F%E7%90%86%E5%8F%8A%E5%91%BD%E4%BB%A4/">
+<link rel="canonical" href="http://yoursite.com/2020/01/14/%E6%B5%8B%E8%AF%95%E6%96%B0%E4%BA%BA%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
 
 
 <script id="page-configurations">
@@ -80,7 +70,7 @@
   };
 </script>
 
-  <title>ssh原理及命令 | Hexo</title>
+  <title>测试新人如何提升工作效率 | Hexo</title>
   
 
 
@@ -204,7 +194,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/06/ssh%E5%8E%9F%E7%90%86%E5%8F%8A%E5%91%BD%E4%BB%A4/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E6%B5%8B%E8%AF%95%E6%96%B0%E4%BA%BA%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -217,7 +207,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          ssh原理及命令
+          测试新人如何提升工作效率
         </h1>
 
         <div class="post-meta">
@@ -226,24 +216,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-06 17:54:27" itemprop="dateCreated datePublished" datetime="2019-12-06T17:54:27+08:00">2019-12-06</time>
+              <time title="创建时间：2020-01-14 22:02:38 / 修改时间：22:03:28" itemprop="dateCreated datePublished" datetime="2020-01-14T22:02:38+08:00">2020-01-14</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-12 10:11:53" itemprop="dateModified" datetime="2019-12-12T10:11:53+08:00">2019-12-12</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
                   </a>
                 </span>
             </span>
@@ -266,29 +250,14 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、SSH分客户端openssh-client和openssh-server"><a href="#一、SSH分客户端openssh-client和openssh-server" class="headerlink" title="一、SSH分客户端openssh-client和openssh-server"></a>一、SSH分客户端openssh-client和openssh-server</h3><ul>
-<li>若只想登录其他的机器，则安装openssh-client</li>
-<li>若想本机开放ssh，供别人登录，则安装openssh-server<h3 id="二、查看ssh是否开启"><a href="#二、查看ssh是否开启" class="headerlink" title="二、查看ssh是否开启"></a>二、查看ssh是否开启</h3>指令：ps -ef | grep sshd<br><img src="https://user-images.githubusercontent.com/56629574/70307457-2a9d0e00-1844-11ea-9be3-c222c4bd0990.png" alt="1575620356(1)"><br>其中/usr/sbin/sshd为ssh clinet/server中server端的守护进程，如果上述结果中没有sshd出现，那么可能就是你的server端程序没有安装<h3 id="三、启动与关闭"><a href="#三、启动与关闭" class="headerlink" title="三、启动与关闭"></a>三、启动与关闭</h3>/etc/init.d/ssh start<br>/etc/init.d/ssh stop<h3 id="四、配置"><a href="#四、配置" class="headerlink" title="四、配置"></a>四、配置</h3>/etc/ssh/sshd_config 在这里可以配置端口号，默认为22<h3 id="五、生成密钥（密码和钥匙）"><a href="#五、生成密钥（密码和钥匙）" class="headerlink" title="五、生成密钥（密码和钥匙）"></a>五、生成密钥（密码和钥匙）</h3>ssh-keygen -t rsa -P ‘’ </li>
-<li>t：密钥类型（rsa、dsa、ecdsa等）</li>
-<li>P：指定passphrase，确保私钥安全<br><img src="https://user-images.githubusercontent.com/56629574/70308719-d34c6d00-1846-11ea-8e7b-c5ae6e4abd7d.png" alt="1575621494(1)"><br>在生成公钥时还生成了fingerprint<br>查看/root/.ssh/目录：<br><img src="https://user-images.githubusercontent.com/56629574/70311443-a26f3680-184c-11ea-8a81-661e10c65cf9.png" alt="1575623995(1)"><br><img src="https://user-images.githubusercontent.com/56629574/70311481-b7e46080-184c-11ea-8126-3614e2419ead.png" alt="1575623903(1)"></li>
-</ul><a id="more"></a>
-<h3 id="六、第一次登录服务器（基于口令的认证）"><a href="#六、第一次登录服务器（基于口令的认证）" class="headerlink" title="六、第一次登录服务器（基于口令的认证）"></a>六、第一次登录服务器（基于口令的认证）</h3><p><img src="https://user-images.githubusercontent.com/56629574/70309397-68039a80-1848-11ea-86e8-38dc0847050b.png" alt="1575622162(1)"><br>上面的信息说的是：无法确认主机ssh-server.example.com（12.18.429.21）的真实性，不过知道它的公钥指纹（fingerprint），是否继续连接？<br>之所以用fingerprint代替key，主要是key过于长（RSA算法生成的公钥有1024位），很难直接比较。所以，对公钥进行hash生成一个128位的指纹，这样就方便比较了。<br>若输入yes：<br><img src="https://user-images.githubusercontent.com/56629574/70309585-ccbef500-1848-11ea-80de-02641288b71e.png" alt="1575622340(1)"><br>则将追加到known_host文件中，此后的流程如下图：<br><img src="https://user-images.githubusercontent.com/56629574/70309774-37703080-1849-11ea-9d40-3bea58a08122.png" alt="1575622523(1)"></p>
-<ol>
-<li>远程Server收到Client端用户TopGun的登录请求，Server把自己的公钥发给用户。</li>
-<li>Client使用这个公钥，将密码进行加密。</li>
-<li>Client将加密的密码发送给Server端。</li>
-<li>远程Server用自己的私钥，解密登录密码，然后验证其合法性。</li>
-<li>若验证结果，给Client相应的响应。</li>
-</ol>
-<p><strong>私钥是Server端独有，这就保证了Client的登录信息即使在网络传输过程中被窃据，也没有私钥进行解密，保证了数据的安全性，这充分利用了非对称加密的特性。</strong></p>
-<h3 id="七、基于公钥的认证"><a href="#七、基于公钥的认证" class="headerlink" title="七、基于公钥的认证"></a>七、基于公钥的认证</h3><p>在上面介绍的登录流程中可以发现，每次登录都需要输入密码，很麻烦。SSH提供了另外一种可以免去输入密码过程的登录方式：公钥登录。流程如下：<br><img src="https://user-images.githubusercontent.com/56629574/70311721-29241380-184d-11ea-8323-154b38396718.png" alt="1575624213(1)"></p>
-<ol>
-<li>Client将自己的公钥存放在Server上，追加在文件authorized_keys中。</li>
-<li>Server端接收到Client的连接请求后，会在authorized_keys中匹配到Client的公钥pubKey，并生成随机数R，用Client的公钥对该随机数进行加密得到pubKey(R)，然后将加密后信息发送给Client。</li>
-<li>Client端通过私钥进行解密得到随机数R，然后对随机数R和本次会话的SessionKey利用MD5生成摘要Digest1，发送给Server端。</li>
-<li>Server端会也会对R和SessionKey利用同样摘要算法生成Digest2。</li>
-<li>Server端会最后比较Digest1和Digest2是否相同，完成认证过程。<br>在服务端填写客户端公钥：cat ~/.ssh/id_rsa.pub（客户端） &gt;&gt; ~/.ssh/authorized_keys（服务端）<br>转载：<a href="https://www.jianshu.com/p/33461b619d53" target="_blank" rel="noopener">https://www.jianshu.com/p/33461b619d53</a></li>
-</ol>
+        <p>A同学现在有个测试任务正做着，突然来了一个PM，说有需求要宣讲，二话不说跟着去了，需求刚宣讲完，屁股没坐热乎，另一个PM发邮件说线上有个bug帮确认复现一下，接着又搞这个了，不知不觉，时间过去2个多小时了，测试任务还未有实质性的进展，突然QQ亮了，哎呀是暗恋的一个大学MM，荷尔蒙急剧升高，聊会儿吧。。。有人叫一起吃饭去了，一看时间，午饭时间快到了。午饭归来，浏览下网页，看看微薄，接着干活，测着测着，哎妈呀好不容易发现个bug，但是自个儿还不敢报，怕自己对业务不熟悉提了个NOTABUG的bug，找了下他师傅B同学确认了下，B同学说是bug，兴致勃勃的提交上去感觉很有成就感。不一会儿开发来了，我看看是不是你环境有问题配置有问题啊，一屁股坐在A同学位置上了，啪啦啪啦开始找问题，开发人员终于还是承认了自己的失误，灰溜溜回去解bug了。A同学一看，哇塞，都三点多了，一看用例才执行了10多条，还有好几十条，今晚要发布这可如何是好，必须得加快测试了，执行到一半的样子，发现一个大bug，而且这个bug不修复的话严重影响后面很多case的执行，赶紧报上去。然后自己接着测试，到了5,6点多了，用例跑完了，终于松一口气，胸有成竹的告诉了B说自己用例跑完一遍了，B结果一看bug一个都没解呢。等到开发修复完，时针指向了7点钟方向。回归测试完毕达到上线标准时已经10点钟了，又是一个苦逼的日子…</p><a id="more"></a>
+<p>以上故事应该在很多新人头上都发生过，依照以上案例，我个人觉得主要有以下几个问题导致的。</p>
+<h3 id="问题一：事情优先级和紧急度处理不当"><a href="#问题一：事情优先级和紧急度处理不当" class="headerlink" title="问题一：事情优先级和紧急度处理不当"></a>问题一：事情优先级和紧急度处理不当</h3><p>这是初入职场的人一定会犯的错误，在大家的意识中，事情是一件一件做的。只要有超过3，4件事情的时候可能就手忙脚乱，而且感觉压力巨大，自己手头的事儿还没完，怎么又有这么多活儿，啥时候才是个头啊…我相信很多人都这么抱怨过，口头上或心理这么觉得。的确在工作中会有很多事情，这也是我们存在的价值所在，如果理清事情的优先级和紧急程度，就迎刃而解，按照四象限来划分，优先做第一象限的事情，从第一象限到第四象限，依次类推。<br>1）、“重要且紧急”：立即去做<br>2）、“重要不紧急”：有计划的去做，不要等到变成重要且紧急的时候才去做<br>3）、“不重要但紧急”：优先考虑了重要的事情之后再来考虑紧急的事情，此类事情拖一拖也无关大局<br>4）、“不重要也不紧急”：尽量别去做，更不要花时间沉溺于此</p>
+<p>那体现在这个案例中，第一个错误之处就是未排好事情的优先级，事情都是one by one的去做。第二个就是用例优先级，同样可以把每一条用例当成一件任务，他们的优先级设立同样重要，按照优先级来执行用例，尽早发现bug，及早发现严重的bug，也就可以避免顽固的bug拖累项目进度。</p>
+<h3 id="问题二：工作方法不当"><a href="#问题二：工作方法不当" class="headerlink" title="问题二：工作方法不当"></a>问题二：工作方法不当</h3><p>我们很多时候在忙碌中已经忘记了去思考，去总结，一件事情丢过来的时候，噼里啪啦可能就按照以往的思路去做了，也许以前就是未总结过的，所以一错再错，比如在测试过程中的测试方法总结，测试流程的梳理。任何人都知道需求评审重要性，需求变更带来的坏处，不管是科班出生还是转行做测试的，但是对于需求评审可能都未到位，到测试快结束的时候发现一个需求漏洞，多方确认再次改代码甚至架构，带来的项目压力可想而知。</p>
+<p>同样，在这个案例中，A同学对于bug的跟踪处理不当，导致开发人员可能在忙活别的项目无暇顾及bug，导致修复进度缓慢。如果可以在发现严重bug的同时及时告知开发人员，叫他们优先处理高优先级的bug同时及时修复其他的bug，也许可以节省很多时间。</p>
+<h3 id="问题三：工作目标不明确"><a href="#问题三：工作目标不明确" class="headerlink" title="问题三：工作目标不明确"></a>问题三：工作目标不明确</h3><p>工作目标说简单点就是哪件事情在什么时候要完成到什么程度，新人可能并不特别明白，但是你的同事或上司可能未必每次都说的这么清楚，那在接受一件任务的时候，就有必要搞清楚，可以直接问下给你任务的人，至少要搞明白以下几点：<br>具体是什么任务；<br>任务是否在你可完成的范围之内，如果需要其他人的协助也可以尽早提出；<br>具体什么时候开始做；<br>什么时候做完，或什么时候做到什么程度。<br>结合这个案例，至少PM的需求宣讲以及线上bug确认2件事可以搞明白其工作目标后再做优先级的排序，可能就无需立即去做。</p>
+<h3 id="问题四：不懂拒绝"><a href="#问题四：不懂拒绝" class="headerlink" title="问题四：不懂拒绝"></a>问题四：不懂拒绝</h3><p>这是很多人都容易犯的毛病，别人找你帮忙你不懂拒绝，就会导致顾此失彼。A同学在配合PM和开发人员的工作时就是因为不懂拒绝导致时间花费了很多。其实他完全可以在确立目标之后拒绝PM的低优先级要求，可以拒绝开发人员占用自己电脑，完全可以让他回自己电脑上调试，并行工作互不影响。</p>
 
     </div>
 
@@ -297,25 +266,19 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" rel="tag"># 原理或遇到问题</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/19/%E7%AC%AC13%E7%AB%A0%EF%BC%9ALinux%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/" rel="next" title="第13章：Linux账号管理">
-                  <i class="fa fa-chevron-left"></i> 第13章：Linux账号管理
+                <a href="/2020/01/14/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/" rel="next" title="实例分析---生成日志文件">
+                  <i class="fa fa-chevron-left"></i> 实例分析---生成日志文件
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/12/11/001-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/" rel="prev" title="001.远程连接数据库">
-                  001.远程连接数据库 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -359,7 +322,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、SSH分客户端openssh-client和openssh-server"><span class="nav-text">一、SSH分客户端openssh-client和openssh-server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、查看ssh是否开启"><span class="nav-text">二、查看ssh是否开启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、启动与关闭"><span class="nav-text">三、启动与关闭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、配置"><span class="nav-text">四、配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、生成密钥（密码和钥匙）"><span class="nav-text">五、生成密钥（密码和钥匙）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、第一次登录服务器（基于口令的认证）"><span class="nav-text">六、第一次登录服务器（基于口令的认证）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、基于公钥的认证"><span class="nav-text">七、基于公钥的认证</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题一：事情优先级和紧急度处理不当"><span class="nav-text">问题一：事情优先级和紧急度处理不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题二：工作方法不当"><span class="nav-text">问题二：工作方法不当</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题三：工作目标不明确"><span class="nav-text">问题三：工作目标不明确</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#问题四：不懂拒绝"><span class="nav-text">问题四：不懂拒绝</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
