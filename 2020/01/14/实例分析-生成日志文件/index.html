@@ -46,17 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="title: GitHub+Hexo+Next搭建博客date: 2019-11-15 17:22:21tags: hexo">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;tags&#x2F;index.html">
+  <meta name="description" content="日志文件的需求“软件要将所有的访问者都要记录下来，对每次访问要记录访问开始时间、访问结束时间、访问者的IP地址这三个信息作为一条日志记录。要求以天为单位每天生成一个访问记录日志文件。需求中三个元素：访问者、访问记录、访问文件，下面依次对其分析一、 访问者和访问记录每条记录仅仅包含访问时间和ip，对其分析只能看出哪段时间访问的人数多，得到用户的时间规律，很难对用户进行深入的分析，只有知道访问者在访问">
+<meta name="keywords" content="总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="实例分析---生成日志文件">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;14&#x2F;%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="title: GitHub+Hexo+Next搭建博客date: 2019-11-15 17:22:21tags: hexo">
+<meta property="og:description" content="日志文件的需求“软件要将所有的访问者都要记录下来，对每次访问要记录访问开始时间、访问结束时间、访问者的IP地址这三个信息作为一条日志记录。要求以天为单位每天生成一个访问记录日志文件。需求中三个元素：访问者、访问记录、访问文件，下面依次对其分析一、 访问者和访问记录每条记录仅仅包含访问时间和ip，对其分析只能看出哪段时间访问的人数多，得到用户的时间规律，很难对用户进行深入的分析，只有知道访问者在访问">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-15T09:57:48.647Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;72343464-e259f100-3709-11ea-9891-8245cbf7469b.png">
+<meta property="og:updated_time" content="2020-01-14T12:20:47.466Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;72343464-e259f100-3709-11ea-9891-8245cbf7469b.png">
 
-<link rel="canonical" href="http://yoursite.com/tags/">
+<link rel="canonical" href="http://yoursite.com/2020/01/14/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/">
 
 
 <script id="page-configurations">
@@ -64,14 +67,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
-    isPage: true,
+    isPost: true,
+    isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>tags | Hexo
-  </title>
+  <title>实例分析---生成日志文件 | Hexo</title>
   
 
 
@@ -186,52 +188,117 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
           <div class="content">
             
 
   <div class="posts-expand">
-    
-    
-    
-    <div class="post-block" lang="zh-CN">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">tags
-</h1>
-
-<div class="post-meta">
+      
   
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E7%94%9F%E6%88%90%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6/">
 
-</div>
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
 
-</header>
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          实例分析---生成日志文件
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 20:19:56 / 修改时间：20:20:47" itemprop="dateCreated datePublished" datetime="2020-01-14T20:19:56+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-              目前共计 4 个标签
+        <h3 id="日志文件的需求"><a href="#日志文件的需求" class="headerlink" title="日志文件的需求"></a>日志文件的需求</h3><p>“软件要将所有的访问者都要记录下来，对每次访问要记录访问开始时间、访问结束时间、访问者的IP地址这三个信息作为一条日志记录。要求以天为单位每天生成一个访问记录日志文件。</p><p>需求中三个元素：访问者、访问记录、访问文件，下面依次对其分析</p><h3 id="一、-访问者和访问记录"><a href="#一、-访问者和访问记录" class="headerlink" title="一、 访问者和访问记录"></a>一、 访问者和访问记录</h3><p>每条记录仅仅包含访问时间和ip，对其分析只能看出哪段时间访问的人数多，得到用户的时间规律，很难对用户进行深入的分析，只有知道访问者在访问时的内容才能获得更大价值。</p><a id="more"></a>
+
+
+<h3 id="二、访问记录"><a href="#二、访问记录" class="headerlink" title="二、访问记录"></a>二、访问记录</h3><p>主要属性是记录格式。因为日志分析要用专门的分析软件或者写专门的分析程序来分析，要设计合适的日志记录格式。</p>
+<h3 id="三、日志文件属性"><a href="#三、日志文件属性" class="headerlink" title="三、日志文件属性"></a>三、日志文件属性</h3><p><img src="https://user-images.githubusercontent.com/56629574/72343464-e259f100-3709-11ea-9891-8245cbf7469b.png" alt="1579003757(1)"></p>
+<ul>
+<li>每天生成日志文件，明确创建日志文件时间是0点还是其他时间</li>
+<li>文件名（包含后缀）、存放位置</li>
+<li>文件格式以二进制 文本等</li>
+<li>文件内容：每条记录之间间隔以分号、回车等</li>
+<li>文件大小：若某条处于高峰期，是否要将日志文件拆成多个</li>
+<li>文件权限：是机器上所有用户还是特定用户</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/01/14/%E5%A6%82%E4%BD%95%E7%A1%AE%E5%AE%9A%E6%B5%8B%E8%AF%95%E9%87%8D%E7%82%B9/" rel="next" title="如何确定测试重点">
+                  <i class="fa fa-chevron-left"></i> 如何确定测试重点
+                </a>
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" style="font-size: 30px; color: #111">原理或遇到问题</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 24px; color: #4f4f4f">总结</a> <a href="/tags/%E6%8A%80%E6%9C%AF/" style="font-size: 12px; color: #ccc">技术</a> <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" style="font-size: 18px; color: #8e8e8e">鸟哥的私房菜</a>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
             </div>
           </div>
-        
-      </div>
-      
-      
-      
-    </div>
+      </footer>
     
+  </article>
+  
+  
+  
 
-    
-    
-    
   </div>
 
 
@@ -266,7 +333,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tags-hexo"><span class="nav-text">tags: hexo</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#日志文件的需求"><span class="nav-text">日志文件的需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-访问者和访问记录"><span class="nav-text">一、 访问者和访问记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、访问记录"><span class="nav-text">二、访问记录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、日志文件属性"><span class="nav-text">三、日志文件属性</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
