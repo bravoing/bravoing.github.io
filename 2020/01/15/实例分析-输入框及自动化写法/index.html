@@ -46,22 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="一、Linux的账号与群组1. &#x2F;etc&#x2F;passwd、&#x2F;etc&#x2F;shadow内容格式三者之间的关系2. 新增、移除使用者：useradd、相关配置文件、passwd、usermode、userdel 创建用户useradd在不加选项情况下，会默认创建 &#x2F;etc&#x2F;passwd（并没有初始密码）、&#x2F;etc&#x2F;shadow、&#x2F;etc&#x2F;group、&#x2F;home下创建与账号同名的目录作为用户家目录（在Ubun">
+  <meta name="description" content="转自：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;Y_DhYHYecl84WAcSdl0mCw　　自动化的能力并非在于自动执行用户任务（并非怀疑所有的价值，我承认有一类自动化测试是有价值的：编写简单的测试，定时运行跨多平台和操作性的测试，以确保兼容性等）。测试自动化的真正威力，是编写代码来测试代码，使得计算机执行的测试工作是用其他方法无法替代的。　　好的测试设计必须考虑到软件行为功能（它">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第13章：Linux账号管理">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;19&#x2F;%E7%AC%AC13%E7%AB%A0%EF%BC%9ALinux%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86&#x2F;index.html">
+<meta property="og:title" content="实例分析---输入框及数据驱动自动化测试用例写法">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;01&#x2F;15&#x2F;%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E8%BE%93%E5%85%A5%E6%A1%86%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E5%86%99%E6%B3%95&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、Linux的账号与群组1. &#x2F;etc&#x2F;passwd、&#x2F;etc&#x2F;shadow内容格式三者之间的关系2. 新增、移除使用者：useradd、相关配置文件、passwd、usermode、userdel 创建用户useradd在不加选项情况下，会默认创建 &#x2F;etc&#x2F;passwd（并没有初始密码）、&#x2F;etc&#x2F;shadow、&#x2F;etc&#x2F;group、&#x2F;home下创建与账号同名的目录作为用户家目录（在Ubun">
+<meta property="og:description" content="转自：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;Y_DhYHYecl84WAcSdl0mCw　　自动化的能力并非在于自动执行用户任务（并非怀疑所有的价值，我承认有一类自动化测试是有价值的：编写简单的测试，定时运行跨多平台和操作性的测试，以确保兼容性等）。测试自动化的真正威力，是编写代码来测试代码，使得计算机执行的测试工作是用其他方法无法替代的。　　好的测试设计必须考虑到软件行为功能（它">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69042051-8174ac00-0a2b-11ea-80bf-79cb349f0c00.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69042107-9cdfb700-0a2b-11ea-9403-1bea9a3df493.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69113848-255b6780-0abf-11ea-876b-a6f88b70aa28.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69114878-b29fbb80-0ac1-11ea-9a86-c7df727eaa74.png">
-<meta property="og:updated_time" content="2019-11-19T04:02:29.773Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;72422793-05de7380-37be-11ea-8c7c-eda843482924.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;72422939-4b02a580-37be-11ea-84c0-6dba1d3ea0c6.png">
+<meta property="og:updated_time" content="2020-01-15T10:00:58.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;69042051-8174ac00-0a2b-11ea-80bf-79cb349f0c00.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;72422793-05de7380-37be-11ea-8c7c-eda843482924.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/19/%E7%AC%AC13%E7%AB%A0%EF%BC%9ALinux%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2020/01/15/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E8%BE%93%E5%85%A5%E6%A1%86%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E5%86%99%E6%B3%95/">
 
 
 <script id="page-configurations">
@@ -75,7 +73,7 @@
   };
 </script>
 
-  <title>第13章：Linux账号管理 | Hexo</title>
+  <title>实例分析---输入框及数据驱动自动化测试用例写法 | Hexo</title>
   
 
 
@@ -199,7 +197,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/19/%E7%AC%AC13%E7%AB%A0%EF%BC%9ALinux%E8%B4%A6%E5%8F%B7%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E8%BE%93%E5%85%A5%E6%A1%86%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E5%86%99%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -212,7 +210,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第13章：Linux账号管理
+          实例分析---输入框及数据驱动自动化测试用例写法
         </h1>
 
         <div class="post-meta">
@@ -223,7 +221,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-19 12:01:13 / 修改时间：12:02:29" itemprop="dateCreated datePublished" datetime="2019-11-19T12:01:13+08:00">2019-11-19</time>
+              <time title="创建时间：2020-01-15 17:57:07 / 修改时间：18:00:58" itemprop="dateCreated datePublished" datetime="2020-01-15T17:57:07+08:00">2020-01-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -231,8 +229,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
                   </a>
                 </span>
             </span>
@@ -255,31 +253,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、Linux的账号与群组"><a href="#一、Linux的账号与群组" class="headerlink" title="一、Linux的账号与群组"></a>一、Linux的账号与群组</h3><p><strong>1. /etc/passwd、/etc/shadow内容格式</strong><br><img src="https://user-images.githubusercontent.com/56629574/69042051-8174ac00-0a2b-11ea-80bf-79cb349f0c00.png" alt="1574070444(1)"><br><strong>三者之间的关系</strong><br><img src="https://user-images.githubusercontent.com/56629574/69042107-9cdfb700-0a2b-11ea-9403-1bea9a3df493.png" alt="1574070489(1)"><br><strong>2. 新增、移除使用者：useradd、相关配置文件、passwd、usermode、userdel</strong></p><ul>
-<li>创建用户useradd<br>在不加选项情况下，会默认创建 /etc/passwd（并没有初始密码）、/etc/shadow、/etc/group、/home下创建与账号同名的目录作为用户家目录（在Ubuntu中并不会创建）<br>在Ubuntu中要自己指定，所以创建方法为useradd username -m<br>此时的账号并无法登录（没密码）</li>
-<li>设置密码：echo username:password|chpasswd<br>Ubuntu中不能用echo “xx” | passwd –stdin username（可用man passwd查看）<br>其他的命令有效日期等修改还要用passwd </li>
-</ul><a id="more"></a>
-
-<p>当我们这样创建了用户就可以切换到该用户了，但是不能从该用户切换到root，则要在/etc/sudoers中：<br><img src="https://user-images.githubusercontent.com/56629574/69113848-255b6780-0abf-11ea-876b-a6f88b70aa28.png" alt="1574133830(1)"><br>若/etc/sudoers文件修改错了，则在如下方法：<br>pkexec visudo<br>username ALL=(ALL)ALL<br>ctrl+o保存，会出现File Name to Write：/etc/sudoers.tmp ，直接回车，ctrl+x退出</p>
+        <p>转自：<a href="https://mp.weixin.qq.com/s/Y_DhYHYecl84WAcSdl0mCw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Y_DhYHYecl84WAcSdl0mCw</a><br>　　自动化的能力并非在于自动执行用户任务（并非怀疑所有的价值，我承认有一类自动化测试是有价值的：编写简单的测试，定时运行跨多平台和操作性的测试，以确保兼容性等）。<strong>测试自动化的真正威力，是编写代码来测试代码，使得计算机执行的测试工作是用其他方法无法替代的。</strong><br><img src="https://user-images.githubusercontent.com/56629574/72422793-05de7380-37be-11ea-8c7c-eda843482924.png" alt="1579081144(1)"><br>　　好的测试设计必须考虑到软件行为功能（它是否做了所期望的事情，又是否做了不被期望的事），以及非功能的属性，比如可靠性、性能和安全性等。一个好的测试设计方法是将这些东西视为整体（系统性思维）。我经常通过头脑风暴产生脑图来开始这个过程的，以确定测试方法。下面是一个脑图的例子：<br><img src="https://user-images.githubusercontent.com/56629574/72422939-4b02a580-37be-11ea-84c0-6dba1d3ea0c6.png" alt="1579081285(1)"><br>　　在创建这张脑图的时候，并没有考虑任何要不要执行自动化的问题，只是写了许多关于要测试的笔记、想法和问题。最终，我会使用脑图来帮助我组织测试思路，并通过脑图与其他人交流。<br>现在，就可以着手考虑自动化了！脑图里有许多关于需要发送的字符串的不同想法，每个测试的设置都手动执行是极其无聊而烦人的（此时正好就需要一个好的启发思维来决定哪些部分进行自动化测试），于是就从这里开始：<br>For Each string in TestString.txt<br>{<br>    SendSackMessage(string);<br>    VerifyMessageAppears(string);<br>    VerifyRemoteMessageAppears(string);<br>}</p><a id="more"></a>
+<p>　　看，这是一个数据驱动的测试。当然，我写了上面那段代码，很短。假设现在有一些新的测试思路，我可以把它们存入TestStrings.txt。<br>　　人类对重复测试感到厌烦，而计算机正擅长于此。发出1万条消息，测试每个消息发出的延迟情况；如果任一个消息的发送超出两个标准偏差，那么就返回一个具诊断信息的错误，保存或把数据绘入图表；尽可能快速地发送一串的单个字符，验证是否能按正确的顺序到达。此类自动化测试的优点在于利用了计算机的优势，这通常比端到端的UI测试更有价值。这种类型的自动化测试就是<strong>有价值的。</strong><br>　　类似的，对于用户的行为，许多人试图没有创建片状测试（flaky tests）的情况下去实现自动化，这是非常难的，这部分测试更适合人类自己去验证。<br>好消息是在这种思维方式中考虑测试设计和自动化测试，会消除那些自动化测试将会取代测试人员的所有价值和可信度的担心，或者如何“转换”人工测试到自动化的疑虑。好的测试设计并不是那样的。</p>
+<p>以后测试设计时记住两个定律：</p>
 <ul>
-<li><p>修改用户信息：usermod</p>
-</li>
-<li><p>删除用户：userdel</p>
-</li>
-</ul>
-<p><strong>3. 新增与移除群组</strong><br>groupadd、groupmod、groupdel<br>注意若账号的initial group（/etc/passwd 第四栏）使用该群组时，则该群组不能删除</p>
-<p><strong>4、有效群组与初始群组</strong><br>一个用户可以属于多个群组，初始群组是指/etc/passwd中第四栏<br>初始群组的意义：此账号一登录系统，立即拥有这个群组的相关权限<br>非初始群组：则账号要找到/etc/group对应组的第四栏<br>注意：/etc/group 第四栏显示的是非初始群组的账号，并不包含初始群组的<br>有效群组是在当前账号下用groups命令第一个显示出来的群组<br><strong>5. 有效群组的切换：newgrp</strong><br>切换后退回，则用exit</p>
-<p><img src="https://user-images.githubusercontent.com/56629574/69114878-b29fbb80-0ac1-11ea-9a86-c7df727eaa74.png" alt="1574134921(1)"><br><strong>6. 用户登录过程</strong></p>
-<ul>
-<li><p>先在/etc/paswd中找是否有你输入的账号。若没有，则跳出；否则将该账号的UID和GID、家目录、shell设定一并读出</p>
-</li>
-<li><p>核对密码表 /etc/shadow里面找对应账号</p>
-</li>
-</ul>
-<h3 id="二、使用者身份切换"><a href="#二、使用者身份切换" class="headerlink" title="二、使用者身份切换"></a>二、使用者身份切换</h3><p><strong>1.su -  、sudo</strong></p>
-<ul>
-<li>su -：需要输入入root的密码<br>su - :并不会切换到使用者的环境，必须用su -username /PATH/USER/MAIL等变量才会变</li>
-<li>sudo 命令：需要输入当前账号的密码</li>
+<li>应该自动化的部分就100%的自动化</li>
+<li>需要人工验证的部分就100%的采用人工</li>
 </ul>
 
     </div>
@@ -294,17 +273,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/18/%E7%AC%AC10%E7%AB%A0%EF%BC%9A%E8%AE%A4%E8%AF%86%E4%B8%8E%E5%AD%A6%E4%B9%A0bash/" rel="next" title="第10章：认识与学习bash">
-                  <i class="fa fa-chevron-left"></i> 第10章：认识与学习bash
+                <a href="/2020/01/14/%E6%B5%8B%E8%AF%95%E6%96%B0%E4%BA%BA%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/" rel="next" title="测试新人如何提升工作效率">
+                  <i class="fa fa-chevron-left"></i> 测试新人如何提升工作效率
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/12/06/ssh%E5%8E%9F%E7%90%86%E5%8F%8A%E5%91%BD%E4%BB%A4/" rel="prev" title="ssh原理及命令">
-                  ssh原理及命令 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -348,7 +324,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Linux的账号与群组"><span class="nav-text">一、Linux的账号与群组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用者身份切换"><span class="nav-text">二、使用者身份切换</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
