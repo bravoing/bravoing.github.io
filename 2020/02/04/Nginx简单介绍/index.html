@@ -46,21 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="一、Fidder适用范围 只能抓取HTTP、HTTPS数据包 二、原理在了解Fiddler解密https的原理之前，我们首先要知道标准的https通信原理。https:&#x2F;&#x2F;bravoing.github.io&#x2F;2019&#x2F;12&#x2F;16&#x2F;HTTPS%E5%8E%9F%E7%90%86&#x2F;了解以上常识后我们再看Fiddler解密https的过程其实不难：">
-<meta name="keywords" content="原理或遇到问题">
+  <meta name="description" content="Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。代理服务器概念(proxy)N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权客户端⇄代理服务器⇄目标服务器">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Fiddler抓包原理">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;16&#x2F;Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86&#x2F;index.html">
+<meta property="og:title" content="Nginx简单介绍">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;04&#x2F;Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、Fidder适用范围 只能抓取HTTP、HTTPS数据包 二、原理在了解Fiddler解密https的原理之前，我们首先要知道标准的https通信原理。https:&#x2F;&#x2F;bravoing.github.io&#x2F;2019&#x2F;12&#x2F;16&#x2F;HTTPS%E5%8E%9F%E7%90%86&#x2F;了解以上常识后我们再看Fiddler解密https的过程其实不难：">
+<meta property="og:description" content="Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。代理服务器概念(proxy)N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权客户端⇄代理服务器⇄目标服务器">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70893293-c50c0700-2025-11ea-87be-0f88d03150fc.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70897048-da386400-202c-11ea-8c9b-d205b6d91ab1.png">
-<meta property="og:updated_time" content="2019-12-16T10:07:24.781Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73744404-ab687f80-478b-11ea-8cd9-652891025679.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73745019-08186a00-478d-11ea-8b32-c029ab8ee969.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73748165-d787fe80-4793-11ea-83c3-f4d237a862ee.png">
+<meta property="og:updated_time" content="2020-02-04T13:42:33.905Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70893293-c50c0700-2025-11ea-87be-0f88d03150fc.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73744404-ab687f80-478b-11ea-8cd9-652891025679.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/16/Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
 
 
 <script id="page-configurations">
@@ -74,7 +74,7 @@
   };
 </script>
 
-  <title>Fiddler抓包原理 | Hexo</title>
+  <title>Nginx简单介绍 | Hexo</title>
   
 
 
@@ -198,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -211,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Fiddler抓包原理
+          Nginx简单介绍
         </h1>
 
         <div class="post-meta">
@@ -222,18 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-16 18:06:42 / 修改时间：18:07:24" itemprop="dateCreated datePublished" datetime="2019-12-16T18:06:42+08:00">2019-12-16</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">HTTP协议</span>
-                  </a>
-                </span>
+              <time title="创建时间：2020-02-04 21:41:36 / 修改时间：21:42:33" itemprop="dateCreated datePublished" datetime="2020-02-04T21:41:36+08:00">2020-02-04</time>
             </span>
 
           
@@ -254,21 +243,54 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、Fidder适用范围"><a href="#一、Fidder适用范围" class="headerlink" title="一、Fidder适用范围"></a>一、Fidder适用范围</h3><ul>
-<li>只能抓取HTTP、HTTPS数据包</li>
-</ul><h3 id="二、原理"><a href="#二、原理" class="headerlink" title="二、原理"></a>二、原理</h3><p><img src="https://user-images.githubusercontent.com/56629574/70893293-c50c0700-2025-11ea-87be-0f88d03150fc.png" alt="1576486892(1)"><br>在了解Fiddler解密https的原理之前，我们首先要知道标准的https通信原理。<br><a href="https://bravoing.github.io/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">https://bravoing.github.io/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/</a></p><p>了解以上常识后我们再看Fiddler解密https的过程其实不难：</p><a id="more"></a>
+        <p>Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。</p><h3 id="代理服务器概念-proxy"><a href="#代理服务器概念-proxy" class="headerlink" title="代理服务器概念(proxy)"></a>代理服务器概念(proxy)</h3><p>N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权<br>客户端⇄代理服务器⇄目标服务器</p><a id="more"></a>
 
-
-<p>客户端发起请求，中间人（Fiddler）会拦截来自客户端的请求，并将伪造的ca证书派发给客户端。同时Fiddler向服务器请求，获得服务器的ca证书。</p>
-<p>客户端接收到来自中间人（Fiddler）的证书，还傻傻的以为这个证书是来自服务器的，并且使用证书里的公钥（其实是Fiddler的公钥）对生成的通信秘钥（对称密钥）加密，发送给服务器。可怜的是这个数据包也会被中间人（Fiddler）拦截。</p>
-<p>中间人（Fiddler）使用自己的私钥将数据包解密，很轻松地得到了通信秘钥。之后使用服务器的RSA公钥对通信密钥加密后传输给服务器。</p>
-<p>服务器接收到“客户端”（其实是Fiddler）发送给自己的密钥，使用RSA私钥解密得到明文密钥后，建立信任。握手完成。使用对称密钥加密消息， 开始通信。</p>
-<p>后面的事情大家应该就明白了，由于Fiddler持有通信秘钥，客户端和服务器的通信对其始终是透明的。</p>
-<h3 id="三、Fiddler代理服务器（中间人）"><a href="#三、Fiddler代理服务器（中间人）" class="headerlink" title="三、Fiddler代理服务器（中间人）"></a>三、Fiddler代理服务器（中间人）</h3><ul>
-<li>既然是主机，则必有地址，此地址为127.0.0.1 端口8888</li>
-<li>Fiddler开启后打开IE，其PROXY自动变为代理地址，但是火狐等需要手动设置<br><img src="https://user-images.githubusercontent.com/56629574/70897048-da386400-202c-11ea-8c9b-d205b6d91ab1.png" alt="1576489946(1)"></li>
-<li>浏览器退出，则自动注销代理，并不会影响使用。但是若Fiddler非正常退出，导致浏览器的代理服务器地址没有注销，会造成网页打不开。（理由：此时端口还在侦听，但代理服务器不能将请求发给真正服务器）<br>所有我们要手动将浏览器的代理关掉。<h3 id="四、Fiddler证书配置"><a href="#四、Fiddler证书配置" class="headerlink" title="四、Fiddler证书配置"></a>四、Fiddler证书配置</h3>Tools–Fiddler Options–HTTPS–Action–Trust Root Certificate</li>
+<h3 id="二、正向代理服务器"><a href="#二、正向代理服务器" class="headerlink" title="二、正向代理服务器"></a>二、正向代理服务器</h3><p>用户知道目标服务器地址(正向代理服务器最主要特点)，但由于网络限制等原因，无法直接访问。这时候需要先连接代理服务器，然后再由代理服务器访问目标服务器。</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/73744404-ab687f80-478b-11ea-8cd9-652891025679.png" alt="1580818751(1)"></p>
+<ul>
+<li>在配置上，客户端必须配置正向代理服务器服务器只清楚请求来自哪个代理服务器，而不清楚来自哪个具体的客户端</li>
+<li>客户端和代理服务器在同一环境中</li>
 </ul>
+<p><strong>正向代理服务器的用途</strong></p>
+<ul>
+<li>访问原来无法访问的资源，如 Google。</li>
+<li>可以做缓存，加速访问资源。</li>
+<li>对客户端访问授权，上网进行认证。</li>
+<li>代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息。</li>
+</ul>
+<p><strong>正向代理的代理对象是客户端，因为目标服务器是和正向代理服务器交流，并不知道是哪个客户端。</strong></p>
+<h3 id="三、反向代理服务器"><a href="#三、反向代理服务器" class="headerlink" title="三、反向代理服务器"></a>三、反向代理服务器</h3><p>随着网站用户量增加，单个服务器性能成为主要限制，所以一般服务器采用“分布式部署”，也就是通过部署多态服务器来解决性能上问题。</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/73745019-08186a00-478d-11ea-8b32-c029ab8ee969.png" alt="1580819349(1)"></p>
+<ul>
+<li>反向代理服务器和服务器集群是同一环境</li>
+<li>客户端不用配置反向代理服务器，或者说客户端认为反向代理服务器就是目标服务器</li>
+</ul>
+<p>反向代理对用户则是不可知的，比如我们访问百度网站，百度的代理服务器对外的域名为 <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> 。具体内部的服务器节点我们不知道，现实中我们通过访问百度的代理服务器后，代理服务器给我们转发请求到他们N多的服务器节点中的一个给我们进行搜索后将结果返回。<br><strong>反向代理的作用</strong></p>
+<ul>
+<li>保证内网的安全，通常将反向代理作为公网访问地址，Web 服务器是内网。</li>
+<li>负载均衡，通过反向代理服务器来优化网站的负载。</li>
+</ul>
+<p><strong>反向代理的代理对象是服务器，因为客户端是和反向代理服务器交流，并不知道具体哪个服务器。</strong></p>
+<h3 id="四、均衡负载（load-balance）"><a href="#四、均衡负载（load-balance）" class="headerlink" title="四、均衡负载（load balance）"></a>四、均衡负载（load balance）</h3><p>因为反向代理服务器要确定给哪个目标服务器，所以要采取一定的策略（也就是将请求按照一定的规则进行分发）<br><strong>常用的分发方式有：</strong></p>
+<ul>
+<li>轮询（默认）：按照时间顺序逐一分发到不同服务器（若某台宕机，可以自动处理）</li>
+<li>权重：针对服务器性能不同。权重越大，请求分配到此服务器的数目越多</li>
+<li>ip_hash：上面的2种方式都有一个问题，那就是下一个请求来的时候请求可能分发到另外一个服务器，当我们的程序不是无状态的时候（采用了session保存数据），这时候就有一个很大的很问题了，比如把登录信息保存到了session中，那么跳转到另外一台服务器的时候就需要重新登录了，所以很多时候我们需要一个客户只访问一个服务器，那么就需要用iphash了，iphash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</li>
+<li>fair：智能调度算法，动态根据响应时间进行均衡分配</li>
+<li>url_hash：根据访问的url的hash结果分配请求，每个url会对应后端固定的服务器，可以在Nginx作为静态服务器的情况下提交缓存效率。</li>
+</ul>
+<h3 id="五、HTTP服务器（动静分离）"><a href="#五、HTTP服务器（动静分离）" class="headerlink" title="五、HTTP服务器（动静分离）"></a>五、HTTP服务器（动静分离）</h3><ul>
+<li>Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</li>
+<li>动静分离是让动态网站里的动态网页根据一定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作，这就是网站静态化处理的核心思路</li>
+</ul>
+<p><strong>六、Nginx优点</strong></p>
+<ul>
+<li>Nginx使用基于事件驱动架构，使得其可以支持数以百万级别的TCP连接</li>
+<li>高度的模块化和自由软件许可证使得第三方模块层出不穷（这是个开源的时代啊~）</li>
+<li>Nginx是一个跨平台服务器，可以运行在Linux，Windows，FreeBSD，Solaris，AIX，Mac OS等操作系统上</li>
+<li>这些优秀的设计带来的是极大的稳定性<h3 id="六、web服务器对比"><a href="#六、web服务器对比" class="headerlink" title="六、web服务器对比"></a>六、web服务器对比</h3><img src="https://user-images.githubusercontent.com/56629574/73748165-d787fe80-4793-11ea-83c3-f4d237a862ee.png" alt="1580822260(1)"></li>
+</ul>
+<p><strong>Apache与Nginx两者性能差别的主要原因</strong>在于网络IO模型选择不同，apache使用了select，而nginx使用了epoll模型！<br>假设你在大学读书，住的宿舍楼有很多间房间，你的朋友要来找你。select版宿管大妈就会带着你的朋友挨个房间去找，直到找到你为止。而epoll版宿管大妈会先记下每位同学的房间号，你的朋友来时，只需告诉你的朋友你住在哪个房间即可，不用亲自带着你的朋友满大楼找人。</p>
 
     </div>
 
@@ -277,25 +299,19 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" rel="tag"># 原理或遇到问题</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/" rel="next" title="HTTPS原理">
-                  <i class="fa fa-chevron-left"></i> HTTPS原理
+                <a href="/2020/01/15/%E5%9C%BA%E6%99%AF%E6%B3%95/" rel="next" title="场景法">
+                  <i class="fa fa-chevron-left"></i> 场景法
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/12/17/Fiddler%E5%B8%B8%E8%A7%81%E7%94%A8%E6%B3%95%E6%80%BB%E7%BB%93/" rel="prev" title="Fiddler常见用法总结">
-                  Fiddler常见用法总结 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -339,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Fidder适用范围"><span class="nav-text">一、Fidder适用范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、原理"><span class="nav-text">二、原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Fiddler代理服务器（中间人）"><span class="nav-text">三、Fiddler代理服务器（中间人）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Fiddler证书配置"><span class="nav-text">四、Fiddler证书配置</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理服务器概念-proxy"><span class="nav-text">代理服务器概念(proxy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、正向代理服务器"><span class="nav-text">二、正向代理服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、反向代理服务器"><span class="nav-text">三、反向代理服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、均衡负载（load-balance）"><span class="nav-text">四、均衡负载（load balance）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、HTTP服务器（动静分离）"><span class="nav-text">五、HTTP服务器（动静分离）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、web服务器对比"><span class="nav-text">六、web服务器对比</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
