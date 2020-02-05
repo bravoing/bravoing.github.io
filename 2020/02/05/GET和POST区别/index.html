@@ -46,21 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。代理服务器概念(proxy)N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权客户端⇄代理服务器⇄目标服务器">
+  <meta name="description" content="一、传输数据方式 GET : 是放在URL后，？分割请求数据，&amp;amp;分割请求参数 POST：四种常见的提交方式 二、安全性POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议三、请求数据大小在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。POST无此限制，但理论上，IIS4中最大量为80KB，IIS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Nginx简单介绍">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;04&#x2F;Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D&#x2F;index.html">
+<meta property="og:title" content="GET和POST区别">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;05&#x2F;GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。代理服务器概念(proxy)N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权客户端⇄代理服务器⇄目标服务器">
+<meta property="og:description" content="一、传输数据方式 GET : 是放在URL后，？分割请求数据，&amp;amp;分割请求参数 POST：四种常见的提交方式 二、安全性POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议三、请求数据大小在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。POST无此限制，但理论上，IIS4中最大量为80KB，IIS">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73744404-ab687f80-478b-11ea-8cd9-652891025679.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73745019-08186a00-478d-11ea-8b32-c029ab8ee969.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73748165-d787fe80-4793-11ea-83c3-f4d237a862ee.png">
-<meta property="og:updated_time" content="2020-02-04T13:42:33.905Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73820431-bb846b80-482c-11ea-99a5-233370ac90a9.png">
+<meta property="og:updated_time" content="2020-02-05T07:37:41.436Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73744404-ab687f80-478b-11ea-8cd9-652891025679.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73820431-bb846b80-482c-11ea-99a5-233370ac90a9.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
+<link rel="canonical" href="http://yoursite.com/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/">
 
 
 <script id="page-configurations">
@@ -74,7 +72,7 @@
   };
 </script>
 
-  <title>Nginx简单介绍 | Hexo</title>
+  <title>GET和POST区别 | Hexo</title>
   
 
 
@@ -198,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -211,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Nginx简单介绍
+          GET和POST区别
         </h1>
 
         <div class="post-meta">
@@ -222,7 +220,18 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-04 21:41:36 / 修改时间：21:42:33" itemprop="dateCreated datePublished" datetime="2020-02-04T21:41:36+08:00">2020-02-04</time>
+              <time title="创建时间：2020-02-05 15:36:50 / 修改时间：15:37:41" itemprop="dateCreated datePublished" datetime="2020-02-05T15:36:50+08:00">2020-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -243,54 +252,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。</p><h3 id="代理服务器概念-proxy"><a href="#代理服务器概念-proxy" class="headerlink" title="代理服务器概念(proxy)"></a>代理服务器概念(proxy)</h3><p>N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权<br>客户端⇄代理服务器⇄目标服务器</p><a id="more"></a>
+        <h3 id="一、传输数据方式"><a href="#一、传输数据方式" class="headerlink" title="一、传输数据方式"></a>一、传输数据方式</h3><ul>
+<li>GET : 是放在URL后，？分割请求数据，&amp;分割请求参数</li>
+<li>POST：<a href="https://bravoing.github.io/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">四种常见的提交方式</a></li>
+</ul><h3 id="二、安全性"><a href="#二、安全性" class="headerlink" title="二、安全性"></a>二、安全性</h3><p>POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议</p><h3 id="三、请求数据大小"><a href="#三、请求数据大小" class="headerlink" title="三、请求数据大小"></a>三、请求数据大小</h3><p>在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。<br>POST无此限制，但理论上，IIS4中最大量为80KB，IIS5中为100KB。<br><strong>为什么GET浏览器会限制？</strong><br>URL这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果URL太长，而并发又很高，就容易挤爆服务器的内存；</p><a id="more"></a>
 
-<h3 id="二、正向代理服务器"><a href="#二、正向代理服务器" class="headerlink" title="二、正向代理服务器"></a>二、正向代理服务器</h3><p>用户知道目标服务器地址(正向代理服务器最主要特点)，但由于网络限制等原因，无法直接访问。这时候需要先连接代理服务器，然后再由代理服务器访问目标服务器。</p>
-<p><img src="https://user-images.githubusercontent.com/56629574/73744404-ab687f80-478b-11ea-8cd9-652891025679.png" alt="1580818751(1)"></p>
-<ul>
-<li>在配置上，客户端必须配置正向代理服务器服务器只清楚请求来自哪个代理服务器，而不清楚来自哪个具体的客户端</li>
-<li>客户端和代理服务器在同一环境中</li>
+
+<h3 id="四、缓存"><a href="#四、缓存" class="headerlink" title="四、缓存"></a>四、缓存</h3><ul>
+<li>GET：可以看做DB的select操作，不会对服务端数据产生影响。可以做缓存（客户端、代理服务器Nginx、服务器Etag）</li>
+<li>POST：可以看做DB的update、insert、select，是必须访问数据库行为，所以不做缓存。</li>
 </ul>
-<p><strong>正向代理服务器的用途</strong></p>
-<ul>
-<li>访问原来无法访问的资源，如 Google。</li>
-<li>可以做缓存，加速访问资源。</li>
-<li>对客户端访问授权，上网进行认证。</li>
-<li>代理可以记录用户访问记录（上网行为管理），对外隐藏用户信息。</li>
+<h3 id="五、请求次数"><a href="#五、请求次数" class="headerlink" title="五、请求次数"></a>五、请求次数</h3><p>http 100-continue用于客户端在发送POST数据给服务器前，征询服务器情况，看服务器是否处理POST的数据，如果不处理，客户端则不上传POST数据，如果处理，则POST上传数据。在现实应用中，通过在POST大数据时，才会使用100-continue协议（加入头{“Expect”:”100-continue”}）。<br>【但这并不是协议规定的，所以也可以像GET直接发数据】</p>
+<h3 id="六、管道传输"><a href="#六、管道传输" class="headerlink" title="六、管道传输"></a>六、管道传输</h3><ul>
+<li>get支持管道化传输，而post不支持<br>在长连接中，是顺序请求和响应：请求1-&gt;响应1-&gt;请求2&gt;响应2<br>管道化：请求1 -&gt; 请求2 -&gt; 请求3 -&gt; 响应1 -&gt; 响应2 -&gt; 响应3<br><img src="https://user-images.githubusercontent.com/56629574/73820431-bb846b80-482c-11ea-99a5-233370ac90a9.png" alt="1580887928(1)"><br>HTTP1.1要求服务器支持管线化，但并不要求服务器对响应进行管线化处理，只是要求对于管线化的请求不失败，而且现在服务端和代理程序对管线化的支持并不好，Chrome和Firefox默认并未开启管线化支持。</li>
 </ul>
-<p><strong>正向代理的代理对象是客户端，因为目标服务器是和正向代理服务器交流，并不知道是哪个客户端。</strong></p>
-<h3 id="三、反向代理服务器"><a href="#三、反向代理服务器" class="headerlink" title="三、反向代理服务器"></a>三、反向代理服务器</h3><p>随着网站用户量增加，单个服务器性能成为主要限制，所以一般服务器采用“分布式部署”，也就是通过部署多态服务器来解决性能上问题。</p>
-<p><img src="https://user-images.githubusercontent.com/56629574/73745019-08186a00-478d-11ea-8b32-c029ab8ee969.png" alt="1580819349(1)"></p>
-<ul>
-<li>反向代理服务器和服务器集群是同一环境</li>
-<li>客户端不用配置反向代理服务器，或者说客户端认为反向代理服务器就是目标服务器</li>
-</ul>
-<p>反向代理对用户则是不可知的，比如我们访问百度网站，百度的代理服务器对外的域名为 <a href="https://www.baidu.com" target="_blank" rel="noopener">https://www.baidu.com</a> 。具体内部的服务器节点我们不知道，现实中我们通过访问百度的代理服务器后，代理服务器给我们转发请求到他们N多的服务器节点中的一个给我们进行搜索后将结果返回。<br><strong>反向代理的作用</strong></p>
-<ul>
-<li>保证内网的安全，通常将反向代理作为公网访问地址，Web 服务器是内网。</li>
-<li>负载均衡，通过反向代理服务器来优化网站的负载。</li>
-</ul>
-<p><strong>反向代理的代理对象是服务器，因为客户端是和反向代理服务器交流，并不知道具体哪个服务器。</strong></p>
-<h3 id="四、均衡负载（load-balance）"><a href="#四、均衡负载（load-balance）" class="headerlink" title="四、均衡负载（load balance）"></a>四、均衡负载（load balance）</h3><p>因为反向代理服务器要确定给哪个目标服务器，所以要采取一定的策略（也就是将请求按照一定的规则进行分发）<br><strong>常用的分发方式有：</strong></p>
-<ul>
-<li>轮询（默认）：按照时间顺序逐一分发到不同服务器（若某台宕机，可以自动处理）</li>
-<li>权重：针对服务器性能不同。权重越大，请求分配到此服务器的数目越多</li>
-<li>ip_hash：上面的2种方式都有一个问题，那就是下一个请求来的时候请求可能分发到另外一个服务器，当我们的程序不是无状态的时候（采用了session保存数据），这时候就有一个很大的很问题了，比如把登录信息保存到了session中，那么跳转到另外一台服务器的时候就需要重新登录了，所以很多时候我们需要一个客户只访问一个服务器，那么就需要用iphash了，iphash的每个请求按访问ip的hash结果分配，这样每个访客固定访问一个后端服务器，可以解决session的问题。</li>
-<li>fair：智能调度算法，动态根据响应时间进行均衡分配</li>
-<li>url_hash：根据访问的url的hash结果分配请求，每个url会对应后端固定的服务器，可以在Nginx作为静态服务器的情况下提交缓存效率。</li>
-</ul>
-<h3 id="五、HTTP服务器（动静分离）"><a href="#五、HTTP服务器（动静分离）" class="headerlink" title="五、HTTP服务器（动静分离）"></a>五、HTTP服务器（动静分离）</h3><ul>
-<li>Nginx是一个http服务可以独立提供http服务。可以做网页静态服务器。</li>
-<li>动静分离是让动态网站里的动态网页根据一定规则把不变的资源和经常变的资源区分开来，动静资源做好了拆分以后，我们就可以根据静态资源的特点将其做缓存操作，这就是网站静态化处理的核心思路</li>
-</ul>
-<p><strong>六、Nginx优点</strong></p>
-<ul>
-<li>Nginx使用基于事件驱动架构，使得其可以支持数以百万级别的TCP连接</li>
-<li>高度的模块化和自由软件许可证使得第三方模块层出不穷（这是个开源的时代啊~）</li>
-<li>Nginx是一个跨平台服务器，可以运行在Linux，Windows，FreeBSD，Solaris，AIX，Mac OS等操作系统上</li>
-<li>这些优秀的设计带来的是极大的稳定性<h3 id="六、web服务器对比"><a href="#六、web服务器对比" class="headerlink" title="六、web服务器对比"></a>六、web服务器对比</h3><img src="https://user-images.githubusercontent.com/56629574/73748165-d787fe80-4793-11ea-83c3-f4d237a862ee.png" alt="1580822260(1)"></li>
-</ul>
-<p><strong>Apache与Nginx两者性能差别的主要原因</strong>在于网络IO模型选择不同，apache使用了select，而nginx使用了epoll模型！<br>假设你在大学读书，住的宿舍楼有很多间房间，你的朋友要来找你。select版宿管大妈就会带着你的朋友挨个房间去找，直到找到你为止。而epoll版宿管大妈会先记下每位同学的房间号，你的朋友来时，只需告诉你的朋友你住在哪个房间即可，不用亲自带着你的朋友满大楼找人。</p>
 
     </div>
 
@@ -304,17 +279,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/01/15/%E5%9C%BA%E6%99%AF%E6%B3%95/" rel="next" title="场景法">
-                  <i class="fa fa-chevron-left"></i> 场景法
+                <a href="/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" rel="next" title="POST四种提交数据方式">
+                  <i class="fa fa-chevron-left"></i> POST四种提交数据方式
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" rel="prev" title="POST四种提交数据方式">
-                  POST四种提交数据方式 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -358,7 +330,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#代理服务器概念-proxy"><span class="nav-text">代理服务器概念(proxy)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、正向代理服务器"><span class="nav-text">二、正向代理服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、反向代理服务器"><span class="nav-text">三、反向代理服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、均衡负载（load-balance）"><span class="nav-text">四、均衡负载（load balance）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、HTTP服务器（动静分离）"><span class="nav-text">五、HTTP服务器（动静分离）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、web服务器对比"><span class="nav-text">六、web服务器对比</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、传输数据方式"><span class="nav-text">一、传输数据方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安全性"><span class="nav-text">二、安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、请求数据大小"><span class="nav-text">三、请求数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、缓存"><span class="nav-text">四、缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、请求次数"><span class="nav-text">五、请求次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、管道传输"><span class="nav-text">六、管道传输</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

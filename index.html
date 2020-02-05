@@ -191,6 +191,86 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">GET和POST区别</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-05 15:36:50 / 修改时间：15:37:41" itemprop="dateCreated datePublished" datetime="2020-02-05T15:36:50+08:00">2020-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、传输数据方式"><a href="#一、传输数据方式" class="headerlink" title="一、传输数据方式"></a>一、传输数据方式</h3><ul>
+<li>GET : 是放在URL后，？分割请求数据，&amp;分割请求参数</li>
+<li>POST：<a href="https://bravoing.github.io/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">四种常见的提交方式</a></li>
+</ul><h3 id="二、安全性"><a href="#二、安全性" class="headerlink" title="二、安全性"></a>二、安全性</h3><p>POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议</p><h3 id="三、请求数据大小"><a href="#三、请求数据大小" class="headerlink" title="三、请求数据大小"></a>三、请求数据大小</h3><p>在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。<br>POST无此限制，但理论上，IIS4中最大量为80KB，IIS5中为100KB。<br><strong>为什么GET浏览器会限制？</strong><br>URL这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果URL太长，而并发又很高，就容易挤爆服务器的内存；</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -881,86 +961,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">中台与测试关系</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-04 11:07:57 / 修改时间：11:10:12" itemprop="dateCreated datePublished" datetime="2020-01-04T11:07:57+08:00">2020-01-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="中台"><a href="#中台" class="headerlink" title="中台"></a>中台</h3><h3 id="一、为什么需要中台"><a href="#一、为什么需要中台" class="headerlink" title="一、为什么需要中台"></a>一、为什么需要中台</h3><ul>
-<li>中台出现是因为公司业务高速发展，各个项目相对独立，许多项目都在重复发明相同的轮子，让项目本身越来越臃肿，也让开发效率降低<br>[比如对于阿里，一开始只有淘宝，后来上线了1688、聚划算、天猫，业务针对的领域不同，但都有订单、商品、库存、价格、物流等功能，所以将各个业务部门重复使用、重复建设的功能统一的进行规划和管理]</li>
-<li>已用户为中心，快速响应用户需求、快速创新、快速迭代。也就是快速建设、错了就推翻重来（试错）、不要耗费太大成本</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1011,7 +1011,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-count">38</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
