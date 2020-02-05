@@ -46,14 +46,21 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;categories&#x2F;Linux&#x2F;page&#x2F;2&#x2F;index.html">
+  <meta name="description" content="post提交的数据必须放在实体(entry-body)中，但协议没规定必须使用什么编码方式。请求头（heads）中Content-Type字段来获知实体是用何种编码方式，从而对实体进行解析。Accept：是能接受的编码方式，而不是发请求编码方式。一、application&#x2F;x-www-form-urlencoded">
+<meta property="og:type" content="article">
+<meta property="og:title" content="POST四种提交数据方式">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;05&#x2F;POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="post提交的数据必须放在实体(entry-body)中，但协议没规定必须使用什么编码方式。请求头（heads）中Content-Type字段来获知实体是用何种编码方式，从而对实体进行解析。Accept：是能接受的编码方式，而不是发请求编码方式。一、application&#x2F;x-www-form-urlencoded">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73812871-465b6b00-4819-11ea-9942-2449a5a024e4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73814707-cf28d580-481e-11ea-96e6-2bd652a43060.png">
+<meta property="og:updated_time" content="2020-02-05T05:56:13.057Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png">
 
-<link rel="canonical" href="http://yoursite.com/categories/Linux/page/2/">
+<link rel="canonical" href="http://yoursite.com/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/">
 
 
 <script id="page-configurations">
@@ -61,13 +68,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome: false,
-    isPost: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>分类: Linux | Hexo</title>
+  <title>POST四种提交数据方式 | Hexo</title>
   
 
 
@@ -186,77 +193,123 @@
           <div class="content">
             
 
+  <div class="posts-expand">
+      
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <h1 class="collection-header">Linux
-          <small>分类</small>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          POST四种提交数据方式
         </h1>
-      </div>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-05 13:54:22 / 修改时间：13:56:13" itemprop="dateCreated datePublished" datetime="2020-02-05T13:54:22+08:00">2020-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <h1 class="collection-header">2019</h1>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-10-08T11:20:00+08:00"
-              content="2019-10-08">
-          10-08
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/10/08/%E7%AC%AC2%E7%AB%A0%EF%BC%9A%E4%B8%BB%E6%9C%BA%E8%A7%84%E5%88%92%E4%B8%8E%E7%A3%81%E7%9B%98%E5%88%86%E5%8C%BA/" itemprop="url">
-            <span itemprop="name">第2章：主机规划与磁盘分区</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-04-24T15:40:24+08:00"
-              content="2019-04-24">
-          04-24
-        </time>
-      </div>
-
-      <h2 class="post-title">
-          <a class="post-title-link" href="/2019/04/24/%E7%AC%AC0%E7%AB%A0%EF%BC%9A%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" itemprop="url">
-            <span itemprop="name">第0章：计算机基础知识</span>
-          </a>
-      </h2>
-
-    </header>
-  </article>
+        <p>post提交的数据必须放在实体(entry-body)中，但协议没规定必须使用什么编码方式。<br>请求头（heads）中Content-Type字段来获知实体是用何种编码方式，从而对实体进行解析。<br>Accept：是能接受的编码方式，而不是发请求编码方式。</p><h3 id="一、application-x-www-form-urlencoded"><a href="#一、application-x-www-form-urlencoded" class="headerlink" title="一、application/x-www-form-urlencoded"></a>一、application/x-www-form-urlencoded</h3><a id="more"></a>
+<ul>
+<li>浏览器的原生表单，若不设置enctype属性，则以此方式提交数据<br><img src="https://user-images.githubusercontent.com/56629574/73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png" alt="1580879216(1)"><br>服务器知道参数用&amp;间隔，则必须对其url转码(也就是charset=utf-8)。<h3 id="二、multipart-form-data"><a href="#二、multipart-form-data" class="headerlink" title="二、multipart/form-data"></a>二、multipart/form-data</h3>form action=”<a href="http://localhost:8888/testFile&quot;" target="_blank" rel="noopener">http://localhost:8888/testFile&quot;</a> enctype=”multipart/form-data” method=”POST”</li>
+</ul>
+<p>multipart/form-data不会对参数编码，使用的boundary(分割线)，相当于&amp;，boundary的值是—-Web**AJv3。<br>每个参数用分隔符分割。每部分参数：分隔符、内容描述信息、回车、字段具体信息（文本或二进制）<br>这种方式无需指定编码方式<br><img src="https://user-images.githubusercontent.com/56629574/73812871-465b6b00-4819-11ea-9942-2449a5a024e4.png" alt="1580879579(1)"><br>上图中lastname=mouse</p>
+<ul>
+<li>这种方式一般用于上传文件(图片等)，还会带文件名和文件类型<h3 id="三、application-json"><a href="#三、application-json" class="headerlink" title="三、application/json"></a>三、application/json</h3>BASHPOST <a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a> HTTP/1.1<br>Content-Type: application/json;charset=utf-8</li>
+</ul>
+<p>{“title”:”test”,”sub”:[1,2,3]}</p>
+<ul>
+<li>JSON 格式支持比键值对复杂得多的结构化数据</li>
+</ul>
+<h3 id="四、text-xml"><a href="#四、text-xml" class="headerlink" title="四、text/xml"></a>四、text/xml</h3><p><img src="https://user-images.githubusercontent.com/56629574/73814707-cf28d580-481e-11ea-96e6-2bd652a43060.png" alt="1580881591(1)"></p>
+<ul>
+<li>XML 结构还是过于臃肿，一般场景用 JSON 会更灵活方便</li>
+</ul>
 
     </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" rel="next" title="Nginx简单介绍">
+                  <i class="fa fa-chevron-left"></i> Nginx简单介绍
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
   </div>
-  
-  
-  
-
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/categories/Linux/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/categories/Linux/">1</a><span class="page-number current">2</span>
-  </nav>
-
 
 
           </div>
           
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
 
         </div>
           
@@ -281,6 +334,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、application-x-www-form-urlencoded"><span class="nav-text">一、application/x-www-form-urlencoded</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、multipart-form-data"><span class="nav-text">二、multipart/form-data</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、application-json"><span class="nav-text">三、application/json</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、text-xml"><span class="nav-text">四、text/xml</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -420,6 +474,19 @@
 
   
 
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
 
 </body>
 </html>
