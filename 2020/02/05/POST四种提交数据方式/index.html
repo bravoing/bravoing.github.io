@@ -56,7 +56,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73812871-465b6b00-4819-11ea-9942-2449a5a024e4.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73814707-cf28d580-481e-11ea-96e6-2bd652a43060.png">
-<meta property="og:updated_time" content="2020-02-05T05:56:13.057Z">
+<meta property="og:updated_time" content="2020-02-05T05:59:08.027Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png">
 
@@ -222,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-05 13:54:22 / 修改时间：13:56:13" itemprop="dateCreated datePublished" datetime="2020-02-05T13:54:22+08:00">2020-02-05</time>
+              <time title="创建时间：2020-02-05 13:54:22 / 修改时间：13:59:08" itemprop="dateCreated datePublished" datetime="2020-02-05T13:54:22+08:00">2020-02-05</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,12 +256,14 @@
       
         <p>post提交的数据必须放在实体(entry-body)中，但协议没规定必须使用什么编码方式。<br>请求头（heads）中Content-Type字段来获知实体是用何种编码方式，从而对实体进行解析。<br>Accept：是能接受的编码方式，而不是发请求编码方式。</p><h3 id="一、application-x-www-form-urlencoded"><a href="#一、application-x-www-form-urlencoded" class="headerlink" title="一、application/x-www-form-urlencoded"></a>一、application/x-www-form-urlencoded</h3><a id="more"></a>
 <ul>
-<li>浏览器的原生表单，若不设置enctype属性，则以此方式提交数据<br><img src="https://user-images.githubusercontent.com/56629574/73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png" alt="1580879216(1)"><br>服务器知道参数用&amp;间隔，则必须对其url转码(也就是charset=utf-8)。<h3 id="二、multipart-form-data"><a href="#二、multipart-form-data" class="headerlink" title="二、multipart/form-data"></a>二、multipart/form-data</h3>form action=”<a href="http://localhost:8888/testFile&quot;" target="_blank" rel="noopener">http://localhost:8888/testFile&quot;</a> enctype=”multipart/form-data” method=”POST”</li>
+<li>浏览器的原生表单，若不设置enctype属性，则以此方式提交数据<br><img src="https://user-images.githubusercontent.com/56629574/73812631-722a2100-4818-11ea-8ec6-19c16192f1ee.png" alt="1580879216(1)"><br>服务器知道参数用&amp;间隔，则必须对其url转码(也就是charset=utf-8)。</li>
 </ul>
+<h3 id="二、multipart-form-data"><a href="#二、multipart-form-data" class="headerlink" title="二、multipart/form-data"></a>二、multipart/form-data</h3><p>form action=”<a href="http://localhost:8888/testFile&quot;" target="_blank" rel="noopener">http://localhost:8888/testFile&quot;</a> enctype=”multipart/form-data” method=”POST”</p>
 <p>multipart/form-data不会对参数编码，使用的boundary(分割线)，相当于&amp;，boundary的值是—-Web**AJv3。<br>每个参数用分隔符分割。每部分参数：分隔符、内容描述信息、回车、字段具体信息（文本或二进制）<br>这种方式无需指定编码方式<br><img src="https://user-images.githubusercontent.com/56629574/73812871-465b6b00-4819-11ea-9942-2449a5a024e4.png" alt="1580879579(1)"><br>上图中lastname=mouse</p>
 <ul>
-<li>这种方式一般用于上传文件(图片等)，还会带文件名和文件类型<h3 id="三、application-json"><a href="#三、application-json" class="headerlink" title="三、application/json"></a>三、application/json</h3>BASHPOST <a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a> HTTP/1.1<br>Content-Type: application/json;charset=utf-8</li>
+<li>这种方式一般用于上传文件(图片等)，还会带文件名和文件类型</li>
 </ul>
+<h3 id="三、application-json"><a href="#三、application-json" class="headerlink" title="三、application/json"></a>三、application/json</h3><p>BASHPOST <a href="http://www.example.com" target="_blank" rel="noopener">http://www.example.com</a> HTTP/1.1<br>Content-Type: application/json;charset=utf-8</p>
 <p>{“title”:”test”,”sub”:[1,2,3]}</p>
 <ul>
 <li>JSON 格式支持比键值对复杂得多的结构化数据</li>
