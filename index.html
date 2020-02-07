@@ -216,7 +216,18 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-07 18:46:41 / 修改时间：18:47:12" itemprop="dateCreated datePublished" datetime="2020-02-07T18:46:41+08:00">2020-02-07</time>
+              <time title="创建时间：2020-02-07 18:46:41 / 修改时间：18:50:03" itemprop="dateCreated datePublished" datetime="2020-02-07T18:46:41+08:00">2020-02-07</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">互联网架构</span>
+                  </a>
+                </span>
             </span>
 
           
@@ -230,7 +241,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <hr><p>title: 用户管理<br>date: 2020-02-07 18:46:41</p><p>categories:<br>           - 互联网架构<br>—互联网业务的一个典型特征就是通过互联网将众多分散的用户连接起来，因此用户管理是互联网业务必不可少的一部分。</p><h3 id="一、单点登录SSO（Single-Sign-On）"><a href="#一、单点登录SSO（Single-Sign-On）" class="headerlink" title="一、单点登录SSO（Single Sign On）"></a>一、单点登录SSO（Single Sign On）</h3><p>说得简单点就是在一个多系统共存的环境下，用户在一处登录后，就不用在其他系统中登录，也就是用户的一次登录能得到其他所有系统的信任。</p>
+          <p>互联网业务的一个典型特征就是通过互联网将众多分散的用户连接起来，因此用户管理是互联网业务必不可少的一部分。</p><h3 id="一、单点登录SSO（Single-Sign-On）"><a href="#一、单点登录SSO（Single-Sign-On）" class="headerlink" title="一、单点登录SSO（Single Sign On）"></a>一、单点登录SSO（Single Sign On）</h3><p>说得简单点就是在一个多系统共存的环境下，用户在一处登录后，就不用在其他系统中登录，也就是用户的一次登录能得到其他所有系统的信任。</p><ul>
+<li>cookie<br>用户登录父应用之后，应用返回一个加密的cookie，当用户访问子应用的时候，携带上这个cookie，授权应用解密cookie并进行校验，校验通过则登录当前用户。</li>
+</ul>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2020/02/07/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/#more" rel="contents">
