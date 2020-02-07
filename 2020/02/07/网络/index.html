@@ -46,22 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="单个场景测试用例设计参考：http:&#x2F;&#x2F;www.softtest.com&#x2F;test&#x2F;case&#x2F;13097.html一、自动化测试 自动化维护的成本：自动化能够提高用例执行速度和覆盖度；需要投入时间成本（比如执行环境的维护、测试脚本维护、问题的跟进修复）。有时需要开发的配合或者有时需要绕开软件自身的逻辑来保证自动化执行的效果。 自动化目前的应用范围：目前，大部分自动化需要明确的输入来验证明确的输出，">
-<meta name="keywords" content="总结">
+  <meta name="description" content="单个系统的高可用和高性能并不等于整体业务的高可用和高性能，互联网业务的高性能和高可用需要从更高的角度去设计，这个高点就是“网络”。这里的网络强调的是站在网络层的角度整体设计架构，而不是某个具体网络的搭建。负载均衡就是将请求均衡地分配到多个系统上。使用负载均衡的原因也很简单：每个系统的处理能力是有限的，为了应对大容量的访问，必须使用多个系统。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="接口回归场景测试总结">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;26&#x2F;%E6%8E%A5%E5%8F%A3%E5%9B%9E%E5%BD%92%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93&#x2F;index.html">
+<meta property="og:title" content="网络层">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;%E7%BD%91%E7%BB%9C&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="单个场景测试用例设计参考：http:&#x2F;&#x2F;www.softtest.com&#x2F;test&#x2F;case&#x2F;13097.html一、自动化测试 自动化维护的成本：自动化能够提高用例执行速度和覆盖度；需要投入时间成本（比如执行环境的维护、测试脚本维护、问题的跟进修复）。有时需要开发的配合或者有时需要绕开软件自身的逻辑来保证自动化执行的效果。 自动化目前的应用范围：目前，大部分自动化需要明确的输入来验证明确的输出，">
+<meta property="og:description" content="单个系统的高可用和高性能并不等于整体业务的高可用和高性能，互联网业务的高性能和高可用需要从更高的角度去设计，这个高点就是“网络”。这里的网络强调的是站在网络层的角度整体设计架构，而不是某个具体网络的搭建。负载均衡就是将请求均衡地分配到多个系统上。使用负载均衡的原因也很简单：每个系统的处理能力是有限的，为了应对大容量的访问，必须使用多个系统。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464395-32712200-27f4-11ea-9caa-32fc7a71d90c.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464484-795f1780-27f4-11ea-8ac7-b79a7049dd7b.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464574-e2df2600-27f4-11ea-932d-feb9ba4949c2.png">
-<meta property="og:updated_time" content="2020-01-04T00:54:27.599Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74013727-17372c00-49c8-11ea-8e3f-81352de10421.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74019054-ef4cc600-49d1-11ea-8115-a8fc4e02700a.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74017309-00e09e80-49cf-11ea-82a7-cc3b4511a5fb.png">
+<meta property="og:updated_time" content="2020-02-07T09:53:52.416Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71464395-32712200-27f4-11ea-9caa-32fc7a71d90c.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74013727-17372c00-49c8-11ea-8e3f-81352de10421.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/26/%E6%8E%A5%E5%8F%A3%E5%9B%9E%E5%BD%92%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
+<link rel="canonical" href="http://yoursite.com/2020/02/07/%E7%BD%91%E7%BB%9C/">
 
 
 <script id="page-configurations">
@@ -75,7 +74,7 @@
   };
 </script>
 
-  <title>接口回归场景测试总结 | Hexo</title>
+  <title>网络层 | Hexo</title>
   
 
 
@@ -199,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/26/%E6%8E%A5%E5%8F%A3%E5%9B%9E%E5%BD%92%E5%9C%BA%E6%99%AF%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/07/%E7%BD%91%E7%BB%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -212,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          接口回归场景测试总结
+          网络层
         </h1>
 
         <div class="post-meta">
@@ -221,24 +220,18 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2019-12-26 15:52:54" itemprop="dateCreated datePublished" datetime="2019-12-26T15:52:54+08:00">2019-12-26</time>
+              <time title="创建时间：2020-02-07 17:52:49 / 修改时间：17:53:52" itemprop="dateCreated datePublished" datetime="2020-02-07T17:52:49+08:00">2020-02-07</time>
             </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-04 08:54:27" itemprop="dateModified" datetime="2020-01-04T08:54:27+08:00">2020-01-04</time>
-              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
+                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">互联网架构</span>
                   </a>
                 </span>
             </span>
@@ -261,37 +254,43 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="单个场景测试用例设计"><a href="#单个场景测试用例设计" class="headerlink" title="单个场景测试用例设计"></a>单个场景测试用例设计</h3><p>参考：<a href="http://www.softtest.com/test/case/13097.html" target="_blank" rel="noopener">http://www.softtest.com/test/case/13097.html</a></p><h3 id="一、自动化测试"><a href="#一、自动化测试" class="headerlink" title="一、自动化测试"></a>一、自动化测试</h3><ul>
-<li><strong>自动化维护的成本：</strong>自动化能够提高用例执行速度和覆盖度；需要投入时间成本（比如执行环境的维护、测试脚本维护、问题的跟进修复）。有时需要开发的配合或者有时需要绕开软件自身的逻辑来保证自动化执行的效果。</li>
-<li>自动化目前的应用范围：目前，大部分自动化需要明确的输入来验证明确的输出，这个特性决定了它只能做回归测试。</li>
-<li>自动化无法进行探索性测试：比如前几天我测试一个逻辑 A，在检测日志信息时，偶尔发现了另一个逻辑的日志有点异常，于是就去跟进了一下，从而发现了一个问题，如果是自动化，他根本不可能在测试 A 逻辑的时候还去关注 B 逻辑的问题。<h3 id="二、基于场景的接口测试用例设计流程"><a href="#二、基于场景的接口测试用例设计流程" class="headerlink" title="二、基于场景的接口测试用例设计流程"></a>二、基于场景的接口测试用例设计流程</h3></li>
-<li>自动化测试<br><img src="https://user-images.githubusercontent.com/56629574/71464395-32712200-27f4-11ea-9caa-32fc7a71d90c.png" alt="1577345226(1)"><h3 id="三、简单场景实例（回帖）"><a href="#三、简单场景实例（回帖）" class="headerlink" title="三、简单场景实例（回帖）"></a>三、简单场景实例（回帖）</h3></li>
-</ul><a id="more"></a>
+        <p>单个系统的高可用和高性能并不等于整体业务的高可用和高性能，互联网业务的高性能和高可用需要从更高的角度去设计，这个高点就是“网络”。这里的网络强调的是站在网络层的角度整体设计架构，而不是某个具体网络的搭建。</p><p>负载均衡就是将请求均衡地分配到多个系统上。使用负载均衡的原因也很简单：每个系统的处理能力是有限的，为了应对大容量的访问，必须使用多个系统。</p><a id="more"></a>
 
-<p><strong>3.1 画流程图</strong><br><img src="https://user-images.githubusercontent.com/56629574/71464484-795f1780-27f4-11ea-8ac7-b79a7049dd7b.png" alt="1577345329(1)"><br><strong>3.2 根据流程图，梳理出具体的场景</strong></p>
+<h3 id="一、DNS"><a href="#一、DNS" class="headerlink" title="一、DNS"></a>一、DNS</h3><p>DNS是最简单也是最常见的负载均衡方式，一般用来实现<strong>地理级别</strong>的均衡。</p>
+<p>比如，北方的用户访问北京的机房，南方的用户访问深圳的机房。</p>
+<p>DNS负载均衡也可以叫做链路负载均衡，示意图如下:</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/74013727-17372c00-49c8-11ea-8e3f-81352de10421.png" alt="1581064620(1)"></p>
+<p>DNS负载均衡实现简单、成本低，但也存在粒度太粗、负载均衡算法少等缺点。<br><strong>优点:</strong></p>
 <ul>
-<li><p>场景1: 首页获取帖子列表 》选择某个帖子 》获取帖子详情 》不回帖</p>
+<li>简单、成本低:负载均衡工作交给DNS服务器处理，无须自己开发或者维护负载均衡设备。</li>
+<li>就近访问，提升访问速度:DNS解析时可以根据请求来源IP，解析成距离用户最近的服务器地址，可以加快访问速度，改善性能。</li>
+</ul>
+<p><strong>缺点:</strong></p>
+<ul>
+<li><p>DNS缓存的时间比较长，即使将某台业务机器从DNS服务器上删除，由于缓存的原因，还是有很多用户会继续访问已经被删除的机器。</p>
 </li>
-<li><p>场景2: 首页获取帖子列表 》选择某个帖子 》获取帖子详情 》回帖 》未登陆</p>
-</li>
-<li><p>场景3: 首页获取帖子列表 》选择某个忒子 》获取帖子详情 》回帖 》登陆 》回帖成功</p>
+<li><p>DNS不够灵活。DNS不能感知后端服务器的状态，只能根据配置策略进行负载均衡，无法做到更加灵活的负载均衡策略。比如说某台机器的配置比其他机器要好很多，理论上来说应该多分配一些请求给它，但DNS无法做到这一点。</p>
 </li>
 </ul>
-<p>综合覆盖的路径，场景三的路径已经覆盖了场景一和二的路径，所以场景一和场景二可以去掉，剩余场景三为有效场景</p>
-<p><strong>3.3 根据场景，梳理调用的接口</strong></p>
-<p>场景3： 获取帖子列表接口 》获取单个帖子详情接口 》调用回帖接口 》调用登陆接口 》调用回帖，回帖成功<br><strong>3.4 编写用例</strong><br><img src="https://user-images.githubusercontent.com/56629574/71464574-e2df2600-27f4-11ea-932d-feb9ba4949c2.png" alt="1577345486(1)"></p>
-<h3 id="针对整个系统设计"><a href="#针对整个系统设计" class="headerlink" title="针对整个系统设计"></a>针对整个系统设计</h3><p>参考：<a href="https://testerhome.com/topics/19643" target="_blank" rel="noopener">https://testerhome.com/topics/19643</a><br>接口测试当中数据准备工作需要消耗较大工作量，而接口的功能，大体上可以分为增删改查几类功能，本文简单介绍一下这几种功能的接口脚本设计思路，<strong>主要是涉及数据准备的一些思路，目的是减少冗余的数据准备，同时减少由于接口脚本导致测试环境脏数据的出现。</strong></p>
-<ul>
-<li><p>增：接口的功能是在服务器数据库里新增一些数据，为了避免脚本重复执行时不断插入新数据、同时为了避免准备的数据过多或者冲突，建议在脚本中包含以下操作<br>a. 查询数据库中是否已存在准备新增的数据，如果有的话，需要删除；<br>b. 使用准备好的数据调用待测接口进行新增操作；<br>c. 断言中检查数据库中是否成功新增了测试数据；<br>d. 第三步成功的话需要在数据库中删除测试数据以便后续重复执行该脚本；</p>
-</li>
-<li><p>删：接口的功能是在服务器数据库里删除一些数据，建议脚本包含以下操作<br>a. 查询数据库中是否存在待删除数据；<br>b. 如果不存在的话，需要先新增；<br>c. 调用待测接口进行删除操作；<br>d. 断言判断是否删除成功；</p>
-</li>
-<li><p>改：接口的功能是在服务器数据库里修改一些数据，为了确保数据库中存在待修改数据、脚本可重复执行，建议在脚本中包含以下操作<br>a. 查询数据库中是否已存在待修改的数据，如果没有的话，需要新增待修改的数据；<br>b. 调用待测接口进行修改操作；<br>c. 断言检查数据库中是否成功修改了测试数据；<br>d. 第三步成功的话需要在数据库中把数据修改恢复成原数据以便后续重复执行该脚本；</p>
-</li>
-<li><p>查：接口的功能是在服务器数据库里查询出一些数据，这在四种类型中是最简单的一种，正常不需要修改数据库，建议脚本包含以下操作<br>a. 为了确保数据库中有待查数据，先查询是否存在待查数据；<br>b. 如果不存在的话，需要先新增；<br>c. 调用待测接口进行查询操作；<br>d. 断言判断查询出的结果与上面步骤中从数据库查出的结果完全一致；</p>
-</li>
+<h3 id="二、Nginx-、LVS-、F5（软件均衡负载）"><a href="#二、Nginx-、LVS-、F5（软件均衡负载）" class="headerlink" title="二、Nginx 、LVS 、F5（软件均衡负载）"></a>二、Nginx 、LVS 、F5（软件均衡负载）</h3><p><strong>用于同一地点内机器级别的负载均衡</strong><br><a href="https://bravoing.github.io/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" target="_blank" rel="noopener">Nginx简单介绍</a></p>
+<h3 id="三、CDN（Content-Delivery-Network）内容分发网络"><a href="#三、CDN（Content-Delivery-Network）内容分发网络" class="headerlink" title="三、CDN（Content Delivery Network）内容分发网络"></a>三、CDN（Content Delivery Network）内容分发网络</h3><p>CDN是为了解决用户网络访问时的“最后一公里”效应，本质上是一种“<strong>以空间换时间</strong>”的加速策略，即：将内容缓存在离用户最近的地方，用户访问的是缓存的内容，而不是站点实时的内容。<br>通过在现有的Internet中增加一层新的网络架构，使用户可以就近取得所需内容，提高用户访问网站的响应速度。<br>目前CDN都以缓存网站中的静态数据为主，如 CSS、JS、图片和静态页面等数据。<br><strong>CDN如何实现加速？</strong><br>通常情况下，我们所要的数据都是从主服务器中获取，但假如我们的主服务器在南方，而访问用户在北方，那么访问速度就会相对变慢，变慢的原因有很多，例如传输距离，运营商，带宽等等因素，而使用CDN技术的话，我们会将CDN节点分布在各地，当用户发送请求到达服务器时，服务器会根据用户的区域信息，为用户分配最近的CDN服务器。<br><strong>CDN数据从哪里来？</strong><br>复制，缓存，CDN服务器可以在用户请求后缓存文件，也可以主动抓取主服务器内容。</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/74019054-ef4cc600-49d1-11ea-8115-a8fc4e02700a.png" alt="1581068806(1)"></p>
+<h3 id="四、多机房"><a href="#四、多机房" class="headerlink" title="四、多机房"></a>四、多机房</h3><ul>
+<li>同城多机房</li>
 </ul>
-<p>其他参考：<a href="https://blog.csdn.net/jiangshangchunjiezi/article/details/97525990" target="_blank" rel="noopener">https://blog.csdn.net/jiangshangchunjiezi/article/details/97525990</a><br>（主要是公共参数的管理）</p>
+<p>同城的两个机房通过一根专线连接，应对机房级别的最优架构<br>这种对业务影响小，但投入大</p>
+<ul>
+<li>跨城多机房<br>机房间通过网络进行数据备份（MySQL主备复制）<br>异地距离远带来的网络延迟问题，容易导致数据不一致。<br>需要考虑的是数据是否要求强一致性！！不适用于强一致性的需求。<br>例如：微博类产品，B关注了A用户，A用户在北京机房发出，B在广州机房不必立刻看到A用户发的微博，等10分钟也行。</li>
+<li>跨国多机房<br>和跨城多机房类似，只是地理上分布更远，时延更大。由于时延太大和用户跨国访问实在太慢，跨国多机房一般仅用于备份和服务本国用户。</li>
+</ul>
+<h3 id="五、多中心"><a href="#五、多中心" class="headerlink" title="五、多中心"></a>五、多中心</h3><p>多中心必须以多机房为前提，但难度大</p>
+<h3 id="综合例子："><a href="#综合例子：" class="headerlink" title="综合例子："></a>综合例子：</h3><p>具体来说，组合的基本原则为:<br>DNS负载均衡用于实现地理级别的负载均衡;<br>硬件负载均衡用于实现集群级别的负载均衡;<br>软件负载均衡用于实现机器级别的负载均衡。<br><img src="https://user-images.githubusercontent.com/56629574/74017309-00e09e80-49cf-11ea-82a7-cc3b4511a5fb.png" alt="1581067590(1)"></p>
+<p>整个系统的负载均衡分为三层：</p>
+<ul>
+<li>地理级别负载均衡:<a href="http://www.xxx.com部署在北京、广州、上海三个机房，当用户访问时，DNS会根据用户的地理位置来决定返回哪个机房的IP，图中返回了广州机房的IP地址，这样用户就访问到广州机房了。" target="_blank" rel="noopener">www.xxx.com部署在北京、广州、上海三个机房，当用户访问时，DNS会根据用户的地理位置来决定返回哪个机房的IP，图中返回了广州机房的IP地址，这样用户就访问到广州机房了。</a></li>
+<li>集群级别负载均衡:广州机房的负载均衡用的是F5设备，F5收到用户请求后，进行集群级别的负载均衡，将用户请求发给3个本地集群中的一个，我们假设F5将用户请求发给 了“广州集群2”。</li>
+<li>机器级别的负载均衡:广州集群2的负载均衡用的是Nginx，Nginx收到用户请求后，将用户请求发送给集群里面的某台服务器，服务器处理用户的业务请求并返回业务响应。</li>
+</ul>
 
     </div>
 
@@ -300,25 +299,19 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E6%80%BB%E7%BB%93/" rel="tag"># 总结</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/25/%E6%8E%A5%E5%8F%A3%E6%B5%8B%E8%AF%95%E6%80%BB%E7%BB%93/" rel="next" title="接口测试总结">
-                  <i class="fa fa-chevron-left"></i> 接口测试总结
+                <a href="/2020/02/07/%E6%9C%8D%E5%8A%A1%E5%B1%82/" rel="next" title="服务层">
+                  <i class="fa fa-chevron-left"></i> 服务层
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/01/02/%E6%89%8B%E6%9C%BAAPP%E5%88%86%E7%B1%BB%E5%8F%8A%E5%8C%BA%E5%88%AB/" rel="prev" title="手机APP分类及区别">
-                  手机APP分类及区别 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -362,7 +355,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#单个场景测试用例设计"><span class="nav-text">单个场景测试用例设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、自动化测试"><span class="nav-text">一、自动化测试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、基于场景的接口测试用例设计流程"><span class="nav-text">二、基于场景的接口测试用例设计流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、简单场景实例（回帖）"><span class="nav-text">三、简单场景实例（回帖）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#针对整个系统设计"><span class="nav-text">针对整个系统设计</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、DNS"><span class="nav-text">一、DNS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Nginx-、LVS-、F5（软件均衡负载）"><span class="nav-text">二、Nginx 、LVS 、F5（软件均衡负载）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、CDN（Content-Delivery-Network）内容分发网络"><span class="nav-text">三、CDN（Content Delivery Network）内容分发网络</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、多机房"><span class="nav-text">四、多机房</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、多中心"><span class="nav-text">五、多中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#综合例子："><span class="nav-text">综合例子：</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
