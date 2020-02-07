@@ -46,20 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="简单理解原理一、服务器创建远程用户，并赋予相应数据库的权限GRANT ALL PRIVILEGES ON . TO  aa@”%”  IDENTIFIED BY “12345678”;grant语句：将数据库给哪个用户什么样的权限用法参考：https:&#x2F;&#x2F;www.yiibai.com&#x2F;mysql&#x2F;grant.html">
-<meta name="keywords" content="原理或遇到问题">
+  <meta name="description" content="一、用户管理用户管理二、消息推送1. IOSiOS 的消息推送机制面世之时是一种全新的解决方案（堪称平台中的平台），应用本身不能有常驻的后台进程，系统的开销少，内存使用更少，电量也更少（把更多的运算和资源开销放在云端，非设备端）。 [Client App]注册消息推送； [Client App]跟[APNS Service]要deviceToken, Client App接收deviceToken">
 <meta property="og:type" content="article">
-<meta property="og:title" content="001.远程连接数据库">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;11&#x2F;001-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93&#x2F;index.html">
+<meta property="og:title" content="用户层">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;%E7%94%A8%E6%88%B7%E5%B1%82&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="简单理解原理一、服务器创建远程用户，并赋予相应数据库的权限GRANT ALL PRIVILEGES ON . TO  aa@”%”  IDENTIFIED BY “12345678”;grant语句：将数据库给哪个用户什么样的权限用法参考：https:&#x2F;&#x2F;www.yiibai.com&#x2F;mysql&#x2F;grant.html">
+<meta property="og:description" content="一、用户管理用户管理二、消息推送1. IOSiOS 的消息推送机制面世之时是一种全新的解决方案（堪称平台中的平台），应用本身不能有常驻的后台进程，系统的开销少，内存使用更少，电量也更少（把更多的运算和资源开销放在云端，非设备端）。 [Client App]注册消息推送； [Client App]跟[APNS Service]要deviceToken, Client App接收deviceToken">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70587393-c47a0780-1c04-11ea-855b-e9de5c4b67f5.png">
-<meta property="og:updated_time" content="2019-12-11T03:01:07.785Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74024997-f548a400-49dd-11ea-8b11-176d56e1ad69.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74025057-19a48080-49de-11ea-8c98-879bd814bb8f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74028011-54a9b280-49e4-11ea-96ec-883c4e024ff6.png">
+<meta property="og:updated_time" content="2020-02-07T12:05:46.663Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70587393-c47a0780-1c04-11ea-855b-e9de5c4b67f5.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74024997-f548a400-49dd-11ea-8b11-176d56e1ad69.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/11/001-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/">
+<link rel="canonical" href="http://yoursite.com/2020/02/07/%E7%94%A8%E6%88%B7%E5%B1%82/">
 
 
 <script id="page-configurations">
@@ -73,7 +74,7 @@
   };
 </script>
 
-  <title>001.远程连接数据库 | Hexo</title>
+  <title>用户层 | Hexo</title>
   
 
 
@@ -197,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/11/001-%E8%BF%9C%E7%A8%8B%E8%BF%9E%E6%8E%A5%E6%95%B0%E6%8D%AE%E5%BA%93/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/07/%E7%94%A8%E6%88%B7%E5%B1%82/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -210,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          001.远程连接数据库
+          用户层
         </h1>
 
         <div class="post-meta">
@@ -221,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-11 10:58:22 / 修改时间：11:01:07" itemprop="dateCreated datePublished" datetime="2019-12-11T10:58:22+08:00">2019-12-11</time>
+              <time title="创建时间：2020-02-07 20:05:21 / 修改时间：20:05:46" itemprop="dateCreated datePublished" datetime="2020-02-07T20:05:21+08:00">2020-02-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,8 +230,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
-                    <span itemprop="name">数据库</span>
+                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">互联网架构</span>
                   </a>
                 </span>
             </span>
@@ -253,10 +254,23 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>简单理解原理</p><h3 id="一、服务器创建远程用户，并赋予相应数据库的权限"><a href="#一、服务器创建远程用户，并赋予相应数据库的权限" class="headerlink" title="一、服务器创建远程用户，并赋予相应数据库的权限"></a>一、服务器创建远程用户，并赋予相应数据库的权限</h3><p>GRANT ALL PRIVILEGES ON <em>.</em> TO  aa@”%”  IDENTIFIED BY “12345678”;<br>grant语句：将数据库给哪个用户什么样的权限<br>用法参考：<a href="https://www.yiibai.com/mysql/grant.html" target="_blank" rel="noopener">https://www.yiibai.com/mysql/grant.html</a></p><a id="more"></a>
+        <h3 id="一、用户管理"><a href="#一、用户管理" class="headerlink" title="一、用户管理"></a>一、用户管理</h3><p><a href="https://bravoing.github.io/2020/02/07/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" target="_blank" rel="noopener">用户管理</a></p><h3 id="二、消息推送"><a href="#二、消息推送" class="headerlink" title="二、消息推送"></a>二、消息推送</h3><p><strong>1. IOS</strong><br>iOS 的消息推送机制面世之时是一种全新的解决方案（堪称平台中的平台），应用本身不能有常驻的后台进程，系统的开销少，内存使用更少，电量也更少（把更多的运算和资源开销放在云端，非设备端）。<br><img src="https://user-images.githubusercontent.com/56629574/74024997-f548a400-49dd-11ea-8b11-176d56e1ad69.png" alt="1581074008(1)"><br><img src="https://user-images.githubusercontent.com/56629574/74025057-19a48080-49de-11ea-8c98-879bd814bb8f.png" alt="1581074072(1)"></p><ul>
+<li>[Client App]注册消息推送；</li>
+<li>[Client App]跟[APNS Service]要deviceToken, Client App接收deviceToken；</li>
+<li>[Client App]将deviceToken发送给[Provider]Push服务端程序；</li>
+<li>当Push服务端程序满足发送消息条件了，[Provider]向[APNS Service]发送消息；</li>
+<li>[APNS Service]将消息发送给[Client App].</li>
+</ul><a id="more"></a>
 
-<h3 id="二、客户端连接服务器"><a href="#二、客户端连接服务器" class="headerlink" title="二、客户端连接服务器"></a>二、客户端连接服务器</h3><p><img src="https://user-images.githubusercontent.com/56629574/70587393-c47a0780-1c04-11ea-855b-e9de5c4b67f5.png" alt="1576032924(1)"></p>
-<p>具体服务端如何配置参考：<a href="https://blog.csdn.net/qq_19004627/article/details/80986922" target="_blank" rel="noopener">https://blog.csdn.net/qq_19004627/article/details/80986922</a></p>
+
+<p><strong>2. Android</strong><br>而 Android，就不同，更像是传统桌面电脑系统做法。每个需要后台推送的应用有各自的单独后台进程，才能和各自的服务器通讯，交换数据。另外其实 Android 也有类似 APNS 的 GCM（Google Cloud Message），属于开发者可选，非强制。<br><img src="https://user-images.githubusercontent.com/56629574/74028011-54a9b280-49e4-11ea-96ec-883c4e024ff6.png" alt="1581076747(1)"><br>app的消息推送就需要在自己或者是第三方服务器与设备之间建立一条长连接，通过长连接进行推送（如上图流程所示）。如果说iOS推送是苹果服务器统一向设备内对应app的分发，那么Android就是app主服务器向设备对应app的推送，这一过程必须保持连接的稳定建立，并且需要app处于打开或保持进程的情况下才能完成推送。</p>
+<h3 id="三、存储云、图片云"><a href="#三、存储云、图片云" class="headerlink" title="三、存储云、图片云"></a>三、存储云、图片云</h3><p>互联网环境下，用户会上传多种类型的文件数据，比如微信发朋友圈时上传图片、微博发微博或评论时上传图片、视频，视频用户上传视频、淘宝卖家上传商品图片</p>
+<ul>
+<li>数据量大：用户基数大，用户上传行为频繁，</li>
+<li>文件体积小：大部分图片是几百KB到几MB，短视频播放时间也是在几分钟内。</li>
+<li>访问有时效性：大部分文件是刚上传的时候访问最多，随着时间的推移访问量越来越小。</li>
+</ul>
+<p>一般用存储云和图片云通常的实现都是“CDN + 小文件存储”。</p>
 
     </div>
 
@@ -265,25 +279,19 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" rel="tag"># 原理或遇到问题</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/06/ssh%E5%8E%9F%E7%90%86%E5%8F%8A%E5%91%BD%E4%BB%A4/" rel="next" title="ssh原理及命令">
-                  <i class="fa fa-chevron-left"></i> ssh原理及命令
+                <a href="/2020/02/07/%E7%94%A8%E6%88%B7%E7%AE%A1%E7%90%86/" rel="next" title="用户管理">
+                  <i class="fa fa-chevron-left"></i> 用户管理
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/12/12/%E7%BD%91%E7%BB%9C%E5%91%BD%E4%BB%A4/" rel="prev" title="网络命令">
-                  网络命令 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -327,7 +335,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、服务器创建远程用户，并赋予相应数据库的权限"><span class="nav-text">一、服务器创建远程用户，并赋予相应数据库的权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、客户端连接服务器"><span class="nav-text">二、客户端连接服务器</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、用户管理"><span class="nav-text">一、用户管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、消息推送"><span class="nav-text">二、消息推送</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、存储云、图片云"><span class="nav-text">三、存储云、图片云</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
