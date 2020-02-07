@@ -62,7 +62,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74007977-a9d0ce80-49ba-11ea-8958-0fd006ec71af.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74008532-13051180-49bc-11ea-9465-d08e8d1bd9cb.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74008830-d7b71280-49bc-11ea-9f35-0e027ea49ec4.png">
-<meta property="og:updated_time" content="2020-02-07T07:25:36.336Z">
+<meta property="og:updated_time" content="2020-02-07T07:35:22.326Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74003032-24deb880-49ac-11ea-8ee2-93a9cb96526d.png">
 
@@ -228,7 +228,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-07 15:25:04 / 修改时间：15:25:36" itemprop="dateCreated datePublished" datetime="2020-02-07T15:25:04+08:00">2020-02-07</time>
+              <time title="创建时间：2020-02-07 15:25:04 / 修改时间：15:35:22" itemprop="dateCreated datePublished" datetime="2020-02-07T15:25:04+08:00">2020-02-07</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -270,12 +270,12 @@
 </li>
 </ul>
 <p><img src="https://user-images.githubusercontent.com/56629574/74003032-24deb880-49ac-11ea-8ee2-93a9cb96526d.png" alt="1581052622(1)"><br>完美：目前应用，不用改源码、不用重启、支持高并发、没有在每个服务器上更改配置的冗余操作<br>对于单机版，我们称之为配置（文件）；对于分布式集群系统，将配置文件抽取出核心配置文件，我们称之为配置中心（系统）<br>参考：<a href="https://www.cnblogs.com/yelao/p/10741156.html" target="_blank" rel="noopener">https://www.cnblogs.com/yelao/p/10741156.html</a><br>比如分布式配置中心：nacos<br>下面是配置中心简单的设计，其中通过“系统标识 + host + port”来标识唯一一个系统运行实例是常见的设计方法。<br><img src="https://user-images.githubusercontent.com/56629574/74003313-1c3ab200-49ad-11ea-8387-5f2b1007a243.png" alt="1581053025(1)"></p>
-<h3 id="三、服务中心"><a href="#三、服务中心" class="headerlink" title="三、服务中心"></a>三、服务中心</h3><p>系统间调用可以直接通过配置文件记录在系统内部，但当系统数量多了以后，就会存在问题。<br>比如10个系统依赖A系统的X接口，需要将其改成Y接口，则10个系统的几十台机器的配置都要修改、重启。<br><strong>服务中心就是为了解决跨系统依赖的配置和调度问题。</strong><br><strong>服务中心的实现一般来说有两种方式：</strong></p>
+<h3 id="二、服务中心"><a href="#二、服务中心" class="headerlink" title="二、服务中心"></a>二、服务中心</h3><p>系统间调用可以直接通过配置文件记录在系统内部，但当系统数量多了以后，就会存在问题。<br>比如10个系统依赖A系统的X接口，需要将其改成Y接口，则10个系统的几十台机器的配置都要修改、重启。<br><strong>服务中心就是为了解决跨系统依赖的配置和调度问题。</strong><br><strong>服务中心的实现一般来说有两种方式：</strong></p>
 <ul>
 <li>服务名字系统（Service Name System）<br>相信你会立刻联想到DNS，即Domain Name System。没错，两者的性质是基本类似的。DNS的作用将域名解析为IP地址，主要原因是我们记不住太多的数字IP，域名就容易记住。服务名字系统是为了将Service名称解析为“host + port + 接口名称”，但是和DNS一样，真正发起请求的还是请求方。基本的设计如下：<br><img src="https://user-images.githubusercontent.com/56629574/74004804-d92f0d80-49b1-11ea-9d4c-e81345b8db94.png" alt="1581055072(1)"></li>
-<li>服务总线系统（Service Bus System）<br>由总线系统完成调用，服务请求方都不需要直接和服务提供方交互了。<br><img src="https://user-images.githubusercontent.com/56629574/74004954-5195ce80-49b2-11ea-856a-f8dd05884fb3.png" alt="1581055272(1)"><h3 id="四、消息队列"><a href="#四、消息队列" class="headerlink" title="四、消息队列"></a>四、消息队列</h3>业界已经有很多成熟的开源实现方案，如果要求不高，基本上拿来用即可，例如，RocketMQ、Kafka、ActiveMQ等。</li>
+<li>服务总线系统（Service Bus System）<br>由总线系统完成调用，服务请求方都不需要直接和服务提供方交互了。<br><img src="https://user-images.githubusercontent.com/56629574/74004954-5195ce80-49b2-11ea-856a-f8dd05884fb3.png" alt="1581055272(1)"></li>
 </ul>
-<p><strong>应用场景介绍：</strong><br><strong>1. 异步处理</strong><br>用户注册后，需要发注册邮件和注册短信。<br><img src="https://user-images.githubusercontent.com/56629574/74009178-a4c14e80-49bd-11ea-978e-d27cd784fa32.png" alt="1581060129(1)"></p>
+<h3 id="三、消息队列"><a href="#三、消息队列" class="headerlink" title="三、消息队列"></a>三、消息队列</h3><p>业界已经有很多成熟的开源实现方案，如果要求不高，基本上拿来用即可，例如，RocketMQ、Kafka、ActiveMQ等。<br><strong>应用场景介绍：</strong><br><strong>1. 异步处理</strong><br>用户注册后，需要发注册邮件和注册短信。<br><img src="https://user-images.githubusercontent.com/56629574/74009178-a4c14e80-49bd-11ea-978e-d27cd784fa32.png" alt="1581060129(1)"></p>
 <p><strong>2. 应用解耦</strong><br><img src="https://user-images.githubusercontent.com/56629574/74006746-9cfeab80-49b7-11ea-9921-53a76c1fe9b5.png" alt="1581057541(1)"><br>下单操作涉及订单系统和库存系统。当串行处理时若库存失败，导致订单失败。所以解耦后订单写入消息队列就不再关心后续操作了。<br><strong>3. 流量削峰</strong><br>秒杀活动是希望更多人参与，但抢购时间到达，用户真正下单时，服务器并不希望有几百万同时发起抢购请求。在日常上下班高峰场景中，是通过错峰限行方案，在线上的秒杀活动中也是类似的解决方案，平安度过同时抢购的流量峰值问题。<br><strong>削峰的本质是更多的延缓用户请求，以及层层过滤用户的访问需求，遵从“最后落地到数据库的请求数要尽量少”的原则。</strong><br><img src="https://user-images.githubusercontent.com/56629574/74007977-a9d0ce80-49ba-11ea-8958-0fd006ec71af.png" alt="1581058853"><br><strong>4. 日志处理</strong><br><img src="https://user-images.githubusercontent.com/56629574/74008532-13051180-49bc-11ea-9465-d08e8d1bd9cb.png" alt="1581059456(1)"><br><strong>5. 消息通讯</strong><br><img src="https://user-images.githubusercontent.com/56629574/74008830-d7b71280-49bc-11ea-9f35-0e027ea49ec4.png" alt="1581059789(1)"></p>
 
     </div>
@@ -341,7 +341,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务层的主要目标其实就是为了降低系统间相互关联的复杂度。"><span class="nav-text">服务层的主要目标其实就是为了降低系统间相互关联的复杂度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、配置中心"><span class="nav-text">一、配置中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、服务中心"><span class="nav-text">三、服务中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、消息队列"><span class="nav-text">四、消息队列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务层的主要目标其实就是为了降低系统间相互关联的复杂度。"><span class="nav-text">服务层的主要目标其实就是为了降低系统间相互关联的复杂度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、配置中心"><span class="nav-text">一、配置中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、服务中心"><span class="nav-text">二、服务中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、消息队列"><span class="nav-text">三、消息队列</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
