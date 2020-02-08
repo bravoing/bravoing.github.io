@@ -46,19 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="一、传输数据方式 GET : 是放在URL后，？分割请求数据，&amp;amp;分割请求参数 POST：四种常见的提交方式 二、安全性POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议三、请求数据大小在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。POST无此限制，但理论上，IIS4中最大量为80KB，IIS">
+  <meta name="description" content="小程序特性一、兼容性问题 小程序不支持直接发朋友圈，只能分享微信好友（图片前端适配） 基础库与客户端之间的关系小程序的能力需要微信客户端来支持，每一个api基础库都只能在对应的客户端版本上运行，高版本的基础库无法兼容低版本的微信客户端；所以特别要注意有没有一些api是新版本才支持，这种情况旧版本怎么处理；（高版本的功能，在低版本运行要做兼容）">
 <meta property="og:type" content="article">
-<meta property="og:title" content="GET和POST区别">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;05&#x2F;GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB&#x2F;index.html">
+<meta property="og:title" content="小程序测试点">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;08&#x2F;%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95%E7%82%B9&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、传输数据方式 GET : 是放在URL后，？分割请求数据，&amp;amp;分割请求参数 POST：四种常见的提交方式 二、安全性POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议三、请求数据大小在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。POST无此限制，但理论上，IIS4中最大量为80KB，IIS">
+<meta property="og:description" content="小程序特性一、兼容性问题 小程序不支持直接发朋友圈，只能分享微信好友（图片前端适配） 基础库与客户端之间的关系小程序的能力需要微信客户端来支持，每一个api基础库都只能在对应的客户端版本上运行，高版本的基础库无法兼容低版本的微信客户端；所以特别要注意有没有一些api是新版本才支持，这种情况旧版本怎么处理；（高版本的功能，在低版本运行要做兼容）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73820431-bb846b80-482c-11ea-99a5-233370ac90a9.png">
-<meta property="og:updated_time" content="2020-02-05T07:37:41.436Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74079869-2675b280-4a78-11ea-82f1-4419a137d69a.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74080662-7b69f680-4a81-11ea-9230-7fc3a9bb408f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74081058-a48c8600-4a85-11ea-8c8e-bb348b7e9fa1.png">
+<meta property="og:updated_time" content="2020-02-08T07:46:58.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73820431-bb846b80-482c-11ea-99a5-233370ac90a9.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74079869-2675b280-4a78-11ea-82f1-4419a137d69a.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/">
+<link rel="canonical" href="http://yoursite.com/2020/02/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95%E7%82%B9/">
 
 
 <script id="page-configurations">
@@ -72,7 +74,7 @@
   };
 </script>
 
-  <title>GET和POST区别 | Hexo</title>
+  <title>小程序测试点 | Hexo</title>
   
 
 
@@ -196,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E6%B5%8B%E8%AF%95%E7%82%B9/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -209,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          GET和POST区别
+          小程序测试点
         </h1>
 
         <div class="post-meta">
@@ -220,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-05 15:36:50 / 修改时间：15:37:41" itemprop="dateCreated datePublished" datetime="2020-02-05T15:36:50+08:00">2020-02-05</time>
+              <time title="创建时间：2020-02-08 15:45:19 / 修改时间：15:46:58" itemprop="dateCreated datePublished" datetime="2020-02-08T15:45:19+08:00">2020-02-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,8 +230,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">HTTP协议</span>
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">移动端测试</span>
                   </a>
                 </span>
             </span>
@@ -252,20 +254,34 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、传输数据方式"><a href="#一、传输数据方式" class="headerlink" title="一、传输数据方式"></a>一、传输数据方式</h3><ul>
-<li>GET : 是放在URL后，？分割请求数据，&amp;分割请求参数</li>
-<li>POST：<a href="https://bravoing.github.io/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">四种常见的提交方式</a></li>
-</ul><h3 id="二、安全性"><a href="#二、安全性" class="headerlink" title="二、安全性"></a>二、安全性</h3><p>POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议</p><h3 id="三、请求数据大小"><a href="#三、请求数据大小" class="headerlink" title="三、请求数据大小"></a>三、请求数据大小</h3><p>在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。<br>POST无此限制，但理论上，IIS4中最大量为80KB，IIS5中为100KB。<br><strong>为什么GET浏览器会限制？</strong><br>URL这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果URL太长，而并发又很高，就容易挤爆服务器的内存；</p><a id="more"></a>
+        <p><a href="https://bravoing.github.io/2020/02/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%B9%E6%80%A7/" target="_blank" rel="noopener">小程序特性</a></p><h3 id="一、兼容性问题"><a href="#一、兼容性问题" class="headerlink" title="一、兼容性问题"></a>一、兼容性问题</h3><ul>
+<li><strong>小程序不支持直接发朋友圈，只能分享微信好友</strong><br>（图片前端适配）</li>
+<li><strong>基础库与客户端之间的关系</strong><br>小程序的能力需要微信客户端来支持，每一个api基础库都只能在对应的客户端版本上运行，高版本的基础库无法兼容低版本的微信客户端；<br>所以特别要注意有没有一些api是新版本才支持，这种情况旧版本怎么处理；（高版本的功能，在低版本运行要做兼容）<br><img src="https://user-images.githubusercontent.com/56629574/74079869-2675b280-4a78-11ea-82f1-4419a137d69a.png" alt="1581140187(1)"></li>
+</ul><a id="more"></a>
 
-
-<h3 id="四、缓存"><a href="#四、缓存" class="headerlink" title="四、缓存"></a>四、缓存</h3><ul>
-<li>GET：可以看做DB的select操作，不会对服务端数据产生影响。可以做缓存（客户端、代理服务器Nginx、服务器Etag）</li>
-<li>POST：可以看做DB的update、insert、select，是必须访问数据库行为，所以不做缓存。</li>
+<p><a href="https://developers.weixin.qq.com/miniprogram/dev/framework/client-lib/version.html" target="_blank" rel="noopener">基础库版本分布</a></p>
+<ul>
+<li><strong>操作系统兼容</strong><br>微信小程序运行在三端：iOS、Android 和 用于调试的开发者工具<br>在 iOS 上，小程序的 javascript 代码是运行在 JavaScriptCore 中<br>在 Android 上，小程序的 javascript 代码是通过 X5 内核来解析<br>在 开发工具上， 小程序的 javascript 代码是运行在 nwjs（chrome内核） 中</li>
+<li><strong>UI</strong><br>微信通过rpx可以根据屏幕宽度进行自适配，但保险起见，主流设备要测下</li>
 </ul>
-<h3 id="五、请求次数"><a href="#五、请求次数" class="headerlink" title="五、请求次数"></a>五、请求次数</h3><p>http 100-continue用于客户端在发送POST数据给服务器前，征询服务器情况，看服务器是否处理POST的数据，如果不处理，客户端则不上传POST数据，如果处理，则POST上传数据。在现实应用中，通过在POST大数据时，才会使用100-continue协议（加入头{“Expect”:”100-continue”}）。<br>【但这并不是协议规定的，所以也可以像GET直接发数据】</p>
-<h3 id="六、管道传输"><a href="#六、管道传输" class="headerlink" title="六、管道传输"></a>六、管道传输</h3><ul>
-<li>get支持管道化传输，而post不支持<br>在长连接中，是顺序请求和响应：请求1-&gt;响应1-&gt;请求2&gt;响应2<br>管道化：请求1 -&gt; 请求2 -&gt; 请求3 -&gt; 响应1 -&gt; 响应2 -&gt; 响应3<br><img src="https://user-images.githubusercontent.com/56629574/73820431-bb846b80-482c-11ea-99a5-233370ac90a9.png" alt="1580887928(1)"><br>HTTP1.1要求服务器支持管线化，但并不要求服务器对响应进行管线化处理，只是要求对于管线化的请求不失败，而且现在服务端和代理程序对管线化的支持并不好，Chrome和Firefox默认并未开启管线化支持。</li>
+<h3 id="二、特殊测试点"><a href="#二、特殊测试点" class="headerlink" title="二、特殊测试点"></a>二、特殊测试点</h3><ul>
+<li><strong>页面层级跳转不能超过10次</strong><br>比如分类-》居家-》布艺软装-》居家-》被枕-》居家-》。。。达到10次就无法跳转了，如果非要有这种跳转方式，需要考虑不让微信觉得是10次跳转。</li>
+<li><strong>缓存，</strong>微信小程序为了提升用户体验，会缓存用户的页面及数据，方便下次调用时直接使用。可能产生的问题：<br>①微信小程序缓存的数据是否和服务器端一致。实际测试时可以先访问页面，然后修改服务器上数据，再回看小程序中页面，看数据是否一致。<br>②切换相似的页面，看是否缓存的数据会产生混乱，比如居家和餐厨两个分类，切换分类的时候，会不会因为缓存导致具体信息不发生变化。</li>
+<li><strong>通知：</strong>模板样式效果以及formid与实际推送是否一致及获取不到formid情况<br>流程：用户在操作小程序时，由微信产生formid给小程序，小程序再根据服务通知模板向微信用户发送微信通知。<br>支付或提交表单会生成formid（formid7天有效）</li>
 </ul>
+<h3 id="三、其他关注点"><a href="#三、其他关注点" class="headerlink" title="三、其他关注点"></a>三、其他关注点</h3><ul>
+<li><p><strong>授权</strong><br>当需要保存相册、定位、麦克风等权限时授权<br>①允许授权，进入下一步操作；<br>②拒绝授权，无法下一步操作；<br>③关闭退出，如若还未授权重新进入需要继续授权；<br>④关闭退出，如若已经授权则无需再次授权。<br>⑤同一微信号在不同手机端登录授权查看数据和权限相同<br>⑥取消授权方式一：直接删除小程序，可以达到清理这个小程序授权的目的。这样整个小程序都会被完全重置、删除。<br>⑦取消授权方式二：<br><img src="https://user-images.githubusercontent.com/56629574/74080662-7b69f680-4a81-11ea-9230-7fc3a9bb408f.png" alt="1581144242(1)"></p>
+</li>
+<li><p><strong>重复请求</strong><br>场景：提交评论，验证码，支付</p>
+</li>
+<li><p><strong>点击分享链接进入小程序，是没有返回按钮</strong><br>正如文字所述，小程序分享后，点击分享的链接，打开的小程序是没有返回按钮的，用户也不知道怎么返回到首页，当然，右上角的…还是可以的返回到<strong>首页</strong>，但是对于用户来说，存在成本；<br><img src="https://user-images.githubusercontent.com/56629574/74081058-a48c8600-4a85-11ea-8c8e-bb348b7e9fa1.png" alt="1581146031(1)"></p>
+</li>
+<li><p><strong>小程序里打开的公众号链接及需要跳转的小程序</strong><br>①公众号文章:需要跳转的公众号文章，该公众号必须跟小程序相关联<br>②其他小程序：跳转的小程序需要关联在同一个公众号下面，不然无法跳转</p>
+</li>
+<li><p>更新：热更新、覆盖更新（需要注意更新版本时，用户是否需要删除小程序才会有效果）</p>
+</li>
+</ul>
+<p>参考：<a href="https://juejin.im/post/5b515cd7f265da0fa8673d64#heading-9" target="_blank" rel="noopener">https://juejin.im/post/5b515cd7f265da0fa8673d64#heading-9</a><br><a href="https://testerhome.com/topics/16299" target="_blank" rel="noopener">https://testerhome.com/topics/16299</a></p>
 
     </div>
 
@@ -279,17 +295,14 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" rel="next" title="POST四种提交数据方式">
-                  <i class="fa fa-chevron-left"></i> POST四种提交数据方式
+                <a href="/2020/02/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%B9%E6%80%A7/" rel="next" title="小程序特性">
+                  <i class="fa fa-chevron-left"></i> 小程序特性
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/02/06/Selenuim%E5%8E%9F%E7%90%86/" rel="prev" title="Selenuim原理">
-                  Selenuim原理 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -333,7 +346,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、传输数据方式"><span class="nav-text">一、传输数据方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、安全性"><span class="nav-text">二、安全性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、请求数据大小"><span class="nav-text">三、请求数据大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、缓存"><span class="nav-text">四、缓存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、请求次数"><span class="nav-text">五、请求次数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、管道传输"><span class="nav-text">六、管道传输</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、兼容性问题"><span class="nav-text">一、兼容性问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、特殊测试点"><span class="nav-text">二、特殊测试点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、其他关注点"><span class="nav-text">三、其他关注点</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
