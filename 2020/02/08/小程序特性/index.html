@@ -46,20 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="一、对称加密、非对称加密概念https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiangshangchunjiezi&#x2F;article&#x2F;details&#x2F;88545263二、HTTPS原理客户端使用对称加密方式，服务端采用非对称加密方式进行数据传输一个HTTPS请求实际上包含了两次HTTP传输，可以细分为8步。">
-<meta name="keywords" content="原理或遇到问题">
+  <meta name="description" content="一、小程序架构 视图层和逻辑层分离，通过数据驱动，事件交互，不直接操作DOM 视图层负责渲染页面结构，逻辑层负责逻辑处理、数据请求、接口调用等 视图层与逻辑层通过数据和事件进行通信，逻辑层提供数据给视图层，视图层通过绑定&#x2F;捕获事件发起交互让逻辑层处理 视图使用WebView渲染，JS由JSCore(IOS)&#x2F;X5(Android)&#x2F;nwjs(DevTool)渲染解析 JSBridge下架起上层开发">
 <meta property="og:type" content="article">
-<meta property="og:title" content="HTTPS原理">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;12&#x2F;16&#x2F;HTTPS%E5%8E%9F%E7%90%86&#x2F;index.html">
+<meta property="og:title" content="小程序特性">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;08&#x2F;%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%B9%E6%80%A7&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、对称加密、非对称加密概念https:&#x2F;&#x2F;blog.csdn.net&#x2F;jiangshangchunjiezi&#x2F;article&#x2F;details&#x2F;88545263二、HTTPS原理客户端使用对称加密方式，服务端采用非对称加密方式进行数据传输一个HTTPS请求实际上包含了两次HTTP传输，可以细分为8步。">
+<meta property="og:description" content="一、小程序架构 视图层和逻辑层分离，通过数据驱动，事件交互，不直接操作DOM 视图层负责渲染页面结构，逻辑层负责逻辑处理、数据请求、接口调用等 视图层与逻辑层通过数据和事件进行通信，逻辑层提供数据给视图层，视图层通过绑定&#x2F;捕获事件发起交互让逻辑层处理 视图使用WebView渲染，JS由JSCore(IOS)&#x2F;X5(Android)&#x2F;nwjs(DevTool)渲染解析 JSBridge下架起上层开发">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70895684-54b3b480-202a-11ea-8e46-ae34ecaa2e9b.png">
-<meta property="og:updated_time" content="2019-12-16T09:38:51.305Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74079198-0ee5fc00-4a6f-11ea-879f-188915e3d11c.png">
+<meta property="og:updated_time" content="2020-02-08T05:12:26.798Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;70895684-54b3b480-202a-11ea-8e46-ae34ecaa2e9b.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74079198-0ee5fc00-4a6f-11ea-879f-188915e3d11c.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/">
+<link rel="canonical" href="http://yoursite.com/2020/02/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%B9%E6%80%A7/">
 
 
 <script id="page-configurations">
@@ -73,7 +72,7 @@
   };
 </script>
 
-  <title>HTTPS原理 | Hexo</title>
+  <title>小程序特性 | Hexo</title>
   
 
 
@@ -197,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/16/HTTPS%E5%8E%9F%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%89%B9%E6%80%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -210,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          HTTPS原理
+          小程序特性
         </h1>
 
         <div class="post-meta">
@@ -221,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-12-16 17:38:03 / 修改时间：17:38:51" itemprop="dateCreated datePublished" datetime="2019-12-16T17:38:03+08:00">2019-12-16</time>
+              <time title="创建时间：2020-02-08 13:10:59 / 修改时间：13:12:26" itemprop="dateCreated datePublished" datetime="2020-02-08T13:10:59+08:00">2020-02-08</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,8 +228,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
-                    <span itemprop="name">HTTP协议</span>
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">移动端测试</span>
                   </a>
                 </span>
             </span>
@@ -253,27 +252,30 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、对称加密、非对称加密概念"><a href="#一、对称加密、非对称加密概念" class="headerlink" title="一、对称加密、非对称加密概念"></a>一、对称加密、非对称加密概念</h3><p><a href="https://blog.csdn.net/jiangshangchunjiezi/article/details/88545263" target="_blank" rel="noopener">https://blog.csdn.net/jiangshangchunjiezi/article/details/88545263</a></p><h3 id="二、HTTPS原理"><a href="#二、HTTPS原理" class="headerlink" title="二、HTTPS原理"></a>二、HTTPS原理</h3><p>客户端使用对称加密方式，服务端采用非对称加密方式进行数据传输<br><img src="https://user-images.githubusercontent.com/56629574/70895684-54b3b480-202a-11ea-8e46-ae34ecaa2e9b.png" alt="1576488860(1)"><br>一个HTTPS请求实际上包含了两次HTTP传输，可以细分为8步。</p><a id="more"></a>
+        <h3 id="一、小程序架构"><a href="#一、小程序架构" class="headerlink" title="一、小程序架构"></a>一、小程序架构</h3><p><img src="https://user-images.githubusercontent.com/56629574/74079198-0ee5fc00-4a6f-11ea-879f-188915e3d11c.png" alt="1581136330(1)"></p><ul>
+<li>视图层和逻辑层分离，通过数据驱动，事件交互，不直接操作DOM</li>
+<li>视图层负责渲染页面结构，逻辑层负责逻辑处理、数据请求、接口调用等</li>
+<li>视图层与逻辑层通过数据和事件进行通信，逻辑层提供数据给视图层，视图层通过绑定/捕获事件发起交互让逻辑层处理</li>
+<li>视图使用WebView渲染，JS由JSCore(IOS)/X5(Android)/nwjs(DevTool)渲染解析</li>
+<li>JSBridge下架起上层开发与Native（系统层）的桥梁，使得小程序可通过API使用原生的功能，且部分组件为原生组件实现，从而有良好体验</li>
+</ul><a id="more"></a>
 
-<ol>
-<li><p>客户端向服务器发起HTTPS请求，连接到服务器的443端口</p>
-</li>
-<li><p>服务器端有一个密钥对，即公钥和私钥，是用来进行非对称加密使用的，服务器端保存着私钥，不能将其泄露，公钥可以发送给任何人。</p>
-</li>
-<li><p>服务器将自己的公钥发送给客户端。</p>
-</li>
-<li><p>客户端收到服务器端的公钥之后，会对公钥进行检查，验证其合法性，如果发现发现公钥有问题，那么HTTPS传输就无法继续。严格的说，这里应该是验证服务器发送的数字证书的合法性，关于客户端如何验证数字证书的合法性，下文会进行说明。如果公钥合格，那么客户端会生成一个随机值，这个随机值就是用于进行对称加密的密钥，我们将该密钥称之为client key，即客户端密钥，这样在概念上和服务器端的密钥容易进行区分。然后用服务器的公钥对客户端密钥进行非对称加密，这样客户端密钥就变成密文了，至此，HTTPS中的第一次HTTP请求结束。</p>
-</li>
-<li><p>客户端会发起HTTPS中的第二个HTTP请求，将加密之后的客户端密钥发送给服务器。</p>
-</li>
-<li><p>服务器接收到客户端发来的密文之后，会用自己的私钥对其进行非对称解密，解密之后的明文就是客户端密钥，然后用客户端密钥对数据进行对称加密，这样数据就变成了密文。</p>
-</li>
-<li><p>然后服务器将加密后的密文发送给客户端。</p>
-</li>
-<li><p>客户端收到服务器发送来的密文，用客户端密钥对其进行对称解密，得到服务器发送的数据。这样HTTPS中的第二个HTTP请求结束，整个HTTPS传输完成。</p>
-</li>
-</ol>
-<p>转自：<a href="https://www.jianshu.com/p/14cd2c9d2cd2" target="_blank" rel="noopener">https://www.jianshu.com/p/14cd2c9d2cd2</a></p>
+<h3 id="二、小程序版本"><a href="#二、小程序版本" class="headerlink" title="二、小程序版本"></a>二、小程序版本</h3><ul>
+<li>开发版</li>
+<li>体验版（需要在小程序管理平台里添加体验用户才可以使用）</li>
+<li>正式版</li>
+</ul>
+<h3 id="三、限制"><a href="#三、限制" class="headerlink" title="三、限制"></a>三、限制</h3><ul>
+<li>页面层级跳转不能超过10层。</li>
+<li>用户本地缓存不能超过10MB。</li>
+<li>小程序代码包不能超过3M，所以部分图片资源需上传CDN。</li>
+<li>小程序发布需提交微信审核通过才可发版。</li>
+<li>提交审核前，外网域名需申请（除微信域名之外）。</li>
+</ul>
+<h3 id="四、基础库版本"><a href="#四、基础库版本" class="headerlink" title="四、基础库版本"></a>四、基础库版本</h3><p>小程序的能力需要微信客户端来支撑，每一个基础库都只能在对应的客户端版本上运行，高版本的基础库对应的api不支持低版本，所以在使用这些新能力的时候需要做兼容。</p>
+<h3 id="五、缓存机制"><a href="#五、缓存机制" class="headerlink" title="五、缓存机制"></a>五、缓存机制</h3><p>同一手机，不同小程序应用，至少在逻辑存储上肯定不是共享缓存，满足应用级别隔离。<br>同一手机，同一个小程序，不同微信用户扫码使用，经测试，也不共享缓存，目前测试条件下，是用户级别隔离。<br>同一手机，同一个小程序，同一微信用户两次扫码使用，经测试，是共享缓存。<br>同一手机，同一个小程序，不同微信用户切换使用（分别扫码两次），经测试，同一个用户共享缓存，不同用户间不共享缓存。</p>
+<h3 id="六、海报页"><a href="#六、海报页" class="headerlink" title="六、海报页"></a>六、海报页</h3><p>可生成定制的海报页，用于分享朋友圈。<br>任何版本生成的海报页，扫码都跳转到正式版落地页，可借助【小程序码测试工具】跳转相应页面。<br>二维码数据和图片为动态生成过程，不像那种固定图片的可以预加载。</p>
+<h3 id="六、微信openId和UnionID区别"><a href="#六、微信openId和UnionID区别" class="headerlink" title="六、微信openId和UnionID区别"></a>六、微信openId和UnionID区别</h3><p>同一公司下多个公众号之间需要用户帐号互通，微信开放平台提供了UnionID机制。<br>通过获取用户基本信息接口，开发者可通过OpenID来获取用户基本信息，而如果开发者拥有多个公众号，可通过UnionID在多公众号之间进行用户帐号互通。<br>在不同的公众账号下OpenID是不一样的，而他们的UnionID却是一样的。<br>UnionId和uid是对应关系；OpenId和sourceId是对应关系。</p>
 
     </div>
 
@@ -282,25 +284,19 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%8E%9F%E7%90%86%E6%88%96%E9%81%87%E5%88%B0%E9%97%AE%E9%A2%98/" rel="tag"># 原理或遇到问题</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/12/16/%E5%A4%B4%E9%83%A8%E5%AD%97%E6%AE%B5/" rel="next" title="头部字段">
-                  <i class="fa fa-chevron-left"></i> 头部字段
+                <a href="/2020/02/07/%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84/" rel="next" title="互联网架构">
+                  <i class="fa fa-chevron-left"></i> 互联网架构
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/12/16/Fiddler%E6%8A%93%E5%8C%85%E5%8E%9F%E7%90%86/" rel="prev" title="Fiddler抓包原理">
-                  Fiddler抓包原理 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -344,7 +340,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、对称加密、非对称加密概念"><span class="nav-text">一、对称加密、非对称加密概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、HTTPS原理"><span class="nav-text">二、HTTPS原理</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、小程序架构"><span class="nav-text">一、小程序架构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、小程序版本"><span class="nav-text">二、小程序版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、限制"><span class="nav-text">三、限制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、基础库版本"><span class="nav-text">四、基础库版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、缓存机制"><span class="nav-text">五、缓存机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、海报页"><span class="nav-text">六、海报页</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、微信openId和UnionID区别"><span class="nav-text">六、微信openId和UnionID区别</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
