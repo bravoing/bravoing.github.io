@@ -191,6 +191,83 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E8%BE%93%E5%85%A5%E6%A1%86%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E5%86%99%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/15/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E8%BE%93%E5%85%A5%E6%A1%86%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E5%86%99%E6%B3%95/" class="post-title-link" itemprop="url">实例分析---输入框及数据驱动自动化测试用例写法</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-15 17:57:07 / 修改时间：18:00:58" itemprop="dateCreated datePublished" datetime="2020-01-15T17:57:07+08:00">2020-01-15</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>转自：<a href="https://mp.weixin.qq.com/s/Y_DhYHYecl84WAcSdl0mCw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/Y_DhYHYecl84WAcSdl0mCw</a><br>　　自动化的能力并非在于自动执行用户任务（并非怀疑所有的价值，我承认有一类自动化测试是有价值的：编写简单的测试，定时运行跨多平台和操作性的测试，以确保兼容性等）。<strong>测试自动化的真正威力，是编写代码来测试代码，使得计算机执行的测试工作是用其他方法无法替代的。</strong><br><img src="https://user-images.githubusercontent.com/56629574/72422793-05de7380-37be-11ea-8c7c-eda843482924.png" alt="1579081144(1)"><br>　　好的测试设计必须考虑到软件行为功能（它是否做了所期望的事情，又是否做了不被期望的事），以及非功能的属性，比如可靠性、性能和安全性等。一个好的测试设计方法是将这些东西视为整体（系统性思维）。我经常通过头脑风暴产生脑图来开始这个过程的，以确定测试方法。下面是一个脑图的例子：<br><img src="https://user-images.githubusercontent.com/56629574/72422939-4b02a580-37be-11ea-84c0-6dba1d3ea0c6.png" alt="1579081285(1)"><br>　　在创建这张脑图的时候，并没有考虑任何要不要执行自动化的问题，只是写了许多关于要测试的笔记、想法和问题。最终，我会使用脑图来帮助我组织测试思路，并通过脑图与其他人交流。<br>现在，就可以着手考虑自动化了！脑图里有许多关于需要发送的字符串的不同想法，每个测试的设置都手动执行是极其无聊而烦人的（此时正好就需要一个好的启发思维来决定哪些部分进行自动化测试），于是就从这里开始：<br>For Each string in TestString.txt<br>{<br>    SendSackMessage(string);<br>    VerifyMessageAppears(string);<br>    VerifyRemoteMessageAppears(string);<br>}</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/15/%E5%AE%9E%E4%BE%8B%E5%88%86%E6%9E%90-%E8%BE%93%E5%85%A5%E6%A1%86%E5%8F%8A%E8%87%AA%E5%8A%A8%E5%8C%96%E5%86%99%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E6%B5%8B%E8%AF%95%E6%96%B0%E4%BA%BA%E5%A6%82%E4%BD%95%E6%8F%90%E5%8D%87%E5%B7%A5%E4%BD%9C%E6%95%88%E7%8E%87/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -914,87 +991,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/02/%E6%89%8B%E6%9C%BAAPP%E5%88%86%E7%B1%BB%E5%8F%8A%E5%8C%BA%E5%88%AB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/02/%E6%89%8B%E6%9C%BAAPP%E5%88%86%E7%B1%BB%E5%8F%8A%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">手机APP分类及区别</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-02 14:44:01 / 修改时间：17:12:33" itemprop="dateCreated datePublished" datetime="2020-01-02T14:44:01+08:00">2020-01-02</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">移动端测试</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="手机APP分类"><a href="#手机APP分类" class="headerlink" title="手机APP分类"></a>手机APP分类</h3><ul>
-<li>原生应用（native application，简称native App）</li>
-<li>Web应用（web application，简称web App）</li>
-<li>混合应用（hybrid application，简称hybrid App）</li>
-</ul><h3 id="一、原生APP"><a href="#一、原生APP" class="headerlink" title="一、原生APP"></a>一、原生APP</h3><p>原生App是专门为特定手机平台开发的应用程序，无法在其他平台运行。目前手机操作系统分为Android和IOS，若想应用程序同时支持这两个系统，则要各写一个原生App。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/02/%E6%89%8B%E6%9C%BAAPP%E5%88%86%E7%B1%BB%E5%8F%8A%E5%8C%BA%E5%88%AB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1045,7 +1041,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">53</span>
+          <span class="site-state-item-count">54</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
