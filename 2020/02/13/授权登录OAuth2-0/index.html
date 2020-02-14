@@ -46,15 +46,20 @@
   };
 </script>
 
-  <meta name="description" content="一、通俗介绍新浪微博就是你的家。偶尔你会想让一些人（第三方应用）去你的家里帮你做一些事，或取点东西。你可以复制一把钥匙（用户名和密码）给他们，但这里有三个问题：1）别人拿了钥匙后可以去所有的房间2）别人拿到你的钥匙后也许会不小心丢到，甚至故意送到它人手里。这样你都不知到谁有你家钥匙。  3）过一段时间你也许会想要回自己的钥匙，但别人不还怎么办？ OAuth 是高级钥匙: 1）你可以配置不同权限的钥">
+  <meta name="description" content="title: 授权登录OAuth2.0date: 2020-02-13 20:33:25tags:一、通俗介绍新浪微博就是你的家。偶尔你会想让一些人（第三方应用）去你的家里帮你做一些事，或取点东西。你可以复制一把钥匙（用户名和密码）给他们，但这里有三个问题：1）别人拿了钥匙后可以去所有的房间2）别人拿到你的钥匙后也许会不小心丢到，甚至故意送到它人手里。这样你都不知到谁有你家钥匙。  3）过一段时间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="授权登录OAuth2.0">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95OAuth2-0&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、通俗介绍新浪微博就是你的家。偶尔你会想让一些人（第三方应用）去你的家里帮你做一些事，或取点东西。你可以复制一把钥匙（用户名和密码）给他们，但这里有三个问题：1）别人拿了钥匙后可以去所有的房间2）别人拿到你的钥匙后也许会不小心丢到，甚至故意送到它人手里。这样你都不知到谁有你家钥匙。  3）过一段时间你也许会想要回自己的钥匙，但别人不还怎么办？ OAuth 是高级钥匙: 1）你可以配置不同权限的钥">
+<meta property="og:description" content="title: 授权登录OAuth2.0date: 2020-02-13 20:33:25tags:一、通俗介绍新浪微博就是你的家。偶尔你会想让一些人（第三方应用）去你的家里帮你做一些事，或取点东西。你可以复制一把钥匙（用户名和密码）给他们，但这里有三个问题：1）别人拿了钥匙后可以去所有的房间2）别人拿到你的钥匙后也许会不小心丢到，甚至故意送到它人手里。这样你都不知到谁有你家钥匙。  3）过一段时间">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-02-13T12:57:31.703Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74505379-f45dc800-4f31-11ea-8652-76f594291242.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74505270-b06ac300-4f31-11ea-9591-095a1d33097b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74505290-beb8df00-4f31-11ea-8709-c413a133b947.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74505321-d4c69f80-4f31-11ea-961b-67f82042c7c9.png">
+<meta property="og:updated_time" content="2020-02-14T05:58:29.243Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74505379-f45dc800-4f31-11ea-8652-76f594291242.png">
 
 <link rel="canonical" href="http://yoursite.com/2020/02/13/%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95OAuth2-0/">
 
@@ -216,10 +221,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-02-13 20:33:25 / 修改时间：20:57:31" itemprop="dateCreated datePublished" datetime="2020-02-13T20:33:25+08:00">2020-02-13</time>
+              <time title="创建时间：2020-02-13 20:33:25" itemprop="dateCreated datePublished" datetime="2020-02-13T20:33:25+08:00">2020-02-13</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-14 13:58:29" itemprop="dateModified" datetime="2020-02-14T13:58:29+08:00">2020-02-14</time>
+              </span>
 
           
             <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
@@ -239,7 +250,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>一、通俗介绍<br>新浪微博就是你的家。偶尔你会想让一些人（第三方应用）去你的家里帮你做一些事，或取点东西。你可以复制一把钥匙（用户名和密码）给他们，但这里有三个问题：<br>1）别人拿了钥匙后可以去所有的房间<br>2）别人拿到你的钥匙后也许会不小心丢到，甚至故意送到它人手里。这样你都不知到谁有你家钥匙。  3）过一段时间你也许会想要回自己的钥匙，但别人不还怎么办？<br> OAuth 是高级钥匙: 1）你可以配置不同权限的钥匙。有些只能进大厅（读取你的微博流）。有些钥匙可以进储藏柜（读取你的相片)<br> 2）钥匙上带着指纹验证的（指纹 = appkey)。 收到钥匙的人只能自己用，不能转让<br> 3）你可以远程废除之前发出的钥匙相对来说, OAuth比给出用户名密码安全</p><a id="more"></a>
+        <hr><p>title: 授权登录OAuth2.0<br>date: 2020-02-13 20:33:25<br>tags:</p><hr><p>一、通俗介绍<br>新浪微博就是你的家。偶尔你会想让一些人（第三方应用）去你的家里帮你做一些事，或取点东西。你可以复制一把钥匙（用户名和密码）给他们，但这里有三个问题：<br>1）别人拿了钥匙后可以去所有的房间<br>2）别人拿到你的钥匙后也许会不小心丢到，甚至故意送到它人手里。这样你都不知到谁有你家钥匙。  3）过一段时间你也许会想要回自己的钥匙，但别人不还怎么办？<br> OAuth 是高级钥匙: 1）你可以配置不同权限的钥匙。有些只能进大厅（读取你的微博流）。有些钥匙可以进储藏柜（读取你的相片)<br> 2）钥匙上带着指纹验证的（指纹 = appkey)。 收到钥匙的人只能自己用，不能转让<br> 3）你可以远程废除之前发出的钥匙相对来说, OAuth比给出用户名密码安全<br><img src="https://user-images.githubusercontent.com/56629574/74505379-f45dc800-4f31-11ea-8652-76f594291242.png" alt="1581591572(1)"></p><a id="more"></a>
+
+
+
 <h3 id="二、名词介绍"><a href="#二、名词介绍" class="headerlink" title="二、名词介绍"></a>二、名词介绍</h3><ul>
 <li>Third-party application：第三方应用程序，本文中又称”客户端”（client），即豆瓣</li>
 <li>HTTP service：HTTP服务提供商，本文中简称”服务提供商”，即qq</li>
@@ -248,7 +262,8 @@
 <li>Authorization server：认证服务器，即服务提供商专门用来处理认证的服务器。</li>
 <li>Resource server：资源服务器，即服务提供商存放用户生成的资源的服务器。它与认证服务器，可以是同一台服务器，也可以是不同的服务器。</li>
 </ul>
-<h3 id="三、OAuth-2-0的运行流程"><a href="#三、OAuth-2-0的运行流程" class="headerlink" title="三、OAuth 2.0的运行流程"></a>三、OAuth 2.0的运行流程</h3><p>（A）用户打开客户端以后，客户端要求用户给予授权。<br>（B）用户同意给予客户端授权。<br>（C）客户端使用上一步获得的授权，向认证服务器申请令牌。<br>（D）认证服务器对客户端进行认证以后，确认无误，同意发放令牌。<br>（E）客户端使用令牌，向资源服务器申请获取资源。<br>（F）资源服务器确认令牌无误，同意向客户端开放资源。</p>
+<h3 id="三、OAuth-2-0的运行流程"><a href="#三、OAuth-2-0的运行流程" class="headerlink" title="三、OAuth 2.0的运行流程"></a>三、OAuth 2.0的运行流程</h3><p><img src="https://user-images.githubusercontent.com/56629574/74505270-b06ac300-4f31-11ea-9591-095a1d33097b.png" alt="1581591999(1)"></p>
+<p>（A）用户打开客户端以后，客户端要求用户给予授权。<br>（B）用户同意给予客户端授权。<br>（C）客户端使用上一步获得的授权，向认证服务器申请令牌。<br>（D）认证服务器对客户端进行认证以后，确认无误，同意发放令牌。<br>（E）客户端使用令牌，向资源服务器申请获取资源。<br>（F）资源服务器确认令牌无误，同意向客户端开放资源。</p>
 <h3 id="四、客户端的授权方式"><a href="#四、客户端的授权方式" class="headerlink" title="四、客户端的授权方式"></a>四、客户端的授权方式</h3><p>客户端必须得到用户的授权（authorization grant），才能获得令牌（access token）。OAuth 2.0定义了四种授权方式。<br>授权码模式（authorization code）<br>简化模式（implicit）<br>密码模式（resource owner password credentials）<br>客户端模式（client credentials）</p>
 <h3 id="五、授权码过程"><a href="#五、授权码过程" class="headerlink" title="五、授权码过程"></a>五、授权码过程</h3><ol>
 <li><p>A网站提供一个连接，用户点击跳转到B网站。下面是A网站跳转到B网站的一个示意连接。<br><a href="https://b.com/oauth/authorize" target="_blank" rel="noopener">https://b.com/oauth/authorize</a>?<br>response_type=code&amp; 要求返回授权码<br>client_id=CLIENT_ID&amp; 让qq知道第三方是谁<br>redirect_uri=CALLBACK_URL&amp;  授权成功后的跳转页面<br>scope=read  要求的授权范围（这里是只读）</p>
@@ -260,12 +275,14 @@
 <li><p>B网站受到请求后，颁发令牌。具体做法是向 redirect_uri指定的网址，发送一段JSON数据<br>{<br>“access_token”:”ACCESS_TOKEN”,   令牌<br>“token_type”:”bearer”,<br>“expires_in”:2592000,<br>“refresh_token”:”REFRESH_TOKEN”,<br>“scope”:”read”,<br>“uid”:100101,<br>“info”:{…}<br>}</p>
 </li>
 </ol>
+<p><img src="https://user-images.githubusercontent.com/56629574/74505290-beb8df00-4f31-11ea-8709-c413a133b947.png" alt="1581595449(1)"></p>
 <p>第一步：在豆瓣官网点击qq登录<br>第二步：跳转到qq登录页输入用户名、密码，然后点授权并登录<br>第三步：个是拿到code去换tocken，另一个就是用拿到的token换用户信息<br>第四步：将用户信息存储起来，返回给浏览器其首页的视图。<br>OAuth2.0结束</p>
 <h3 id="六、注意点"><a href="#六、注意点" class="headerlink" title="六、注意点"></a>六、注意点</h3><ol>
 <li>code是有时效性的，尽量在获取后的几分钟内去申请获取access_token</li>
 <li>access_token也是有过期时间的，而过期后就需要重新获取新的令牌</li>
 </ol>
 <h3 id="七、web端和移动端授权区别"><a href="#七、web端和移动端授权区别" class="headerlink" title="七、web端和移动端授权区别"></a>七、web端和移动端授权区别</h3><p>web端一般是登录并授权，也就是上面的用qq登录豆瓣的例子<br>移动端一般是先登录然后授权，下面用微信登录自如的例子展示</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/74505321-d4c69f80-4f31-11ea-961b-67f82042c7c9.png" alt="1581598142(1)"></p>
 <ol>
 <li>用户使用微信登录自如APP</li>
 <li>自如APP向用户申请访问用户的个人微信资料</li>
@@ -297,8 +314,8 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/02/14/Git%E5%91%BD%E4%BB%A4/" rel="prev" title="Git命令">
-                  Git命令 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/02/14/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E5%8E%9F%E7%90%86%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%B8%A7%E7%8E%87%E3%80%81%E7%A0%81%E7%8E%87/" rel="prev" title="视频播放器原理、分辨率、帧率、码率">
+                  视频播放器原理、分辨率、帧率、码率 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>

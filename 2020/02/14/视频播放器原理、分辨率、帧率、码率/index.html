@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、解协议将流媒体协议的数据，解析为标准的相应的封装格式数据。视音频在网络上传播的时候，常常采用各种流媒体协议，例如HTTP，RTMP，或是MMS等等。这些协议在传输视音频数据的同时，也会传输一些信令数据。这些信令数据包括对播放的控制（播放，暂停，停止），或者对网络状态的描述等。解协议的过程中会去除掉信令数据而只保留视音频数据。例如，采用RTMP协议传输的数据，经过解协议操作后，输出FLV格式的数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频播放器原理、分辨率、帧率、码率">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;14&#x2F;%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E5%8E%9F%E7%90%86%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%B8%A7%E7%8E%87%E3%80%81%E7%A0%81%E7%8E%87&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、解协议将流媒体协议的数据，解析为标准的相应的封装格式数据。视音频在网络上传播的时候，常常采用各种流媒体协议，例如HTTP，RTMP，或是MMS等等。这些协议在传输视音频数据的同时，也会传输一些信令数据。这些信令数据包括对播放的控制（播放，暂停，停止），或者对网络状态的描述等。解协议的过程中会去除掉信令数据而只保留视音频数据。例如，采用RTMP协议传输的数据，经过解协议操作后，输出FLV格式的数">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74511350-c59b1e00-4f40-11ea-9b53-5e24073a9f95.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74521514-7828ac00-4f54-11ea-8a0f-d6fdff487751.png">
+<meta property="og:updated_time" content="2020-02-14T10:28:52.293Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74511350-c59b1e00-4f40-11ea-9b53-5e24073a9f95.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/14/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E5%8E%9F%E7%90%86%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%B8%A7%E7%8E%87%E3%80%81%E7%A0%81%E7%8E%87/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>视频播放器原理、分辨率、帧率、码率 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E5%8E%9F%E7%90%86%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%B8%A7%E7%8E%87%E3%80%81%E7%A0%81%E7%8E%87/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视频播放器原理、分辨率、帧率、码率
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-14 18:28:27 / 修改时间：18:28:52" itemprop="dateCreated datePublished" datetime="2020-02-14T18:28:27+08:00">2020-02-14</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><img src="https://user-images.githubusercontent.com/56629574/74511350-c59b1e00-4f40-11ea-9b53-5e24073a9f95.png" alt="1581666181(1)"></p><h3 id="一、解协议"><a href="#一、解协议" class="headerlink" title="一、解协议"></a>一、解协议</h3><p>将流媒体协议的数据，解析为标准的相应的封装格式数据。视音频在网络上传播的时候，常常采用各种流媒体协议，例如HTTP，RTMP，或是MMS等等。这些协议在传输视音频数据的同时，也会传输一些信令数据。这些信令数据包括对播放的控制（播放，暂停，停止），或者对网络状态的描述等。解协议的过程中会去除掉信令数据而只保留视音频数据。例如，采用RTMP协议传输的数据，经过解协议操作后，输出FLV格式的数据。</p><a id="more"></a>
+
+<h3 id="二、封装格式"><a href="#二、封装格式" class="headerlink" title="二、封装格式"></a>二、封装格式</h3><p>　　mp4、.avi、.rmvb<br>封装格式，就是以怎样的方式将视频轨、音频轨、字幕轨等数据打包成一个文件的规范。说得通俗点，视频轨相当于饭，而音频轨相当于菜，封装格式就是一个碗或者一个锅，是用来盛放饭菜的容器。<br>　　视频文件的封装格式并不影响视频的画质，影响视频画面质量的是视频的编码格式。<br>　　解封装过程就是将其分离成为某种编码格式的音频压缩数据和某种编码格式的视频压缩数据，有时可能包含字幕和脚本。比如flv或ts格式的数据，解封装后得到H.264编码的视频码流和AAC编码的音频码流。</p>
+<h3 id="三、编码"><a href="#三、编码" class="headerlink" title="三、编码"></a>三、编码</h3><p>　　我们知道，其实视频就是一帧一帧的图片。计算一下，一部25帧每秒，90分钟，分辨率为1024*768，24位真彩色的视频，没有经过压缩，大小为<br>1Byte（字节） = 8bit（位）<br>一帧大小 = 1024 * 768 * 24 = 18874368（bit） = 2359296（Byte）<br>总帧数 = 90 * 60 * 25 = 135000<br>总大小 = 一帧大小 * 总帧数 = 2359296 * 135000 = 318504960000（Byte）= 303750（MB）≈ 296（GB）<br>　　从上面的计算可以看出，我们储存一部90分钟没压缩的电影需要296GB的，2部电影便可占满我们电脑整个硬盘。所以我们需要对视频进行压缩，这种视频压缩技术就是我们所说的编码。<br>　　通过视频压缩算法，减少了视频文件的大小。压缩比越大，解压缩还原后播放的视频越失真，这是因为压缩的同时不可避免的丢失了视频中原来图像的数据信息。<br>　　解码就是将编码的视频解压缩处理，从而得到系统音频驱动和视频驱动能够识别的音频采样数据（如PCM数据）和视频像素数据（如YUV420P，RGB）。</p>
+<h3 id="四、视音频同步"><a href="#四、视音频同步" class="headerlink" title="四、视音频同步"></a>四、视音频同步</h3><p>　　根据时间，帧率和采样率采用一定的算法，同步解码出来的视频和音频数据，并将视频音频数据送至显卡和声卡播放出来。</p>
+<h3 id="五、视频分辨率"><a href="#五、视频分辨率" class="headerlink" title="五、视频分辨率"></a>五、视频分辨率</h3><ul>
+<li>指的是视频图像在一个单位尺寸内的精密度。当我们把一个视频放大数倍时，就会发现许多小方点，这些点就是构成影像的单位——像素。</li>
+<li>视频的分辨率与像素密不可分，比如一个视频的分辨率为1280*720,就代表了这个视频的水平方向有1280个像素，垂直方向有720个像素。</li>
+<li>常见的：<br>720P是指视频有720行像素  P是Progressive逐行扫描<br>2K是指视频像素的总列数<br>MP是像素总数，指像素的行数(P)与列数(K)乘积的结果（百万像素）<br>1080P分辨率为192.*1080，总像素2073600，通常将1080P叫做200万像素分辨率</li>
+<li>通常视频在同样大小的情况下，分辨率越高，所包含的像素就越多，视频画面就越细腻、越清晰。<br>参考：<a href="https://www.reneelab.com.cn/m/2k-4k-video-resolution.html" target="_blank" rel="noopener">https://www.reneelab.com.cn/m/2k-4k-video-resolution.html</a></li>
+</ul>
+<h3 id="六、视频帧率"><a href="#六、视频帧率" class="headerlink" title="六、视频帧率"></a>六、视频帧率</h3><ul>
+<li>帧率的单位是：FPS简写：P“如30fps和30p指的都是每秒钟播放30张图片的意思” 或者叫赫兹HZ</li>
+<li>高低帧率：低帧率会伴随模糊、卡顿、镜头移动时不顺畅等问题，但也不是越高越好，会造成眩晕的感觉</li>
+<li>不同帧率的视频在不同设备上播放：<br>①若一个播放设备最高支持60fps，在此设备上播放120fps的影片，则播放设备会每隔一张删除120fps的影片，被删除的图片成为无效帧。<br>这就导致高帧率的影片在低帧率的设备上播放时，会降低播放流畅度。<br>②若一个播放设备最高支持120fps，在此设备上播放60fps的影片，则播放设备会每将每张图片复制一张，以填补空缺的帧。但是效果和60fps的设备上播放一样，对播放流畅度没有提升。</li>
+</ul>
+<p>参考：<a href="https://www.sohu.com/a/316841339_120099897" target="_blank" rel="noopener">https://www.sohu.com/a/316841339_120099897</a></p>
+<h3 id="七、视频码率（视频比特率）"><a href="#七、视频码率（视频比特率）" class="headerlink" title="七、视频码率（视频比特率）"></a>七、视频码率（视频比特率）</h3><ul>
+<li>在“三、编码”中编码是为了压缩文件大小。压缩后已经是二进制数据了，从而有码率概念。</li>
+<li>单位是bps(bit per second)。在计算机中所有的数据都是二进制</li>
+<li>是在单位时间传输的数据量(二进制的个数)，通常用Kbps、Mbps表示</li>
+<li>一般来说同样分辨率下，视频文件的码率越大，压缩比就越小，画面质量就越高。码率越高，精度就越高，处理出来的文件就越接近原始文件，图像质量越好，画质越清晰，要求播放设备的解码能力也越高。<br>理解：提取一帧，图片画质越高，体积越大，需要传输的01越多。<br>体积越大，说明压缩比小，越接近原文件。</li>
+</ul>
+<p><strong>帧率与码率的关系：帧率多，则图片数目多；码率越高，图片质量越清晰。</strong><br><img src="https://user-images.githubusercontent.com/56629574/74521514-7828ac00-4f54-11ea-8a0f-d6fdff487751.png" alt="1581674663(1)"></p>
+<h3 id="八、视频分析软件Mediainfo"><a href="#八、视频分析软件Mediainfo" class="headerlink" title="八、视频分析软件Mediainfo"></a>八、视频分析软件Mediainfo</h3><p>Mediainfo是一款常用的视频分析软件，软件能够检测视频文件的格式、画面比例、码率、音频流、声道等一系列视频参数信息，并支持用户以表格、树状图、文本、XML、MPEG-7等格式进行预览与导出，而且支持用户批量操作，为用户提供完善的检测方案。我们可通过此软件，获取我们需要的视频数据。</p>
+<h3 id="九、视频性能测试点："><a href="#九、视频性能测试点：" class="headerlink" title="九、视频性能测试点："></a>九、视频性能测试点：</h3><p>首帧响应时间：从点击播放按钮到出现第一帧画面所需要的时间<br>播放流畅度：帧率可以体现播放的流畅度，帧率越大画面越流畅<br>播放成功率：视频正常播放在总播放视频中的占比<br>功耗：即持续播放视频电量的消耗情况<br>内存：视频在播放过程中内存的占用情况，一般我们都会追求低内存<br>Cpu指标：视频播放过程中的cpu占用情况，cpu占用过高会引发功耗过高的情况<br>播放稳定性：长时间播放视频的播放质量<br>视频播放中的响应时间是一个很重要的测试指标，响应时间又分为，首帧响应时间、拖动响应时间两种。响应时间测试设计需要确定起始点和响应点，我们可以通过ffmpeg来获取视频的首帧图片作为响应基准。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/13/%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95OAuth2-0/" rel="next" title="授权登录OAuth2.0">
+                  <i class="fa fa-chevron-left"></i> 授权登录OAuth2.0
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、解协议"><span class="nav-text">一、解协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、封装格式"><span class="nav-text">二、封装格式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、编码"><span class="nav-text">三、编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、视音频同步"><span class="nav-text">四、视音频同步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、视频分辨率"><span class="nav-text">五、视频分辨率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、视频帧率"><span class="nav-text">六、视频帧率</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、视频码率（视频比特率）"><span class="nav-text">七、视频码率（视频比特率）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、视频分析软件Mediainfo"><span class="nav-text">八、视频分析软件Mediainfo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、视频性能测试点："><span class="nav-text">九、视频性能测试点：</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
