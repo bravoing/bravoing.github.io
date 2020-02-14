@@ -46,23 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="一、Linux文件系统的运作数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。1. 为了解决效率的问题，Linux使用的方式：异步处理当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内">
-<meta name="keywords" content="鸟哥的私房菜">
+  <meta name="description" content="参考：http:&#x2F;&#x2F;www.woshipm.com&#x2F;ucd&#x2F;198774.html">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第7章：Linux磁盘与文件系统管理（2）">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89&#x2F;index.html">
+<meta property="og:title" content="手机屏幕尺寸、分辨率、像素、PPI关系">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;14&#x2F;%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%83%8F%E7%B4%A0%E3%80%81PPI%E5%85%B3%E7%B3%BB&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、Linux文件系统的运作数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。1. 为了解决效率的问题，Linux使用的方式：异步处理当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内">
+<meta property="og:description" content="参考：http:&#x2F;&#x2F;www.woshipm.com&#x2F;ucd&#x2F;198774.html">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67267523-0af49500-f4e5-11e9-8501-f42fb08d5c8e.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67268050-20b68a00-f4e6-11e9-8c73-0ffe96a35ffb.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67269139-b4895580-f4e8-11e9-826d-7cc0e477bbc6.png">
-<meta property="og:updated_time" content="2019-11-16T05:36:44.624Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74532950-69012880-4f6b-11ea-8cb4-8283c2a91e99.png">
+<meta property="og:updated_time" content="2020-02-14T12:50:44.140Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74532950-69012880-4f6b-11ea-8cb4-8283c2a91e99.png">
 
-<link rel="canonical" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/">
+<link rel="canonical" href="http://yoursite.com/2020/02/14/%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%83%8F%E7%B4%A0%E3%80%81PPI%E5%85%B3%E7%B3%BB/">
 
 
 <script id="page-configurations">
@@ -76,7 +72,7 @@
   };
 </script>
 
-  <title>第7章：Linux磁盘与文件系统管理（2） | Hexo</title>
+  <title>手机屏幕尺寸、分辨率、像素、PPI关系 | Hexo</title>
   
 
 
@@ -200,7 +196,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%882%EF%BC%89/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/14/%E6%89%8B%E6%9C%BA%E5%B1%8F%E5%B9%95%E5%B0%BA%E5%AF%B8%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%83%8F%E7%B4%A0%E3%80%81PPI%E5%85%B3%E7%B3%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -213,7 +209,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          第7章：Linux磁盘与文件系统管理（2）
+          手机屏幕尺寸、分辨率、像素、PPI关系
         </h1>
 
         <div class="post-meta">
@@ -224,7 +220,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2019-11-16 13:35:37 / 修改时间：13:36:44" itemprop="dateCreated datePublished" datetime="2019-11-16T13:35:37+08:00">2019-11-16</time>
+              <time title="创建时间：2020-02-14 20:47:18 / 修改时间：20:50:44" itemprop="dateCreated datePublished" datetime="2020-02-14T20:47:18+08:00">2020-02-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,8 +228,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index">
-                    <span itemprop="name">Linux</span>
+                  <a href="/categories/%E5%B8%B8%E8%AF%86/" itemprop="url" rel="index">
+                    <span itemprop="name">常识</span>
                   </a>
                 </span>
             </span>
@@ -256,41 +252,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、Linux文件系统的运作"><a href="#一、Linux文件系统的运作" class="headerlink" title="一、Linux文件系统的运作"></a>一、Linux文件系统的运作</h3><p>数据加载到内存才能对数据处理，若在编辑一个很大文件，频繁的写入磁盘，效率很低。<br><strong>1. 为了解决效率的问题，Linux使用的方式：异步处理</strong><br>当系统加载一个文件到内存后，如果该文件没有改变过，则在内存区段的文件数据会被设定为干净（clean）的。但若内存中的文件数据被修改过，则内存中数据称为脏（dirty）的数据。此时所有的动作都还在内存中执行，并没有写入磁盘。系统不定时的将内存中设定为dirty的数据写回磁盘，以保证磁盘与内存数据的一致性。</p><a id="more"></a>
-<p><strong>2. 内存速度快于磁盘，若将常用的文件放到内存中，会极大增加系统性能：</strong></p>
-<ul>
-<li>系统会将常用的文件数据放置到主存的缓冲区，以加速文件系统的读/写</li>
-<li>呈上，因为Linux的物理内存最后被用光，这是正常情况，可加速系统性能</li>
-<li>可以手动sync来强迫内存中设定为Dirty的文件写回磁盘</li>
-<li>若正常关机，关机命令会主动呼叫sync来将内存的数据写回磁盘</li>
-<li>若非正常关机，由于数据未写回磁盘，重启会花费时间进行磁盘检验。</li>
-</ul>
-<h3 id="二、磁盘与目录的容量"><a href="#二、磁盘与目录的容量" class="headerlink" title="二、磁盘与目录的容量"></a>二、磁盘与目录的容量</h3><ul>
-<li>df：列出文件系统的整体磁盘使用量</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/56629574/67264138-c6fd9200-f4dc-11e9-958b-7f91d5b45ba7.png" alt="1571727658(1)"></p>
-<ul>
-<li>du：评估文件系统的磁盘使用量（常用在推估目录所占容量）<br>搜寻所有的文件数据</li>
-</ul>
-<h3 id="三、Hard-Link（实体链接，硬链接或实际链接）"><a href="#三、Hard-Link（实体链接，硬链接或实际链接）" class="headerlink" title="三、Hard Link（实体链接，硬链接或实际链接）"></a>三、Hard Link（实体链接，硬链接或实际链接）</h3><p>由之前的知识知道，文件名只与目录有关，但是文件内容与inode有关。硬链接就是多个文档名对应同一个inode。<br><img src="https://user-images.githubusercontent.com/56629574/67267523-0af49500-f4e5-11e9-8501-f42fb08d5c8e.png" alt="1571731133(1)"><br><strong>上图中连接数变为2，指的是有多少文档链接到这个inode号码</strong><br><img src="https://user-images.githubusercontent.com/56629574/67268050-20b68a00-f4e6-11e9-8c73-0ffe96a35ffb.png" alt="1571731653(1)"></p>
-<ul>
-<li><p>因为均指向同一个inode，所以无论谁对文档修改，都可看到修改结果；</p>
-</li>
-<li><p>其中一个删除也没事，增加了安全性；但又没增加inode、block，只是在目录下的block多写了关联数据</p>
-</li>
-</ul>
-<p>-注意不能跨文件系统、不能创建硬链接目录</p>
-<h3 id="四、Symbolic-Link（符号链接，或快捷方式）"><a href="#四、Symbolic-Link（符号链接，或快捷方式）" class="headerlink" title="四、Symbolic Link（符号链接，或快捷方式）"></a>四、Symbolic Link（符号链接，或快捷方式）</h3><p>Symbolic Link是建立一个独立的文件，而这个文件会让数据的读取指向它link的那个文件名</p>
-<p><img src="https://user-images.githubusercontent.com/56629574/67269139-b4895580-f4e8-11e9-826d-7cc0e477bbc6.png" alt="1571732779(1)"></p>
-<ul>
-<li><p>因为两个文件的inode不同，所以两个文件单独存在，连接文档重要内容就是写上目标文件的文件名</p>
-</li>
-<li><p>若删除-&gt;后的文件，则头文件是打不开的</p>
-</li>
-<li><p>建立连接文件，是独立的新文件，会用掉inode、block</p>
-</li>
-</ul>
-
+        <p><img src="https://user-images.githubusercontent.com/56629574/74532950-69012880-4f6b-11ea-8cb4-8283c2a91e99.png" alt="1581684505(1)"></p><p>参考：<a href="http://www.woshipm.com/ucd/198774.html" target="_blank" rel="noopener">http://www.woshipm.com/ucd/198774.html</a></p>
     </div>
 
     
@@ -298,25 +260,19 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89/" rel="next" title="第7章：Linux磁盘与文件系统管理（1）">
-                  <i class="fa fa-chevron-left"></i> 第7章：Linux磁盘与文件系统管理（1）
+                <a href="/2020/02/14/%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%99%A8%E5%8E%9F%E7%90%86%E3%80%81%E5%88%86%E8%BE%A8%E7%8E%87%E3%80%81%E5%B8%A7%E7%8E%87%E3%80%81%E7%A0%81%E7%8E%87/" rel="next" title="视频播放器原理、分辨率、帧率、码率">
+                  <i class="fa fa-chevron-left"></i> 视频播放器原理、分辨率、帧率、码率
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2019/11/16/%E7%AC%AC8%E7%AB%A0%EF%BC%9ALinux%E5%8E%8B%E7%BC%A9%E4%B8%8E%E8%A7%A3%E5%8E%8B/" rel="prev" title="第8章：Linux压缩与解压">
-                  第8章：Linux压缩与解压 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
       </footer>
@@ -360,7 +316,6 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、Linux文件系统的运作"><span class="nav-text">一、Linux文件系统的运作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、磁盘与目录的容量"><span class="nav-text">二、磁盘与目录的容量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、Hard-Link（实体链接，硬链接或实际链接）"><span class="nav-text">三、Hard Link（实体链接，硬链接或实际链接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、Symbolic-Link（符号链接，或快捷方式）"><span class="nav-text">四、Symbolic Link（符号链接，或快捷方式）</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
