@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、文件分布（working copy）工作区简单理解就是需要进行版本的某个文件夹（假设为test），这个文件夹有一些特殊之处——多了.git这个隐藏的文件夹（stagging）暂存区可以理解为一个虚拟工作区，这个虚拟工作区会跟踪工作区的文件变化（增删改等操作）。这个工作区的位于.git文件夹下的index目录下。除非是绕过暂存区直接提交，否则Git想把修改提交上去，就必须将修改存入暂存区最后才能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git命令">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;Git%E5%91%BD%E4%BB%A4&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、文件分布（working copy）工作区简单理解就是需要进行版本的某个文件夹（假设为test），这个文件夹有一些特殊之处——多了.git这个隐藏的文件夹（stagging）暂存区可以理解为一个虚拟工作区，这个虚拟工作区会跟踪工作区的文件变化（增删改等操作）。这个工作区的位于.git文件夹下的index目录下。除非是绕过暂存区直接提交，否则Git想把修改提交上去，就必须将修改存入暂存区最后才能">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74100956-610e4680-4b6f-11ea-8358-2fc3d96cdfb2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74100885-6f0f9780-4b6e-11ea-86fd-7def1f48c3c4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103611-72b01800-4b88-11ea-9247-9a2e6dd8812f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103635-c02c8500-4b88-11ea-9a46-fd8e58f4559d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103766-de46b500-4b89-11ea-9cec-f92fc57f42b5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103837-5e6d1a80-4b8a-11ea-8851-84330623c6af.png">
+<meta property="og:updated_time" content="2020-02-14T05:24:01.410Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74100956-610e4680-4b6f-11ea-8358-2fc3d96cdfb2.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/13/Git%E5%91%BD%E4%BB%A4/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Git命令 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/Git%E5%91%BD%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git命令
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-13 20:33:25" itemprop="dateCreated datePublished" datetime="2020-02-13T20:33:25+08:00">2020-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-14 13:24:01" itemprop="dateModified" datetime="2020-02-14T13:24:01+08:00">2020-02-14</time>
+              </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、文件分布"><a href="#一、文件分布" class="headerlink" title="一、文件分布"></a>一、文件分布</h3><p><strong>（working copy）工作区</strong>简单理解就是需要进行版本的某个文件夹（假设为test），这个文件夹有一些特殊之处——多了.git这个隐藏的文件夹<br><strong>（stagging）暂存区</strong>可以理解为一个虚拟工作区，这个虚拟工作区会跟踪工作区的文件变化（增删改等操作）。这个工作区的位于.git文件夹下的index目录下。除非是绕过暂存区直接提交，否则Git想把修改提交上去，就必须将修改存入暂存区最后才能commit。每次提交的是暂存区所对应的文件快照。<br><strong>（local repo）本地仓库</strong>test文件夹下的.git文件夹就是版本库<br><strong>（remote repo）远端仓库</strong>这个是真·git仓库，你可以把它理解成上传到服务器上可以和别人共用的游戏存档</p><a id="more"></a>
+<p><strong>为什么会有暂存区？</strong><br>会有这个疑惑的，请先问问自己，使用git时候是否都是所有的修改全部提交了，根本没有考虑到多个修改文件，是和多个功能有关，而每一个功能应该单独做成一次提交，这样可以保证提交历史的清晰。否则，当你想要回滚历史的时候，你会无所适从，根本分不清每个版本包含了哪些功能，修复了哪些bug.而暂存区的作用就是为了，可以<strong>选择提交</strong>，比如你在开发B功能的时候，发现A功能还存在Bug，这时候就需要先修复A中的Bug，然后先提交修复的A中的Bug,然后再提交B功能开发的文件。这样就可以提<strong>高提交版本历史记录的清晰，方便回滚</strong>。而提交是原子性操作，文件的选择就交于暂存区去做，每一次提交都是一个完整的功能开发，<strong>保证commit的干净，降低commit的粒度</strong>。</p>
+<h3 id="二、配置Git基本信息"><a href="#二、配置Git基本信息" class="headerlink" title="二、配置Git基本信息"></a>二、配置Git基本信息</h3><p><img src="https://user-images.githubusercontent.com/56629574/74100956-610e4680-4b6f-11ea-8358-2fc3d96cdfb2.png" alt="1581246412(1)"></p>
+<p>配置全局Git的用户名和邮箱设置，之后每一次Git的提交都会使用这些信息，也可通过git config –list查询当前Git的配置</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/74100885-6f0f9780-4b6e-11ea-86fd-7def1f48c3c4.png" alt="1581245925(1)"></p>
+<h3 id="三、git三种状态"><a href="#三、git三种状态" class="headerlink" title="三、git三种状态"></a>三、git三种状态</h3><p><img src="https://user-images.githubusercontent.com/56629574/74103611-72b01800-4b88-11ea-9247-9a2e6dd8812f.png" alt="1581257182(1)"></p>
+<p>a.图片中的Unmodified 和Modified两个状态合并成一个状态，叫Unstaged。所以，三种状态分别是Untracked、Unstaged、Staged.。<br>b.第一种状态，Untracked，也就是说git压根就不知道这个文件，对应的中文就是未被追踪的状态；<br>c.第二个状态，Unstaged，文件以及添加到git仓库中，但是还没有提交，处于等待提交的状态；<br>d.第三种状态，Staged，到了Staged状态，意味着文件可以执行提交操作。<br>一旦执行了提交操作，文件就由Staged状态变成Unstaged状态。整个过程就是这样，三个状态形成环状。<br><strong>1. Untracked状态</strong><br>桌面创建一个空文件夹，当做我们的项目文件夹，然后cd到该文件夹的路径，<br>a.输入 git init命令回车,可以看到在项目文件夹下创建了一个.git的文件夹。这个步骤就是git仓库的初始化操作，就是告诉git我们的文件夹MyProject已经添加到了git仓库管理。<br>b.检查当前项目的文件状态 git status，当前显示没有提交记录<br>c.在项目文件下添加一个文件abc.txt后，再次检查文件状态 。这个时候文件的状态就是Untracked状态，此时此刻，git才知道这个仓库下出现了一个没有被管理的文件，会提醒你用 git add file 这个命令去把Untracked状态的文件添加到仓库管理范围，这样这个文件就可以被提交。<br><img src="https://user-images.githubusercontent.com/56629574/74103635-c02c8500-4b88-11ea-9a46-fd8e58f4559d.png" alt="1581257314(1)"><br><strong>2 Unstaged状态</strong><br>一般我们操作或者输入git 命令是在git bash中进行，如何打开git bash呢，找到桌面你的项目，例如testgit,右键这个项目，选择git bash here<br>a. 在git bash上查看仓库文件状态。<br>b. 使用 git add filename 把文件添加到仓库， 此时的abc.txt文件的状态就是Unmodifed，上面可以看到new file，所以是没有被修改的状态<br>c. 我们需要把这个文件的内容进行修改。这里，我们把abc.txt 里面的内容删除，然后随意输入一些字符，保存，然后在git bash查看文件状态。这个时候，文件abc.txt的状态就变成了Modified。Unmodified和Modified两种状态组成了Unstaged。<br><img src="https://user-images.githubusercontent.com/56629574/74103766-de46b500-4b89-11ea-9cec-f92fc57f42b5.png" alt="1581257796(1)"><br><strong>3. Staged状态</strong><br>a.上面的图，我们看到abc.txt 显示红色的modified的状态，我们需要通过git add file 来把这个文件状态从modified改成Staged，任何文件到了Staged状态，就意味了可以执行提交命令。所以，git会提醒你， Changes to be committed，变成了可提交状态。git add .中这个点表示任何文件。<br>b. 在做commit命令之前，我们需要创建一个身份，就是告诉git这次提交是谁做的。因为可能存在重复的name，所以这里还需要设置email，一般来说email肯定不会有相同的。<br>c.我们开始用commit命令提交到仓库。上面的参数-m表示message，就是告诉别人，你这次提交的内容是什么，这个-m参数不是强制性的。提交完后，Staged状态又变成了Unstaged，如果有新的文件，就会变成Untracked状态，又开始三种状态之间切换。<br><img src="https://user-images.githubusercontent.com/56629574/74103837-5e6d1a80-4b8a-11ea-8851-84330623c6af.png" alt="1581257856(1)"></p>
+<p><a href="https://www.jianshu.com/p/dbd79a5063ab" target="_blank" rel="noopener">https://www.jianshu.com/p/dbd79a5063ab</a><br>或者从Untracked file、Changes to be committed、Changes not staged for commit提示进行分析<br>分析参考：<a href="https://blog.csdn.net/u013050662/article/details/84897594" target="_blank" rel="noopener">https://blog.csdn.net/u013050662/article/details/84897594</a></p>
+<h3 id="四、创建、合并分支"><a href="#四、创建、合并分支" class="headerlink" title="四、创建、合并分支"></a>四、创建、合并分支</h3><p><a href="https://blog.csdn.net/qq_40415721/article/details/82351660" target="_blank" rel="noopener">https://blog.csdn.net/qq_40415721/article/details/82351660</a><br><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424</a></p>
+<h3 id="五、添加、克隆远程仓库"><a href="#五、添加、克隆远程仓库" class="headerlink" title="五、添加、克隆远程仓库"></a>五、添加、克隆远程仓库</h3><p>ssh只是关联客户端与远程仓库，<br>以下操作是关联项目（默认也是master）<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:YATBOBTB/myApp.git<br><a href="https://blog.csdn.net/qq_40415721/article/details/82285542" target="_blank" rel="noopener">https://blog.csdn.net/qq_40415721/article/details/82285542</a></p>
+<h3 id="六、解决冲突"><a href="#六、解决冲突" class="headerlink" title="六、解决冲突"></a>六、解决冲突</h3><p><strong>产生</strong>：多个开发者同时使用或者操作git中的同一个文件，最后在依次提交和push的时候，第一个操作的是可以正常提交的，而之后的开发者想要执行pull（拉）和pull（push）操作的时候，就会报冲突异常conflict。<br><strong>解决</strong>：保留自己修改的数据，同时保留别人的数据信息。即手动修改，再提交<br><a href="https://www.cnblogs.com/gavincoder/p/9071959.html" target="_blank" rel="noopener">https://www.cnblogs.com/gavincoder/p/9071959.html</a></p>
+<h3 id="七、工作中常用场景"><a href="#七、工作中常用场景" class="headerlink" title="七、工作中常用场景"></a>七、工作中常用场景</h3><p><a href="https://mp.weixin.qq.com/s/ZBKKwy2fr1PSKP13LwQgrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ZBKKwy2fr1PSKP13LwQgrw</a><br>（3个场景）</p>
+<p>更详细的命令看<a href="https://blog.csdn.net/qq_40415721/category_7971129.html" target="_blank" rel="noopener">https://blog.csdn.net/qq_40415721/category_7971129.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/13/URL%E7%BC%96%E7%A0%81/" rel="next" title="URL编码">
+                  <i class="fa fa-chevron-left"></i> URL编码
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/02/13/%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95OAuth2-0/" rel="prev" title="授权登录OAuth2.0">
+                  授权登录OAuth2.0 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、文件分布"><span class="nav-text">一、文件分布</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、配置Git基本信息"><span class="nav-text">二、配置Git基本信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、git三种状态"><span class="nav-text">三、git三种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、创建、合并分支"><span class="nav-text">四、创建、合并分支</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、添加、克隆远程仓库"><span class="nav-text">五、添加、克隆远程仓库</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、解决冲突"><span class="nav-text">六、解决冲突</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、工作中常用场景"><span class="nav-text">七、工作中常用场景</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">56</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
