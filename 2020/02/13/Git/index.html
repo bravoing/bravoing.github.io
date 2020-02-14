@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="һ���ļ��ֲ���working copy�������������������Ҫ���а汾��ĳ���ļ��У�����Ϊtest��������ļ�����һЩ����֮����������.git������ص��ļ�����stagging���ݴ�����������Ϊһ�����⹤������������⹤��������ٹ��������ļ��仯����ɾ�ĵȲ���������">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;13&#x2F;Git&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="һ���ļ��ֲ���working copy�������������������Ҫ���а汾��ĳ���ļ��У�����Ϊtest��������ļ�����һЩ����֮����������.git������ص��ļ�����stagging���ݴ�����������Ϊһ�����⹤������������⹤��������ٹ��������ļ��仯����ɾ�ĵȲ���������">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74100956-610e4680-4b6f-11ea-8358-2fc3d96cdfb2.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74100885-6f0f9780-4b6e-11ea-86fd-7def1f48c3c4.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103611-72b01800-4b88-11ea-9247-9a2e6dd8812f.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103635-c02c8500-4b88-11ea-9a46-fd8e58f4559d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103766-de46b500-4b89-11ea-9cec-f92fc57f42b5.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74103837-5e6d1a80-4b8a-11ea-8851-84330623c6af.png">
+<meta property="og:updated_time" content="2020-02-14T04:56:35.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74100956-610e4680-4b6f-11ea-8358-2fc3d96cdfb2.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/13/Git/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>Git | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/13/Git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-13 23:57:40" itemprop="dateCreated datePublished" datetime="2020-02-13T23:57:40+08:00">2020-02-13</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-14 12:56:35" itemprop="dateModified" datetime="2020-02-14T12:56:35+08:00">2020-02-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Git/" itemprop="url" rel="index">
+                    <span itemprop="name">Git</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="һ���l��ֲ�"><a href="#һ���l��ֲ�" class="headerlink" title="һ���ļ��ֲ�"></a>һ���ļ��ֲ�</h3><p><strong>��working copy��������</strong>�����������Ҫ���а汾��ĳ���ļ��У�����Ϊtest��������ļ�����һЩ����֮����������.git������ص��ļ���<br><strong>��stagging���ݴ���</strong>��������Ϊһ�����⹤������������⹤��������ٹ��������ļ��仯����ɾ�ĵȲ������������������λ��.git�ļ����µ�indexĿ¼�¡��������ƹ��ݴ���ֱ���ύ������Git����޸��ύ��ȥ���ͱ��뽫�޸Ĵ����ݴ���������commit��ÿ���ύ�����ݴ�������Ӧ���ļ����ա�<br><strong>��local repo�����زֿ�</strong>test�ļ����µ�.git�ļ��о��ǰ汾��<br><strong>��remote repo��Զ�˲ֿ�</strong>������桤git�ֿ⣬����԰���������ϴ����������Ͽ��Ժͱ��˹��õ���Ϸ�浵</p><a id="more"></a>
+<p><strong>Ϊʲô�����ݴ�����</strong><br>��������ɻ�ģ����������Լ���ʹ��gitʱ���Ƿ������е��޸�ȫ���ύ�ˣ�����û�п��ǵ�����޸��ļ����ǺͶ�������йأ���ÿһ������Ӧ�õ�������һ���ύ���������Ա�֤�ύ��ʷ�����������򣬵�����Ҫ�ع���ʷ��ʱ����������ʴӣ������ֲ���ÿ���汾��������Щ���ܣ��޸�����Щbug.���ݴ��������þ���Ϊ�ˣ�����<strong>ѡ���ύ</strong>���������ڿ���B���ܵ�ʱ�򣬷���A���ܻ�����Bug����ʱ�����Ҫ���޸�A�е�Bug��Ȼ�����ύ�޸���A�е�Bug,Ȼ�����ύB���ܿ������ļ��������Ϳ�����<strong>���ύ�汾��ʷ��¼������������ع�</strong>�����ύ��ԭ���Բ������ļ���ѡ��ͽ����ݴ���ȥ����ÿһ���ύ����һ�������Ĺ��ܿ�����<strong>��֤commit�ĸɾ�������commit������</strong>��</p>
+<h3 id="��������Git������Ϣ"><a href="#��������Git������Ϣ" class="headerlink" title="��������Git������Ϣ"></a>��������Git������Ϣ</h3><p><img src="https://user-images.githubusercontent.com/56629574/74100956-610e4680-4b6f-11ea-8358-2fc3d96cdfb2.png" alt="1581246412(1)"></p>
+<p>����ȫ��Git���û������������ã�֮��ÿһ��Git���ύ����ʹ����Щ��Ϣ��Ҳ��ͨ��git config –list��ѯ��ǰGit������</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/74100885-6f0f9780-4b6e-11ea-86fd-7def1f48c3c4.png" alt="1581245925(1)"></p>
+<h3 id="����git����״̬"><a href="#����git����״̬" class="headerlink" title="����git����״̬"></a>����git����״̬</h3><p><img src="https://user-images.githubusercontent.com/56629574/74103611-72b01800-4b88-11ea-9247-9a2e6dd8812f.png" alt="1581257182(1)"></p>
+<p>a.ͼƬ�е�Unmodified ��Modified����״̬�ϲ���һ��״̬����Unstaged�����ԣ�����״̬�ֱ���Untracked��Unstaged��Staged.��<br>b.��һ��״̬��Untracked��Ҳ����˵gitѹ���Ͳ�֪������ļ�����Ӧ�����ľ���δ��׷�ٵ�״̬��<br>c.�ڶ���״̬��Unstaged���ļ��Լ����ӵ�git�ֿ��У����ǻ�û���ύ�����ڵȴ��ύ��״̬��<br>d.������״̬��Staged������Staged״̬����ζ���ļ�����ִ���ύ������<br>һ��ִ�����ύ�������ļ�����Staged״̬���Unstaged״̬���������̾�������������״̬�γɻ�״��<br><strong>1. Untracked״̬</strong><br>���洴��һ�����ļ��У��������ǵ���Ŀ�ļ��У�Ȼ��cd�����ļ��е�·����<br>a.���� git init����س�,���Կ�������Ŀ�ļ����´�����һ��.git���ļ��С�����������git�ֿ�ĳ�ʼ�����������Ǹ���git���ǵ��ļ���MyProject�Ѿ����ӵ���git�ֿ������<br>b.��鵱ǰ��Ŀ���ļ�״̬ git status����ǰ��ʾû���ύ��¼<br>c.����Ŀ�ļ�������һ���ļ�abc.txt���ٴμ���ļ�״̬ �����ʱ���ļ���״̬����Untracked״̬����ʱ�˿̣�git��֪������ֿ��³�����һ��û�б��������ļ������������� git add file �������ȥ��Untracked״̬���ļ����ӵ��ֿ������Χ����������ļ��Ϳ��Ա��ύ��<br><img src="https://user-images.githubusercontent.com/56629574/74103635-c02c8500-4b88-11ea-9a46-fd8e58f4559d.png" alt="1581257314(1)"><br><strong>2 Unstaged״̬</strong><br>һ�����ǲ�����������git ��������git bash�н��У���δ�git bash�أ��ҵ����������Ŀ������testgit,�Ҽ������Ŀ��ѡ��git bash here<br>a. ��git bash�ϲ鿴�ֿ��ļ�״̬��<br>b. ʹ�� git add filename ���ļ����ӵ��ֿ⣬ ��ʱ��abc.txt�ļ���״̬����Unmodifed��������Կ���new file��������û�б��޸ĵ�״̬<br>c. ������Ҫ������ļ������ݽ����޸ġ�������ǰ�abc.txt ���������ɾ����Ȼ����������һЩ�ַ������棬Ȼ����git bash�鿴�ļ�״̬�����ʱ���ļ�abc.txt��״̬�ͱ����Modified��Unmodified��Modified����״̬�����Unstaged��<br><img src="https://user-images.githubusercontent.com/56629574/74103766-de46b500-4b89-11ea-9cec-f92fc57f42b5.png" alt="1581257796(1)"><br><strong>3. Staged״̬</strong><br>a.�����ͼ�����ǿ���abc.txt ��ʾ��ɫ��modified��״̬��������Ҫͨ��git add file ��������ļ�״̬��modified�ĳ�Staged���κ��ļ�����Staged״̬������ζ�˿���ִ���ύ������ԣ�git�������㣬 Changes to be committed������˿��ύ״̬��git add .��������ʾ�κ��ļ���<br>b. ����commit����֮ǰ��������Ҫ����һ�����ݣ����Ǹ���git����ύ��˭���ġ���Ϊ���ܴ����ظ���name���������ﻹ��Ҫ����email��һ����˵email�϶���������ͬ�ġ�<br>c.���ǿ�ʼ��commit�����ύ���ֿ⡣����Ĳ���-m��ʾmessage�����Ǹ��߱��ˣ�������ύ��������ʲô�����-m��������ǿ���Եġ��ύ���Staged״̬�ֱ����Unstaged��������µ��ļ����ͻ���Untracked״̬���ֿ�ʼ����״̬֮���л���<br><img src="https://user-images.githubusercontent.com/56629574/74103837-5e6d1a80-4b8a-11ea-8851-84330623c6af.png" alt="1581257856(1)"></p>
+<p><a href="https://www.jianshu.com/p/dbd79a5063ab" target="_blank" rel="noopener">https://www.jianshu.com/p/dbd79a5063ab</a><br>���ߴ�Untracked file��Changes to be committed��Changes not staged for commit��ʾ���з���<br>�����ο���<a href="https://blog.csdn.net/u013050662/article/details/84897594" target="_blank" rel="noopener">https://blog.csdn.net/u013050662/article/details/84897594</a></p>
+<h3 id="�g��������ϲ���֧"><a href="#�g��������ϲ���֧" class="headerlink" title="�ġ��������ϲ���֧"></a>�ġ��������ϲ���֧</h3><p><a href="https://blog.csdn.net/qq_40415721/article/details/82351660" target="_blank" rel="noopener">https://blog.csdn.net/qq_40415721/article/details/82351660</a><br><a href="https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424" target="_blank" rel="noopener">https://www.liaoxuefeng.com/wiki/896043488029600/900003767775424</a></p>
+<h3 id="�塢���ӡ���¡Զ�ֿ̲�"><a href="#�塢���ӡ���¡Զ�ֿ̲�" class="headerlink" title="�塢���ӡ���¡Զ�ֿ̲�"></a>�塢���ӡ���¡Զ�ֿ̲�</h3><p>sshֻ�ǹ����ͻ�����Զ�ֿ̲⣬<br>���²����ǹ�����Ŀ��Ĭ��Ҳ��master��<br>git remote add origin <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:YATBOBTB/myApp.git<br><a href="https://blog.csdn.net/qq_40415721/article/details/82285542" target="_blank" rel="noopener">https://blog.csdn.net/qq_40415721/article/details/82285542</a></p>
+<h3 id="���������ͻ"><a href="#���������ͻ" class="headerlink" title="���������ͻ"></a>���������ͻ</h3><p><strong>����</strong>�����������ͬʱʹ�û��߲���git�е�ͬһ���ļ�������������ύ��push��ʱ�򣬵�һ���������ǿ��������ύ�ģ���֮��Ŀ�������Ҫִ��pull��������pull��push��������ʱ�򣬾ͻᱨ��ͻ�쳣conflict��<br><strong>���</strong>�������Լ��޸ĵ����ݣ�ͬʱ�������˵�������Ϣ�����ֶ��޸ģ����ύ<br><a href="https://www.cnblogs.com/gavincoder/p/9071959.html" target="_blank" rel="noopener">https://www.cnblogs.com/gavincoder/p/9071959.html</a></p>
+<h3 id="�ߡ������г��o���"><a href="#�ߡ������г��o���" class="headerlink" title="�ߡ������г��ó���"></a>�ߡ������г��ó���</h3><p><a href="https://mp.weixin.qq.com/s/ZBKKwy2fr1PSKP13LwQgrw" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/ZBKKwy2fr1PSKP13LwQgrw</a><br>��3��������</p>
+<p>����ϸ�����<a href="https://blog.csdn.net/qq_40415721/category_7971129.html" target="_blank" rel="noopener">https://blog.csdn.net/qq_40415721/category_7971129.html</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/13/%E6%8E%88%E6%9D%83%E7%99%BB%E5%BD%95OAuth2-0/" rel="next" title="授权登录OAuth2.0">
+                  <i class="fa fa-chevron-left"></i> 授权登录OAuth2.0
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#һ���l��ֲ�"><span class="nav-text">һ���ļ��ֲ�</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#��������Git������Ϣ"><span class="nav-text">��������Git������Ϣ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#����git����״̬"><span class="nav-text">����git����״̬</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�g��������ϲ���֧"><span class="nav-text">�ġ��������ϲ���֧</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�塢���ӡ���¡Զ�ֿ̲�"><span class="nav-text">�塢���ӡ���¡Զ�ֿ̲�</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#���������ͻ"><span class="nav-text">���������ͻ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#�ߡ������г��o���"><span class="nav-text">�ߡ������г��ó���</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">55</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
