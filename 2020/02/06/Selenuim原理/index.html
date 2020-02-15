@@ -63,7 +63,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73920684-d7594180-4900-11ea-9749-0a57f27b0576.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73929690-3ffbea80-4910-11ea-8fe5-b29bc396729d.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73931326-13959d80-4913-11ea-8716-7023eb20546f.png">
-<meta property="og:updated_time" content="2020-02-06T11:25:07.191Z">
+<meta property="og:updated_time" content="2020-02-15T13:12:51.239Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;73911963-3f525c80-48ee-11ea-8c77-b5f4197e7314.png">
 
@@ -227,10 +227,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2020-02-06 19:08:27 / 修改时间：19:25:07" itemprop="dateCreated datePublished" datetime="2020-02-06T19:08:27+08:00">2020-02-06</time>
+              <time title="创建时间：2020-02-06 19:08:27" itemprop="dateCreated datePublished" datetime="2020-02-06T19:08:27+08:00">2020-02-06</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-15 21:12:51" itemprop="dateModified" datetime="2020-02-15T21:12:51+08:00">2020-02-15</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -290,7 +296,7 @@
 </ul>
 <p>所以很明显了，实际是我们去请求webdriver，然后webdriver去调用浏览器<br><img src="https://user-images.githubusercontent.com/56629574/73920516-7fbad600-4900-11ea-9cc8-cdb7ed18f61a.png" alt="1580978889(1)"><br><img src="https://user-images.githubusercontent.com/56629574/73920653-cad4e900-4900-11ea-853a-d5f7d27ec9f3.png" alt="1580979016(1)"><br><img src="https://user-images.githubusercontent.com/56629574/73920684-d7594180-4900-11ea-9749-0a57f27b0576.png" alt="1580979044(1)"></p>
 <p>参考：<a href="https://blog.csdn.net/ouyanggengcheng/article/details/78028215" target="_blank" rel="noopener">https://blog.csdn.net/ouyanggengcheng/article/details/78028215</a></p>
-<h3 id="三、PO（页面对象模式）"><a href="#三、PO（页面对象模式）" class="headerlink" title="三、PO（页面对象模式）"></a>三、PO（页面对象模式）</h3><p> 使用面向对象的设计模式，页面对象模型将<strong>测试代码</strong>和<strong>被测试页面的页面元素及其操作方法</strong>进行分离，以此降低页面元素变化对测试代码的影响。每一个被测试页面都会被单独定义为一个类，类中会定位所有需进行测试操作的页面元素对象，并且定义操作每一个页面元素对象的方法。<br><strong>页面对象</strong><br><img src="https://user-images.githubusercontent.com/56629574/73929690-3ffbea80-4910-11ea-8fe5-b29bc396729d.png" alt="1580985657(1)"><br>代码参考：<a href="https://www.cnblogs.com/wuyn/p/10167742.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuyn/p/10167742.html</a><br><a href="https://www.cnblogs.com/yytesting/p/6973474.html" target="_blank" rel="noopener">https://www.cnblogs.com/yytesting/p/6973474.html</a><br><strong>引申：一个页面可以有多个页面类</strong><br>注意在面向对象中，继承和组合都是代码重用的重要方式，尤其组合。<br><img src="https://user-images.githubusercontent.com/56629574/73931326-13959d80-4913-11ea-8716-7023eb20546f.png" alt="1580986873(1)"></p>
+<h3 id="三、PO（页面对象模式）"><a href="#三、PO（页面对象模式）" class="headerlink" title="三、PO（页面对象模式）"></a>三、PO（页面对象模式）</h3><p> 使用面向对象的设计模式，页面对象模型将<strong>测试代码</strong>和<strong>被测试页面的页面元素及其操作方法</strong>进行分离，以此降低页面元素变化对测试代码的影响。每一个被测试页面都会被单独定义为一个类，类中会定位所有需进行测试操作的页面元素对象，并且定义操作每一个页面元素对象的方法。<br><strong>页面对象</strong><br><img src="https://user-images.githubusercontent.com/56629574/73929690-3ffbea80-4910-11ea-8fe5-b29bc396729d.png" alt="1580985657(1)"><br><strong>PO模式封装</strong>：selenium初始化、销毁等、pages层、operation、test层<br>各层代码简单示例：<a href="https://mp.weixin.qq.com/s/KnybXPJkLMIQoVLZC8nl-Q" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KnybXPJkLMIQoVLZC8nl-Q</a><br>其他风格代码参考：<a href="https://www.cnblogs.com/wuyn/p/10167742.html" target="_blank" rel="noopener">https://www.cnblogs.com/wuyn/p/10167742.html</a><br><a href="https://www.cnblogs.com/yytesting/p/6973474.html" target="_blank" rel="noopener">https://www.cnblogs.com/yytesting/p/6973474.html</a><br><strong>引申：一个页面可以有多个页面类</strong><br>注意在面向对象中，继承和组合都是代码重用的重要方式，尤其组合。<br><img src="https://user-images.githubusercontent.com/56629574/73931326-13959d80-4913-11ea-8716-7023eb20546f.png" alt="1580986873(1)"></p>
 
     </div>
 
@@ -374,7 +380,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
