@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、事务定义事务是一个不可分割的数据库操作序列，也是数据库并发操作的基本单位。其执行结果必须使数据库从一种一致性状态变成另一种一致性状态。二、事务的目的 恢复：为数据库操作提供了一个从失败中恢复到正常状态的方法，同时提供了数据库即使在异常状态下仍能保持一致性的方法。 隔离：当多个应用程序在并发访问数据库时，可以在这些应用程序之间提供一个隔离方法，以防止彼此的操作互相干扰。三、特性 原子性（Atom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="事务">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;20&#x2F;%E4%BA%8B%E5%8A%A1&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、事务定义事务是一个不可分割的数据库操作序列，也是数据库并发操作的基本单位。其执行结果必须使数据库从一种一致性状态变成另一种一致性状态。二、事务的目的 恢复：为数据库操作提供了一个从失败中恢复到正常状态的方法，同时提供了数据库即使在异常状态下仍能保持一致性的方法。 隔离：当多个应用程序在并发访问数据库时，可以在这些应用程序之间提供一个隔离方法，以防止彼此的操作互相干扰。三、特性 原子性（Atom">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74900773-c2d67800-53db-11ea-8672-03e7c5b3ea36.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74900826-e39ecd80-53db-11ea-8127-c869bf76ea2e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74900851-faddbb00-53db-11ea-95a6-ba3c80762dbd.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74900864-07621380-53dc-11ea-8daa-4915c1c607b8.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74900876-0fba4e80-53dc-11ea-8dbe-dcb55299981d.png">
+<meta property="og:updated_time" content="2020-02-20T04:34:39.910Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74900773-c2d67800-53db-11ea-8672-03e7c5b3ea36.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/20/%E4%BA%8B%E5%8A%A1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>事务 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/20/%E4%BA%8B%E5%8A%A1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          事务
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-20 12:32:30 / 修改时间：12:34:39" itemprop="dateCreated datePublished" datetime="2020-02-20T12:32:30+08:00">2020-02-20</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index">
+                    <span itemprop="name">数据库</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、事务定义"><a href="#一、事务定义" class="headerlink" title="一、事务定义"></a>一、事务定义</h3><p>事务是一个不可分割的数据库操作序列，也是数据库并发操作的基本单位。其执行结果必须使数据库从一种一致性状态变成另一种一致性状态。</p><h3 id="二、事务的目的"><a href="#二、事务的目的" class="headerlink" title="二、事务的目的"></a>二、事务的目的</h3><ul>
+<li><strong>恢复</strong>：为数据库操作提供了一个从失败中恢复到正常状态的方法，同时提供了数据库即使在异常状态下仍能保持一致性的方法。</li>
+<li><strong>隔离</strong>：当多个应用程序在并发访问数据库时，可以在这些应用程序之间提供一个隔离方法，以防止彼此的操作互相干扰。<h3 id="三、特性"><a href="#三、特性" class="headerlink" title="三、特性"></a>三、特性</h3></li>
+<li>原子性（Atomicity）：事务所包含一系列数据库操作要么全部执行成功，要么回滚。</li>
+<li>一致性（Consistency）：事务的执行结果必须使数据库从一个一致性状态到另一个一致性状态</li>
+<li>隔离性（Isolation）：并发执行的事务之间不能相互影响</li>
+<li>持久性（Durability）：事务一旦提交，对数据库中数据的改变是永久的<h3 id="四、隔离级别"><a href="#四、隔离级别" class="headerlink" title="四、隔离级别"></a>四、隔离级别</h3>ANSI标准定义了4个隔离级别，MySQL的InnoDB都支持<br><img src="https://user-images.githubusercontent.com/56629574/74900773-c2d67800-53db-11ea-8672-03e7c5b3ea36.png" alt="1582125688(1)"></li>
+<li><strong>read uncommitted（读取到未提交数据）</strong><br><img src="https://user-images.githubusercontent.com/56629574/74900826-e39ecd80-53db-11ea-8127-c869bf76ea2e.png" alt="1582126065(1)"></li>
+</ul><a id="more"></a>
+
+<p>解释：我们将事务隔离级别设置为read uncommitted，即便是事务没有commit，但是我们仍然能读到未提交的数据，这是所有隔离级别中最低的一种。<br>存在的问题：那就是我们在一个事务中可以随随便便读取到其他事务未提交的数据，这还是比较麻烦的，我们叫脏读。</p>
+<ul>
+<li><strong>read committed（可以读取其他事务提交的数据）</strong><br><img src="https://user-images.githubusercontent.com/56629574/74900851-faddbb00-53db-11ea-95a6-ba3c80762dbd.png" alt="1582126379(1)"></li>
+</ul>
+<p>解释：当我们将当前会话的隔离级别设置为read committed的时候，当前会话只能读取到其他事务提交的数据，未提交的数据读不到。<br>存在问题：那就是我们在会话B同一个事务中，读取到两次不同的结果。这就造成了不可重复读，就是两次读取的结果不同。这种现象叫不可重复读。</p>
+<ul>
+<li><strong>repeatable read（可重读）—MySQL默认的隔离级别</strong><br>解释：在一个事务开始后，其他事务对数据库的修改在本事务中不可见，直到本事务commit或rollback。<br>存在的问题：其他事务的insert/delete操作对该事务是可见的，也就是说，该隔离级别并不能避免幻读问题。在一个事务中重复select的结果一样，除非本事务中update数据库。<br>用户A开启一个事务，第一次查询之后，得到一个结果，此时并没有提交事务<br>用户B开启一个事务，添加一条记录，然后提交事务。<br>用户A再次查询，发现和上次查询的结果不一样，多了一条记录（幻读）。<br>也就是加了行级锁，只会对当前作用的行进行加锁，不会对整个表加锁，因此可以添加、删除，所以会出现幻读现象。</li>
+<li><strong>serializable（串行化）</strong><br><img src="https://user-images.githubusercontent.com/56629574/74900864-07621380-53dc-11ea-8daa-4915c1c607b8.png" alt="1582127107(1)"></li>
+</ul>
+<p>当我们将当前会话的隔离级别设置为serializable的时候，其他会话对该表的写操作将被挂起。可以看到，这是隔离级别中最严格的，但是这样做势必对性能造成影响。所以在实际的选用上，我们要根据当前具体的情况选用合适的。</p>
+<h3 id="并发控制主要采用的技术：乐观并发控制（乐观锁）和悲观并发控制（悲观锁）"><a href="#并发控制主要采用的技术：乐观并发控制（乐观锁）和悲观并发控制（悲观锁）" class="headerlink" title="并发控制主要采用的技术：乐观并发控制（乐观锁）和悲观并发控制（悲观锁）"></a>并发控制主要采用的技术：乐观并发控制（乐观锁）和悲观并发控制（悲观锁）</h3><h3 id="五、数据库的乐观锁"><a href="#五、数据库的乐观锁" class="headerlink" title="五、数据库的乐观锁"></a>五、数据库的乐观锁</h3><ul>
+<li>悲观锁先获取锁，再进行业务操作，即“悲观”的认为所有的操作都会导致并发问题<br>select status from t_goods where id=1 for update;  ——-select … for update </li>
+<li><strong>流程</strong>：<br>在对任意记录进行修改前，先尝试为该记录加排他锁，如果加锁失败，说明记录正在被修改，那么当前查询可能要等待或者抛出异常等；如果加锁成功，那么就可以对记录进行修改，事务完成后就会解锁了。期间如果有其他对该记录做修改或加排他锁的操作，都会得锁释放</li>
+<li><strong>优缺点</strong>：<br>悲观并发控制实际上是“先取锁再访问”的保守策略，为①数据处理的安全提供了保证。但是②在效率方面，处理加锁的机制会让数据库产生额外的开销，还有增加产生死锁的机会；另外，在只读型事务处理中由于不会产生冲突，也没必要使用锁，这样做只能增加系统负载；还有③会降低了并行性，一个事务如果锁定了某行数据，其他事务就必须等待该事务处理完才可以处理那行数<h3 id="六-、乐观锁"><a href="#六-、乐观锁" class="headerlink" title="六 、乐观锁"></a>六 、乐观锁</h3></li>
+<li><strong>特点</strong>：先进行业务操作，只在最后实际更新数据时进行检查数据是否被更新过，若未被更新过，则更新成功；否则，失败（回滚）重试。乐观锁在数据库上的实现完全是逻辑的（即不用数据库提供的锁机制），不需要数据库提供特殊的支持。</li>
+<li>一般的实现乐观锁的方式就是记录数据版本<br><img src="https://user-images.githubusercontent.com/56629574/74900876-0fba4e80-53dc-11ea-8dbe-dcb55299981d.png" alt="1582127211(1)"></li>
+</ul>
+<p>数据版本：为数据增加的一个版本标识。当读取数据时，将版本标识的值一同读出，数据每更新一次，同时对版本标识进行更新。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的版本标识进行比对，如果数据库表当前版本号与第一次取出来的版本标识值相等，则予以更新，否则认为是过期数据。</p>
+<ul>
+<li>优缺点：<br>乐观并发控制相信事务之间的数据竞争(data race)的概率是比较小的，因此尽可能直接做下去，直到提交的时候才去锁定，所以不会产生任何锁和死锁。但如果直接简单这么做，还是有可能会遇到不可预期的结果，例如两个事务都读取了数据库的某一行，经过修改以后写回数据库，这时就遇到了问题。</li>
+</ul>
+<h3 id="七、悲观锁与乐观锁的应用场景"><a href="#七、悲观锁与乐观锁的应用场景" class="headerlink" title="七、悲观锁与乐观锁的应用场景"></a>七、悲观锁与乐观锁的应用场景</h3><p>一般情况下，读多写少更适合用乐观锁，读少写多更适合用悲观锁。乐观锁在不发生取锁失败的情况下开销比悲观锁小，但是一旦发生失败回滚开销则比较大，因此适合用在取锁失败概率比较小的场景，可以提升系统并发性能。</p>
+<p>参考：<a href="https://www.jianshu.com/p/4e3edbedb9a8" target="_blank" rel="noopener">https://www.jianshu.com/p/4e3edbedb9a8</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/19/FFmpeg/" rel="next" title="FFmpeg">
+                  <i class="fa fa-chevron-left"></i> FFmpeg
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/02/20/token/" rel="prev" title="Token">
+                  Token <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、事务定义"><span class="nav-text">一、事务定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、事务的目的"><span class="nav-text">二、事务的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、特性"><span class="nav-text">三、特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、隔离级别"><span class="nav-text">四、隔离级别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并发控制主要采用的技术：乐观并发控制（乐观锁）和悲观并发控制（悲观锁）"><span class="nav-text">并发控制主要采用的技术：乐观并发控制（乐观锁）和悲观并发控制（悲观锁）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、数据库的乐观锁"><span class="nav-text">五、数据库的乐观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六-、乐观锁"><span class="nav-text">六 、乐观锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、悲观锁与乐观锁的应用场景"><span class="nav-text">七、悲观锁与乐观锁的应用场景</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
