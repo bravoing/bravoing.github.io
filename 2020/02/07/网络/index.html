@@ -56,7 +56,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74013727-17372c00-49c8-11ea-8e3f-81352de10421.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74078926-6e420d00-4a6b-11ea-8b69-2d07c3aec08a.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74017309-00e09e80-49cf-11ea-82a7-cc3b4511a5fb.png">
-<meta property="og:updated_time" content="2020-02-08T04:07:16.910Z">
+<meta property="og:updated_time" content="2020-02-21T06:33:05.875Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74013727-17372c00-49c8-11ea-8e3f-81352de10421.png">
 
@@ -228,7 +228,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-08 12:07:16" itemprop="dateModified" datetime="2020-02-08T12:07:16+08:00">2020-02-08</time>
+                <time title="修改时间：2020-02-21 14:33:05" itemprop="dateModified" datetime="2020-02-21T14:33:05+08:00">2020-02-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -279,7 +279,7 @@
 </li>
 </ul>
 <h3 id="二、Nginx-、LVS-、F5（软件均衡负载）"><a href="#二、Nginx-、LVS-、F5（软件均衡负载）" class="headerlink" title="二、Nginx 、LVS 、F5（软件均衡负载）"></a>二、Nginx 、LVS 、F5（软件均衡负载）</h3><p><strong>用于同一地点内机器级别的负载均衡</strong><br><a href="https://bravoing.github.io/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" target="_blank" rel="noopener">Nginx简单介绍</a></p>
-<h3 id="三、CDN（Content-Delivery-Network）内容分发网络"><a href="#三、CDN（Content-Delivery-Network）内容分发网络" class="headerlink" title="三、CDN（Content Delivery Network）内容分发网络"></a>三、CDN（Content Delivery Network）内容分发网络</h3><p>CDN是为了解决用户网络访问时的“最后一公里”效应，本质上是一种“<strong>以空间换时间</strong>”的加速策略，即：将内容缓存在离用户最近的地方，用户访问的是缓存的内容，而不是站点实时的内容。<br>通过在现有的Internet中增加一层新的网络架构，使用户可以就近取得所需内容，提高用户访问网站的响应速度。<br>目前CDN都以缓存网站中的静态数据为主，如 CSS、JS、图片和静态页面等数据。<br><strong>CDN如何实现加速？</strong><br>通常情况下，我们所要的数据都是从主服务器中获取，但假如我们的主服务器在南方，而访问用户在北方，那么访问速度就会相对变慢，变慢的原因有很多，例如传输距离，运营商，带宽等等因素，而使用CDN技术的话，我们会将CDN节点分布在各地，当用户发送请求到达服务器时，服务器会根据用户的区域信息，为用户分配最近的CDN服务器。<br><strong>CDN数据从哪里来？</strong><br>复制，缓存，CDN服务器可以在用户请求后缓存文件，也可以主动抓取主服务器内容。<br><strong>CDN解决的问题</strong><br>CDN是一个经策略性部署的整体系统，从技术上全面解决由于网络带宽小、用户访问量大、网点分布不均而产生的用户访问网站响应速度慢的根本原因。<br><img src="https://user-images.githubusercontent.com/56629574/74078926-6e420d00-4a6b-11ea-8b69-2d07c3aec08a.png" alt="1581134763(1)"><br>1.用户向浏览器输入<a href="http://www.web.com这个域名，浏览器第一次发现本地没有dns缓存，则向网站的DNS服务器请求；" target="_blank" rel="noopener">www.web.com这个域名，浏览器第一次发现本地没有dns缓存，则向网站的DNS服务器请求；</a></p>
+<h3 id="三、CDN（Content-Delivery-Network）内容分发网络"><a href="#三、CDN（Content-Delivery-Network）内容分发网络" class="headerlink" title="三、CDN（Content Delivery Network）内容分发网络"></a>三、CDN（Content Delivery Network）内容分发网络</h3><p>CDN是为了解决用户网络访问时的“最后一公里”效应，本质上是一种“<strong>以空间换时间</strong>”的加速策略，即：将内容缓存在离用户最近的地方，用户访问的是缓存的内容，而不是站点实时的内容。<br>通过在现有的Internet中增加一层新的网络架构，使用户可以就近取得所需内容，提高用户访问网站的响应速度。<br>最初CDN都以缓存网站中的静态数据为主，如 CSS、JS、图片和静态页面等数据；如今在访问量骄傲的网站、直播、视频平台均用CDN网络加速技术。<br><strong>CDN如何实现加速？</strong><br>　　通常情况下，我们所要的数据都是从主服务器中获取，但假如我们的主服务器在南方，而访问用户在北方，那么访问速度就会相对变慢，变慢的原因有很多，例如传输距离，运营商，带宽等等因素，而使用CDN技术的话，我们会将CDN节点分布在各地，当用户发送请求到达服务器时，服务器会根据用户的区域信息，为用户分配最近的CDN服务器。<br><strong>CDN数据从哪里来？</strong><br>　　复制，缓存，CDN服务器可以在用户请求后缓存文件，也可以主动抓取主服务器内容。<br><strong>CDN解决的问题</strong><br>　　CDN是一个经策略性部署的整体系统，从技术上全面解决由于网络带宽小、用户访问量大、网点分布不均而产生的用户访问网站响应速度慢的根本原因。<br><img src="https://user-images.githubusercontent.com/56629574/74078926-6e420d00-4a6b-11ea-8b69-2d07c3aec08a.png" alt="1581134763(1)"><br>1.用户向浏览器输入<a href="http://www.web.com这个域名，浏览器第一次发现本地没有dns缓存，则向网站的DNS服务器请求；" target="_blank" rel="noopener">www.web.com这个域名，浏览器第一次发现本地没有dns缓存，则向网站的DNS服务器请求；</a></p>
 <p>2.网站的DNS域名解析器设置了CNAME，指向了<a href="http://www.web.51cdn.com,请求指向了CDN网络中的智能DNS负载均衡系统；" target="_blank" rel="noopener">www.web.51cdn.com,请求指向了CDN网络中的智能DNS负载均衡系统；</a></p>
 <p>3.智能DNS负载均衡系统解析域名，把对用户响应速度最快的IP节点返回给用户；</p>
 <p>4.用户向该IP节点（CDN服务器）发出请求；</p>
