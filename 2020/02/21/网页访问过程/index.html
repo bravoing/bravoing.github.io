@@ -46,27 +46,21 @@
   };
 </script>
 
-  <meta name="description" content="服务层的主要目标其实就是为了降低系统间相互关联的复杂度。一、配置中心在系统中，将数据库配置写在代码中，使得数据与代码耦合性太高，使得每次改代码，都要重新打包；将配置信息放配置文件中，使得数据与代码耦合性降低；随着并发量增大，需要扩充服务器，使得每个服务器都要进行数据库配置、部署；若再修改此配置，工作量非常大，还可能因为时间造成不一致情况。所以要将配置文件放在配置中心统一管理。具体做法：">
+  <meta name="description" content="一、DNS：域名–&amp;gt;IP浏览器缓存：浏览器会缓存DNS记录一段时间。 有趣的是，操作系统没有告诉浏览器储存DNS记录的时间，这样不同浏览器会储存个自固定的一个时间（2分钟到30分钟不等）。本地host本地DNS解析器缓存：（查看方法：cmd–&amp;gt;ipconfig  &#x2F;displaydns）本地DNS服务器（ISP）：根据TCP&#x2F;IP参数中设置的首选DNS服务器（查看方法：cmd–&amp;gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="服务层">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;07&#x2F;%E6%9C%8D%E5%8A%A1%E5%B1%82&#x2F;index.html">
+<meta property="og:title" content="网页访问过程、DNS解析">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;21&#x2F;%E7%BD%91%E9%A1%B5%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="服务层的主要目标其实就是为了降低系统间相互关联的复杂度。一、配置中心在系统中，将数据库配置写在代码中，使得数据与代码耦合性太高，使得每次改代码，都要重新打包；将配置信息放配置文件中，使得数据与代码耦合性降低；随着并发量增大，需要扩充服务器，使得每个服务器都要进行数据库配置、部署；若再修改此配置，工作量非常大，还可能因为时间造成不一致情况。所以要将配置文件放在配置中心统一管理。具体做法：">
+<meta property="og:description" content="一、DNS：域名–&amp;gt;IP浏览器缓存：浏览器会缓存DNS记录一段时间。 有趣的是，操作系统没有告诉浏览器储存DNS记录的时间，这样不同浏览器会储存个自固定的一个时间（2分钟到30分钟不等）。本地host本地DNS解析器缓存：（查看方法：cmd–&amp;gt;ipconfig  &#x2F;displaydns）本地DNS服务器（ISP）：根据TCP&#x2F;IP参数中设置的首选DNS服务器（查看方法：cmd–&amp;gt;">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74003032-24deb880-49ac-11ea-8ee2-93a9cb96526d.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74003313-1c3ab200-49ad-11ea-8387-5f2b1007a243.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74004804-d92f0d80-49b1-11ea-9d4c-e81345b8db94.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74004954-5195ce80-49b2-11ea-856a-f8dd05884fb3.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74009178-a4c14e80-49bd-11ea-978e-d27cd784fa32.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74006746-9cfeab80-49b7-11ea-9921-53a76c1fe9b5.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74007977-a9d0ce80-49ba-11ea-8958-0fd006ec71af.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74008532-13051180-49bc-11ea-9465-d08e8d1bd9cb.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74008830-d7b71280-49bc-11ea-9f35-0e027ea49ec4.png">
-<meta property="og:updated_time" content="2020-02-07T07:35:22.326Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75036019-d7a23100-54eb-11ea-9efc-9420c0555074.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75033916-f6ea8f80-54e6-11ea-8c6c-3f250139a2ed.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75036531-0b318b00-54ed-11ea-8eaa-67edc0434236.jpg">
+<meta property="og:updated_time" content="2020-02-21T13:04:25.481Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;74003032-24deb880-49ac-11ea-8ee2-93a9cb96526d.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75036019-d7a23100-54eb-11ea-9efc-9420c0555074.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/02/07/%E6%9C%8D%E5%8A%A1%E5%B1%82/">
+<link rel="canonical" href="http://yoursite.com/2020/02/21/%E7%BD%91%E9%A1%B5%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B/">
 
 
 <script id="page-configurations">
@@ -80,7 +74,7 @@
   };
 </script>
 
-  <title>服务层 | Hexo</title>
+  <title>网页访问过程、DNS解析 | Hexo</title>
   
 
 
@@ -204,7 +198,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/07/%E6%9C%8D%E5%8A%A1%E5%B1%82/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/21/%E7%BD%91%E9%A1%B5%E8%AE%BF%E9%97%AE%E8%BF%87%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/profile.png">
@@ -217,7 +211,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          服务层
+          网页访问过程、DNS解析
         </h1>
 
         <div class="post-meta">
@@ -228,7 +222,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-07 15:25:04 / 修改时间：15:35:22" itemprop="dateCreated datePublished" datetime="2020-02-07T15:25:04+08:00">2020-02-07</time>
+              <time title="创建时间：2020-02-21 21:03:03 / 修改时间：21:04:25" itemprop="dateCreated datePublished" datetime="2020-02-21T21:03:03+08:00">2020-02-21</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -236,8 +230,8 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
-                    <span itemprop="name">互联网架构</span>
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
                   </a>
                 </span>
             </span>
@@ -260,23 +254,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="服务层的主要目标其实就是为了降低系统间相互关联的复杂度。"><a href="#服务层的主要目标其实就是为了降低系统间相互关联的复杂度。" class="headerlink" title="服务层的主要目标其实就是为了降低系统间相互关联的复杂度。"></a>服务层的主要目标其实就是为了降低系统间相互关联的复杂度。</h3><h3 id="一、配置中心"><a href="#一、配置中心" class="headerlink" title="一、配置中心"></a>一、配置中心</h3><p>在系统中，将数据库配置写在代码中，使得数据与代码耦合性太高，使得每次改代码，都要重新打包；将配置信息放配置文件中，使得数据与代码耦合性降低；随着并发量增大，需要扩充服务器，使得每个服务器都要进行数据库配置、部署；若再修改此配置，工作量非常大，还可能因为时间造成不一致情况。所以要将配置文件放在配置中心统一管理。<br><strong>具体做法：</strong></p><a id="more"></a>
-<ul>
-<li><p>将所有服务器上的该配置文件删除</p>
-</li>
-<li><p>将一个地方创建一个该配置文件</p>
-</li>
-<li><p>将所有服务器上的应用的配置源改为此地方的此配置文件，这个地方被称为配置中心，这个文件被称为中心配置文件</p>
-</li>
-</ul>
-<p><img src="https://user-images.githubusercontent.com/56629574/74003032-24deb880-49ac-11ea-8ee2-93a9cb96526d.png" alt="1581052622(1)"><br>完美：目前应用，不用改源码、不用重启、支持高并发、没有在每个服务器上更改配置的冗余操作<br>对于单机版，我们称之为配置（文件）；对于分布式集群系统，将配置文件抽取出核心配置文件，我们称之为配置中心（系统）<br>参考：<a href="https://www.cnblogs.com/yelao/p/10741156.html" target="_blank" rel="noopener">https://www.cnblogs.com/yelao/p/10741156.html</a><br>比如分布式配置中心：nacos<br>下面是配置中心简单的设计，其中通过“系统标识 + host + port”来标识唯一一个系统运行实例是常见的设计方法。<br><img src="https://user-images.githubusercontent.com/56629574/74003313-1c3ab200-49ad-11ea-8387-5f2b1007a243.png" alt="1581053025(1)"></p>
-<h3 id="二、服务中心"><a href="#二、服务中心" class="headerlink" title="二、服务中心"></a>二、服务中心</h3><p>系统间调用可以直接通过配置文件记录在系统内部，但当系统数量多了以后，就会存在问题。<br>比如10个系统依赖A系统的X接口，需要将其改成Y接口，则10个系统的几十台机器的配置都要修改、重启。<br><strong>服务中心就是为了解决跨系统依赖的配置和调度问题。</strong><br><strong>服务中心的实现一般来说有两种方式：</strong></p>
-<ul>
-<li>服务名字系统（Service Name System）<br>相信你会立刻联想到DNS，即Domain Name System。没错，两者的性质是基本类似的。DNS的作用将域名解析为IP地址，主要原因是我们记不住太多的数字IP，域名就容易记住。服务名字系统是为了将Service名称解析为“host + port + 接口名称”，但是和DNS一样，真正发起请求的还是请求方。基本的设计如下：<br><img src="https://user-images.githubusercontent.com/56629574/74004804-d92f0d80-49b1-11ea-9d4c-e81345b8db94.png" alt="1581055072(1)"></li>
-<li>服务总线系统（Service Bus System）<br>由总线系统完成调用，服务请求方都不需要直接和服务提供方交互了。<br><img src="https://user-images.githubusercontent.com/56629574/74004954-5195ce80-49b2-11ea-856a-f8dd05884fb3.png" alt="1581055272(1)"></li>
-</ul>
-<h3 id="三、消息队列"><a href="#三、消息队列" class="headerlink" title="三、消息队列"></a>三、消息队列</h3><p>业界已经有很多成熟的开源实现方案，如果要求不高，基本上拿来用即可，例如，RocketMQ、Kafka、ActiveMQ等。<br><strong>应用场景介绍：</strong><br><strong>1. 异步处理</strong><br>用户注册后，需要发注册邮件和注册短信。<br><img src="https://user-images.githubusercontent.com/56629574/74009178-a4c14e80-49bd-11ea-978e-d27cd784fa32.png" alt="1581060129(1)"></p>
-<p><strong>2. 应用解耦</strong><br><img src="https://user-images.githubusercontent.com/56629574/74006746-9cfeab80-49b7-11ea-9921-53a76c1fe9b5.png" alt="1581057541(1)"><br>下单操作涉及订单系统和库存系统。当串行处理时若库存失败，导致订单失败。所以解耦后订单写入消息队列就不再关心后续操作了。<br><strong>3. 流量削峰</strong><br>秒杀活动是希望更多人参与，但抢购时间到达，用户真正下单时，服务器并不希望有几百万同时发起抢购请求。在日常上下班高峰场景中，是通过错峰限行方案，在线上的秒杀活动中也是类似的解决方案，平安度过同时抢购的流量峰值问题。<br><strong>削峰的本质是更多的延缓用户请求，以及层层过滤用户的访问需求，遵从“最后落地到数据库的请求数要尽量少”的原则。</strong><br><img src="https://user-images.githubusercontent.com/56629574/74007977-a9d0ce80-49ba-11ea-8958-0fd006ec71af.png" alt="1581058853"><br><strong>4. 日志处理</strong><br><img src="https://user-images.githubusercontent.com/56629574/74008532-13051180-49bc-11ea-9465-d08e8d1bd9cb.png" alt="1581059456(1)"><br><strong>5. 消息通讯</strong><br><img src="https://user-images.githubusercontent.com/56629574/74008830-d7b71280-49bc-11ea-9f35-0e027ea49ec4.png" alt="1581059789(1)"></p>
+        <h3 id="一、DNS：域名–-gt-IP"><a href="#一、DNS：域名–-gt-IP" class="headerlink" title="一、DNS：域名–&gt;IP"></a>一、DNS：域名–&gt;IP</h3><p><strong>浏览器缓存</strong>：浏览器会缓存DNS记录一段时间。 有趣的是，操作系统没有告诉浏览器储存DNS记录的时间，这样不同浏览器会储存个自固定的一个时间（2分钟到30分钟不等）。<br><strong>本地host</strong><br><strong>本地DNS解析器缓存</strong>：（查看方法：cmd–&gt;ipconfig  /displaydns）<br><strong>本地DNS服务器（ISP）</strong>：根据TCP/IP参数中设置的首选DNS服务器（查看方法：cmd–&gt;ipconfig  /all）。<br>　　　　　　　　　　若在本地配置区域资源中，则返回结果给客户机。<br>　　　　　　　　　　本地DNS服务器就是接入的电信网络等。<br><strong>本地DNS服务器缓存</strong>：<br><strong>若都没有，则递归</strong>：本地DNS就把请求发至13台根DNS，根DNS服务器收到请求后会判断这个域名(.com)是谁来授权管理，并会返回一个负责该顶级域名服务器的一个IP。本地DNS服务器收到IP信息后，将会联系负责.com域的这台服务器。这台负责.com域的服务器收到请求后，如果自己无法解析，它就会找一个管理.com域的下一级DNS服务器地址(<a href="http://qq.com" target="_blank" rel="noopener">http://qq.com</a>) 给本地DNS服务器。当本地DNS服务器收到这个地址后，就会找 <a href="http://qq.com" target="_blank" rel="noopener">http://qq.com</a> 域服务器，重复上面的动作，进行查询，直至找到www  . qq  .com主机。</p><a id="more"></a>
+<p>上面的本地DNS服务器是没有转发机制的，若可以转发，则逐级向上。若都没有，再递归。<br><img src="https://user-images.githubusercontent.com/56629574/75036019-d7a23100-54eb-11ea-9efc-9420c0555074.png" alt="1582289434(1)"></p>
+<p><img src="https://user-images.githubusercontent.com/56629574/75033916-f6ea8f80-54e6-11ea-8c6c-3f250139a2ed.png" alt="1582287331(1)"></p>
+<h3 id="二、网页访问过程"><a href="#二、网页访问过程" class="headerlink" title="二、网页访问过程"></a>二、网页访问过程</h3><p>从用户输入url到页面加载的全过程中，包含的主干操作和整理流程如下所示：<br>1、DNS解析；<br>2、TCP连接；<br>3、发送HTTP Request请求；<br>4、服务端处理请求并返回HTTP Response 响应；<br>5、浏览器解析渲染页面；<br>6、连接结束；<br><img src="https://user-images.githubusercontent.com/56629574/75036531-0b318b00-54ed-11ea-8eaa-67edc0434236.jpg" alt="d02fba8af7b3742c8994685157b0307"></p>
 
     </div>
 
@@ -290,16 +271,16 @@
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
-                <a href="/2020/02/07/%E5%BC%80%E5%8F%91%E5%B1%82/" rel="next" title="开发层">
-                  <i class="fa fa-chevron-left"></i> 开发层
+                <a href="/2020/02/20/token/" rel="next" title="Token">
+                  <i class="fa fa-chevron-left"></i> Token
                 </a>
             </div>
 
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-                <a href="/2020/02/07/%E7%BD%91%E7%BB%9C/" rel="prev" title="网络层">
-                  网络层 <i class="fa fa-chevron-right"></i>
+                <a href="/2020/02/22/%E6%9F%A5%E8%AF%A2%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/" rel="prev" title="查询中使用通配符和正则表达式">
+                  查询中使用通配符和正则表达式 <i class="fa fa-chevron-right"></i>
                 </a>
             </div>
           </div>
@@ -344,7 +325,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务层的主要目标其实就是为了降低系统间相互关联的复杂度。"><span class="nav-text">服务层的主要目标其实就是为了降低系统间相互关联的复杂度。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一、配置中心"><span class="nav-text">一、配置中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、服务中心"><span class="nav-text">二、服务中心</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、消息队列"><span class="nav-text">三、消息队列</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、DNS：域名–-gt-IP"><span class="nav-text">一、DNS：域名–&gt;IP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、网页访问过程"><span class="nav-text">二、网页访问过程</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
