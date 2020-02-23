@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、埋点用途为了满足快捷、高效、丰富的数据应用而做的用户行为过程及结果的记录二、埋点分类埋点数据一般分为：展现，点击，状态，计数四种类型。不同的类型代表着产品不同方面的需要。 展现：某个功能逻辑实现之后展现在用户面前的数据量。例如，资讯信息流的广告，当滑动资讯信息流展现广告时，此时发送广告的展现埋点数据，一般命名“XXXShow”； 点击：人为操作之后发出的数据量。这种埋点数据较为单一，正常控件元">
+<meta property="og:type" content="article">
+<meta property="og:title" content="埋点">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;23&#x2F;%E5%9F%8B%E7%82%B9&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、埋点用途为了满足快捷、高效、丰富的数据应用而做的用户行为过程及结果的记录二、埋点分类埋点数据一般分为：展现，点击，状态，计数四种类型。不同的类型代表着产品不同方面的需要。 展现：某个功能逻辑实现之后展现在用户面前的数据量。例如，资讯信息流的广告，当滑动资讯信息流展现广告时，此时发送广告的展现埋点数据，一般命名“XXXShow”； 点击：人为操作之后发出的数据量。这种埋点数据较为单一，正常控件元">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2020-02-23T10:15:39.738Z">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/23/%E5%9F%8B%E7%82%B9/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>埋点 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/23/%E5%9F%8B%E7%82%B9/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          埋点
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-23 18:14:30 / 修改时间：18:15:39" itemprop="dateCreated datePublished" datetime="2020-02-23T18:14:30+08:00">2020-02-23</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、埋点用途"><a href="#一、埋点用途" class="headerlink" title="一、埋点用途"></a>一、埋点用途</h3><p>为了满足快捷、高效、丰富的数据应用而做的用户行为过程及结果的记录</p><h3 id="二、埋点分类"><a href="#二、埋点分类" class="headerlink" title="二、埋点分类"></a>二、埋点分类</h3><p>埋点数据一般分为：展现，点击，状态，计数四种类型。不同的类型代表着产品不同方面的需要。</p><ul>
+<li><strong>展现</strong>：某个功能逻辑实现之后展现在用户面前的数据量。例如，资讯信息流的广告，当滑动资讯信息流展现广告时，此时发送广告的展现埋点数据，一般命名“XXXShow”；</li>
+<li><strong>点击</strong>：人为操作之后发出的数据量。这种埋点数据较为单一，正常控件元素点击，一般命名“XXXClick”；</li>
+<li><strong>状态</strong>：某个功能逻辑实现之后的状态。一般指的是开或关，登录与非登录等，一般命名“XXXStatus”；</li>
+<li><strong>计数</strong>：通常指的是一个功能点击了多少次，切换了多少次等，一般命名“XXXCount”；</li>
+</ul><a id="more"></a>
+
+
+<p>此外，点击类埋点在一定的条件下可以转化为计数类埋点，当遇到需求时，从埋点的作用角度思考合理性。若是单纯统计某个元素或者控件的点击量，此时应该定义为conut类型；若是为了统计某种状态下元素或者控件的点击效果，此时应该定义为click类型。</p>
+<h3 id="三、埋点数据的注意事项"><a href="#三、埋点数据的注意事项" class="headerlink" title="三、埋点数据的注意事项"></a>三、埋点数据的注意事项</h3><ul>
+<li><strong>编码格式</strong>：埋点数据的value值为中文时，尤其要注意编码格式。为了避免服务端解析数据出错，一般情况下，客户端需要对发出的数据进行编码格式转化；</li>
+<li><strong>大小写</strong>：埋点数据的key值在命名时要和服务端数据组同步命名规则，尤其是大小写，一般情况下数据组在过滤收集数据时是不考虑大小写的，但是也有例外。例如，之前在测试SDK时，客户端改变了命名规则，而服务端限制了大写，导致线上数据出现异常；</li>
+<li><strong>全角半角</strong>：埋点数据的值为英文时，常常容易忽略全角半角的输入方式，有时候会因此产生无法接收的错误；</li>
+<li><strong>数据格式</strong>：埋点数据的数据格式在定义时要简单明了，尤其是非实时数据的发送机制，此时发出的数据很多，往往同一条埋点发出好多，此时我们要整合一下数据格式。</li>
+<li><strong>发送时机</strong>：埋点数据发送往往是一个公共功能，且发送时机一般情况下分为两种：实时和非实时。因此将数据发送功能作为一个单独的模块存在，其他功能调用即可，避免所有模块在发送时各自处理，不然会增加测试成本。</li>
+<li><strong>预置数据</strong>：埋点数据往往需要云端的配置文件支持，此时我们就要留意在配置文件下发之前可能产生的逻辑，这部分逻辑的数据埋点要在云端和本地同时存放，即本地要有预置数据。</li>
+<li><strong>埋点命名规则</strong>：在测试中要和产品形成一种隐含的规则，双方都要遵守。此外，埋点命名首字母要大写，这些细节不是强制性的，但是有利于数据阅读和查看。</li>
+</ul>
+<h3 id="四、埋点数据的正确性"><a href="#四、埋点数据的正确性" class="headerlink" title="四、埋点数据的正确性"></a>四、埋点数据的正确性</h3><ul>
+<li><p><strong>展现类的埋点</strong>：最关键的在于避免重复统计。比如在某宝搜索“华为手机”时，当用户输入了“华为MATE10手机”和“华为MATE10”出来的效果几乎是一样的，失去了统计的意义。</p>
+</li>
+<li><p><strong>点击类的埋点</strong>：关键在于避免服务器超时的情况下连续点击导致的重复统计。（比如刷新统计埋点，当服务器超时的情况下，连续多次的点击，此时如果客户端发出请求，那么统计的数据是正确的，否则没发出数据，统计的数据就是错误的）</p>
+</li>
+<li><p><strong>状态类埋点</strong>：关键在于避免统计默认状态。并且状态类埋点统计的一定是最终的状态。例如，由开切换到关，那么最后发出的状态数据一定是关闭的状态。</p>
+</li>
+<li><p><strong>计数类埋点</strong>：关键在于避免遗漏。一般情况下，非实时发送的计数埋点容易出现遗漏情况，因为涉及到数据库的读写。因此在测试时要格外留意。</p>
+</li>
+</ul>
+<h3 id="五、埋点数据的注意事项"><a href="#五、埋点数据的注意事项" class="headerlink" title="五、埋点数据的注意事项"></a>五、埋点数据的注意事项</h3><ul>
+<li><strong>网页缓存</strong>：对于web页面的埋点统计，要考虑到web页缓存的问题。例如，资讯详情页有停留时长的统计，当进入资讯详情页时开始计时统计，不在该页面时结束统计，那么此时我们就要考虑到在前后台相互切换时是否存在多发的情况，之前浏览器遇到的问题就是将缓存页的时长页做了统计一并发送到了服务器。</li>
+<li><strong>网络环境</strong>：当网络特别差的时候，客户端发送埋点失败，这种情况下应该将发送失败的数据保存在本地，等下次条件满足的时候一并发出。避免出现丢掉数据的情况。</li>
+<li><strong>覆盖安装</strong>产品升级之后，升级之前的埋点不能被删除掉，应该保存在本地，待升级之后满足条件一并发出。</li>
+<li><strong>服务端压力</strong>：数据发送有实时和非实时两种，当实时数据量特别大时容易给服务器造成压力，因此在测试时要特别留意。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/22/HTML%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/" rel="next" title="HTML转义字符">
+                  <i class="fa fa-chevron-left"></i> HTML转义字符
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、埋点用途"><span class="nav-text">一、埋点用途</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、埋点分类"><span class="nav-text">二、埋点分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、埋点数据的注意事项"><span class="nav-text">三、埋点数据的注意事项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、埋点数据的正确性"><span class="nav-text">四、埋点数据的正确性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、埋点数据的注意事项"><span class="nav-text">五、埋点数据的注意事项</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">72</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>

@@ -59,13 +59,15 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452258-32eec600-27be-11ea-9411-ef2e8193154f.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71428746-b7c5db00-26fd-11ea-8e9c-6bd25efe78c6.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452401-beb52200-27bf-11ea-8550-b9ab3c6b8524.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75095556-cda62e00-55d0-11ea-8002-ecefca232d91.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75095548-aea79c00-55d0-11ea-8b71-312052c4c388.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452563-1902b280-27c1-11ea-8b68-3e1767617cbe.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452718-4b60df80-27c2-11ea-8fe4-01a67be82caa.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71461838-3c8f2280-27ec-11ea-9b3d-5e89a5af1b9a.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452856-44869c80-27c3-11ea-8076-2c2cf292b31f.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452912-8dd6ec00-27c3-11ea-98f1-8fdb2cde13a1.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71452996-0e95e800-27c4-11ea-861a-6b31e7e8ec0e.png">
-<meta property="og:updated_time" content="2019-12-26T07:25:42.195Z">
+<meta property="og:updated_time" content="2020-02-22T16:10:16.534Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;71451890-8ad6fe00-27b9-11ea-8159-8094e55dfa12.png">
 
@@ -237,7 +239,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-26 15:25:42" itemprop="dateModified" datetime="2019-12-26T15:25:42+08:00">2019-12-26</time>
+                <time title="修改时间：2020-02-23 00:10:16" itemprop="dateModified" datetime="2020-02-23T00:10:16+08:00">2020-02-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -298,7 +300,7 @@
 <li><p>针对输出，可根据结果进行分析设计。</p>
 </li>
 </ul>
-<h3 id="五、针对输入参数类型设计测试用例"><a href="#五、针对输入参数类型设计测试用例" class="headerlink" title="五、针对输入参数类型设计测试用例"></a>五、针对输入参数类型设计测试用例</h3><p><strong>3.1 数值型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png" alt="1577321452(1)"><br>例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值范围是1-35，那么设计时考虑：</p>
+<h3 id="五、针对输入参数类型设计测试用例"><a href="#五、针对输入参数类型设计测试用例" class="headerlink" title="五、针对输入参数类型设计测试用例"></a>五、针对输入参数类型设计测试用例</h3><p><strong>5.1 数值型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452152-d6d77200-27bc-11ea-8ce3-3bdf2d74137f.png" alt="1577321452(1)"><br>例如检查权限的接口：TaskChecker.checkTask(int taskID) taskID的取值范围是1-35，那么设计时考虑：</p>
 <ul>
 <li><p>1-35范围内和范围外的值；</p>
 </li>
@@ -320,7 +322,7 @@
 <li><p>购买数量为负数也可以购买</p>
 </li>
 </ul>
-<p><strong>3.2 字符串类型</strong><br>字符串型的参数，主要考虑字符串的长度和内容：<br><img src="https://user-images.githubusercontent.com/56629574/71452258-32eec600-27be-11ea-9411-ef2e8193154f.png" alt="1577322037(1)"><br>例如接口转换设置闹钟的接口DateUtil.getDayOfDDHH(String ddhh)，用例可以考虑：</p>
+<p><strong>5.2 字符串类型</strong><br>字符串型的参数，主要考虑字符串的长度和内容：<br><img src="https://user-images.githubusercontent.com/56629574/71452258-32eec600-27be-11ea-9411-ef2e8193154f.png" alt="1577322037(1)"><br>例如接口转换设置闹钟的接口DateUtil.getDayOfDDHH(String ddhh)，用例可以考虑：</p>
 <ul>
 <li><p>长度为4位，比4位少，比4位多；</p>
 </li>
@@ -344,7 +346,7 @@
 <li><p>【在特定类型中】获取日期接口入参是int类型，若传入String时会crash（从前端获取是String，若直接转换为int，里面有string就会crash）</p>
 </li>
 </ul>
-<p><strong>3.3 数组或链表类型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452401-beb52200-27bf-11ea-8550-b9ab3c6b8524.png" alt="1577322694(1)"><br>例如批量提交任务的接口submitTask(int[] taskID)，参数用例设计考虑：</p>
+<p><strong>5.3 数组或链表类型</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452401-beb52200-27bf-11ea-8550-b9ab3c6b8524.png" alt="1577322694(1)"><br>例如批量提交任务的接口submitTask(int[] taskID)，参数用例设计考虑：</p>
 <ul>
 <li><p>正常取值：1-5个权限，范围外：6个权限；</p>
 </li>
@@ -364,7 +366,16 @@
 <li><p>重复的item处理时未去重导致结果异常等。</p>
 </li>
 </ul>
-<h3 id="六、接口处理逻辑"><a href="#六、接口处理逻辑" class="headerlink" title="六、接口处理逻辑"></a>六、接口处理逻辑</h3><p><strong>6.1 约束条件分析</strong></p>
+<h3 id="六、日期类型"><a href="#六、日期类型" class="headerlink" title="六、日期类型"></a>六、日期类型</h3><ul>
+<li>年、月、日、时、分、秒、闰/平年2月<ul>
+<li>日期的合理性<br><img src="https://user-images.githubusercontent.com/56629574/75095556-cda62e00-55d0-11ea-8002-ecefca232d91.png" alt="1582387767(1)"></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>日期类型范围<br><img src="https://user-images.githubusercontent.com/56629574/75095548-aea79c00-55d0-11ea-8b71-312052c4c388.png" alt="1582387717(1)"></li>
+</ul>
+<h3 id="七、接口处理逻辑"><a href="#七、接口处理逻辑" class="headerlink" title="七、接口处理逻辑"></a>七、接口处理逻辑</h3><p><strong>7.1 约束条件分析</strong></p>
 <ul>
 <li>数值限制：分数限制、金币限制、等级限制等等。</li>
 </ul>
@@ -380,11 +391,11 @@
 <ul>
 <li>权限限制：管理员等。</li>
 </ul>
-<p><strong>6.2 操作对象</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452563-1902b280-27c1-11ea-8b68-3e1767617cbe.png" alt="1577323243(1)"><br>此时用户、电话、话费都是操作对象，正常情况用户A绑定P1，查询A&amp;P1的话费<br>异常情况用户A绑定P1，查询P2的话费</p>
+<p><strong>7.2 操作对象</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452563-1902b280-27c1-11ea-8b68-3e1767617cbe.png" alt="1577323243(1)"><br>此时用户、电话、话费都是操作对象，正常情况用户A绑定P1，查询A&amp;P1的话费<br>异常情况用户A绑定P1，查询P2的话费</p>
 <ul>
 <li>问题和风险<br>可访问非权限内的其他用户信息、敏感信息，利用信息谋取利益</li>
 </ul>
-<p><strong>6.3 状态转换分析</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452718-4b60df80-27c2-11ea-8fe4-01a67be82caa.png" alt="1577323792(1)"><br>测试点：</p>
+<p><strong>7.3 状态转换分析</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452718-4b60df80-27c2-11ea-8fe4-01a67be82caa.png" alt="1577323792(1)"><br>测试点：</p>
 <ul>
 <li><p>状态为2，调用Fun23，状态切换到3</p>
 </li>
@@ -397,27 +408,27 @@
 </ul>
 <p>常见的问题和风险：<br><strong>问题和风险</strong><br>可通过特殊手段达到访问原本不能的状态，从而谋取利益</p>
 <p>举例：已经加入家族的玩家（未退出家族），还可以申请加入其它家族</p>
-<p><strong>6.4 时序分析</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452856-44869c80-27c3-11ea-8076-2c2cf292b31f.png" alt="1577324168(1)"></p>
+<p><strong>7.4 时序分析</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452856-44869c80-27c3-11ea-8076-2c2cf292b31f.png" alt="1577324168(1)"></p>
 <ul>
 <li>从时序图可以看出，后台有3个接口：登陆获取用户ID，上报本地数据，上报本地冲突。三个接口需要依次调用执行，才能完成同步。那么在接口测试就可以考虑打乱上述接口的执行顺序去执行，会有怎样的结果，是否会出现异常。例如：获取用户ID后不上报本地数据而直接上报本地冲突。</li>
 </ul>
 <p><strong>常见的问题和风险</strong></p>
 <ul>
 <li>非顺序执行后，数据出现异常，可能还会出现程序其他异常</li>
-<li>通过打乱顺序获取利益<h3 id="七、其它"><a href="#七、其它" class="headerlink" title="七、其它"></a>七、其它</h3></li>
+<li>通过打乱顺序获取利益<h3 id="八、其它"><a href="#八、其它" class="headerlink" title="八、其它"></a>八、其它</h3></li>
 </ul>
-<p><strong>7.1 已废弃接口</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452912-8dd6ec00-27c3-11ea-98f1-8fdb2cde13a1.png" alt="1577324333(1)"><br><strong>- 问题和风险：</strong>接口未及时处理，可继续访问，调用接口，获取额外利益<br><strong>- 已废弃的接口不维护  那么旧版本无法兼容怎么办？</strong><br>答：已废弃的接口，指之前有使用，由于一些原因不再使用的接口。一些情况下确实还需要考虑旧版本兼容的问题，这种情况通常的处理方式有几种：<br>（1） 旧版本不支持继续访问，提醒用户升级版本；<br>（2） 接口请求时判断版本号，只有特定的版本才能访问。<br><strong>7.2 接口设计合理性</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452996-0e95e800-27c4-11ea-861a-6b31e7e8ec0e.png" alt="1577324538(1)"></p>
-<p><strong>7.3 单独接口字段间逻辑</strong><br>有些参数需要相互配合着才起作用，如“offset”和“count”组合起来进行翻页，这个时候要组合起来进行测试；参数之间关联：省，市，县（区），尤其注意非法（无效）的关联<br><strong>7.4 绕过验证</strong></p>
+<p><strong>8.1 已废弃接口</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452912-8dd6ec00-27c3-11ea-98f1-8fdb2cde13a1.png" alt="1577324333(1)"><br><strong>- 问题和风险：</strong>接口未及时处理，可继续访问，调用接口，获取额外利益<br><strong>- 已废弃的接口不维护  那么旧版本无法兼容怎么办？</strong><br>答：已废弃的接口，指之前有使用，由于一些原因不再使用的接口。一些情况下确实还需要考虑旧版本兼容的问题，这种情况通常的处理方式有几种：<br>（1） 旧版本不支持继续访问，提醒用户升级版本；<br>（2） 接口请求时判断版本号，只有特定的版本才能访问。<br><strong>8.2 接口设计合理性</strong><br><img src="https://user-images.githubusercontent.com/56629574/71452996-0e95e800-27c4-11ea-861a-6b31e7e8ec0e.png" alt="1577324538(1)"></p>
+<p><strong>8.3 单独接口字段间逻辑</strong><br>有些参数需要相互配合着才起作用，如“offset”和“count”组合起来进行翻页，这个时候要组合起来进行测试；参数之间关联：省，市，县（区），尤其注意非法（无效）的关联<br><strong>8.4 绕过验证</strong></p>
 <ul>
 <li>提交订单时，在传递商品价格参数时，修改商品价格</li>
 <li>支付时，抓个包将订单金额一改，如果能以修改后金额进行支付，则接口有问题</li>
 </ul>
 <p><strong>也就是说数据库取出的数据，在业务流使用时，不能被用户随意修改</strong></p>
-<h3 id="八、接口测试中常见问题"><a href="#八、接口测试中常见问题" class="headerlink" title="八、接口测试中常见问题"></a>八、接口测试中常见问题</h3><p><strong>8.1 异常的测试有必要做那么多吗？</strong><br>答：一些情况下异常测试是非常必要的，而在一些情况下的确是不需要这么多。<br>例如，在游戏测试中，客户端和后台的接口，需要要做充分的异常测试。协议通常有加密，但是因为游戏有利益可图，总有一些人去破解（协议都是可被破解的，只是时间和成本问题），那么一旦破解，就可以绕过客户端直接访问后台接口，如果后台逻辑有漏洞，就有利可图了。因此在很多游戏中，需要保证后台逻辑的健壮性。还有，<strong>一些提供给外部使用的接口，也需要做好异常测试，因为你不清楚调用者会怎么使用，那么作为一个可靠的提供方，保证自己的稳定和健壮是非常有必要的。另外一些情况，可能这些异常是外部无法触发的，那么这种情况下，异常问题就没有那么高的优先级去解决。<br>测试中，通常需要去权衡测试成本和产品质量，找到一个平衡点。</strong></p>
-<p><strong>8.2 接口测试断言时，需要与数据库记录比对吗？</strong></p>
+<h3 id="九、接口测试中常见问题"><a href="#九、接口测试中常见问题" class="headerlink" title="九、接口测试中常见问题"></a>九、接口测试中常见问题</h3><p><em>9.1 异常的测试有必要做那么多吗？*</em><br>答：一些情况下异常测试是非常必要的，而在一些情况下的确是不需要这么多。<br>例如，在游戏测试中，客户端和后台的接口，需要要做充分的异常测试。协议通常有加密，但是因为游戏有利益可图，总有一些人去破解（协议都是可被破解的，只是时间和成本问题），那么一旦破解，就可以绕过客户端直接访问后台接口，如果后台逻辑有漏洞，就有利可图了。因此在很多游戏中，需要保证后台逻辑的健壮性。还有，<strong>一些提供给外部使用的接口，也需要做好异常测试，因为你不清楚调用者会怎么使用，那么作为一个可靠的提供方，保证自己的稳定和健壮是非常有必要的。另外一些情况，可能这些异常是外部无法触发的，那么这种情况下，异常问题就没有那么高的优先级去解决。<br>测试中，通常需要去权衡测试成本和产品质量，找到一个平衡点。</strong></p>
+<p><strong>9.2 接口测试断言时，需要与数据库记录比对吗？</strong></p>
 <p>答：接口测试中，测试一个接口的时候预期得到什么结果，设计的时候是清楚的。这个预期结果可能是返回成功或某个错误码；<strong>可能接口需要对某个数据进行操作，那么这个时候接口测试也是同时需要验证数据的正确性，这种情况就需要校验数据（校验数据库或者数据存储）。</strong>其他需要检查的预期也是类似，在接口测试时同时检查。</p>
-<p><strong>8.3 单元测试与接口测试区别</strong><br>答：接口测试的测试对象是接口，单元测试指对软件中的最小可测试单元进行检查和验证。从概念上来讲，接口测试比单元测试更广泛。单元测试的测试单位通常是函数，也就是说广泛意义的接口测试，包含了单元测试。<strong>接口测试用例设计思想不单单是针对接口的功能，还需要考量跟接口相关调用者或者多个接口交互；单元测试用例可能更多的是针对该函数内部处理逻辑。接口测试通常是测试人员来进行，单元测试更多是开发来进行。</strong></p>
-<p><strong>8.4 接口测试是否有必要测试人员阅读源码，再根据源码设计测试用例？</strong></p>
+<p><strong>9.3 单元测试与接口测试区别</strong><br>答：接口测试的测试对象是接口，单元测试指对软件中的最小可测试单元进行检查和验证。从概念上来讲，接口测试比单元测试更广泛。单元测试的测试单位通常是函数，也就是说广泛意义的接口测试，包含了单元测试。<strong>接口测试用例设计思想不单单是针对接口的功能，还需要考量跟接口相关调用者或者多个接口交互；单元测试用例可能更多的是针对该函数内部处理逻辑。接口测试通常是测试人员来进行，单元测试更多是开发来进行。</strong></p>
+<p><strong>9.4 接口测试是否有必要测试人员阅读源码，再根据源码设计测试用例？</strong></p>
 <p>答：最好可以阅读源码，这可以帮助测试人员更好的了解被测系统和程序实现。还有一个额外收益：测试在阅读源码（CodeReview）的时候也可以发现一些缺陷。我们可以根据源码来设计测试用例，同时，测试人员也需要特别注意避免被开发的思维限制，也需要跳出源码，从黑盒测试的角度出发，去设计和思考用例。</p>
 
     </div>
@@ -489,7 +500,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、接口"><span class="nav-text">一、接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、接口测试关注点"><span class="nav-text">二、接口测试关注点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、接口测试目的"><span class="nav-text">三、接口测试目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、优先级"><span class="nav-text">四、优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、接口测试的用例设计，主要从输入和接口处理两方面考虑："><span class="nav-text">四、接口测试的用例设计，主要从输入和接口处理两方面考虑：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、针对输入参数类型设计测试用例"><span class="nav-text">五、针对输入参数类型设计测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、接口处理逻辑"><span class="nav-text">六、接口处理逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、其它"><span class="nav-text">七、其它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、接口测试中常见问题"><span class="nav-text">八、接口测试中常见问题</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、接口"><span class="nav-text">一、接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、接口测试关注点"><span class="nav-text">二、接口测试关注点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、接口测试目的"><span class="nav-text">三、接口测试目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、优先级"><span class="nav-text">四、优先级</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、接口测试的用例设计，主要从输入和接口处理两方面考虑："><span class="nav-text">四、接口测试的用例设计，主要从输入和接口处理两方面考虑：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、针对输入参数类型设计测试用例"><span class="nav-text">五、针对输入参数类型设计测试用例</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、日期类型"><span class="nav-text">六、日期类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、接口处理逻辑"><span class="nav-text">七、接口处理逻辑</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#八、其它"><span class="nav-text">八、其它</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#九、接口测试中常见问题"><span class="nav-text">九、接口测试中常见问题</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -505,7 +516,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

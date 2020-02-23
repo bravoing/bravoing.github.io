@@ -47,7 +47,6 @@
 </script>
 
   <meta name="description" content="一、文件系统特性文件系统运作方式这与操作系统的文件数据有关。较新的操作系统的文件数据除了文件实际内容，通常会含有非常多的属性，例如Linux操作系统的文件权限（rwx）与文件属性（拥有者、群组、时间参数等）。文件系统通常会将这两部分的数据存放在不同的区块，权限与属性放置到inode，实际数据放在data  block区块中。此外，还有一个超级区别会记录文件系统的整体信息，包括inode与block">
-<meta name="keywords" content="鸟哥的私房菜">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第7章：Linux磁盘与文件系统管理（1）">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;16&#x2F;%E7%AC%AC7%E7%AB%A0%EF%BC%9ALinux%E7%A3%81%E7%9B%98%E4%B8%8E%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E7%AE%A1%E7%90%86%EF%BC%881%EF%BC%89&#x2F;index.html">
@@ -63,7 +62,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67261145-01156680-f4d2-11e9-806b-3ab98e3ac640.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67261636-24d9ac00-f4d4-11e9-8c81-2ef7185bb174.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67262138-3f148980-f4d6-11e9-95e9-66ec84488a43.png">
-<meta property="og:updated_time" content="2019-11-16T05:34:05.700Z">
+<meta property="og:updated_time" content="2020-02-22T13:39:06.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67255341-272c0e00-f4b4-11e9-9b77-b2e51ef2b399.png">
 
@@ -227,10 +226,16 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2019-11-16 13:33:13 / 修改时间：13:34:05" itemprop="dateCreated datePublished" datetime="2019-11-16T13:33:13+08:00">2019-11-16</time>
+              <time title="创建时间：2019-11-16 13:33:13" itemprop="dateCreated datePublished" datetime="2019-11-16T13:33:13+08:00">2019-11-16</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-22 21:39:06" itemprop="dateModified" datetime="2020-02-22T21:39:06+08:00">2020-02-22</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
@@ -311,9 +316,6 @@
     
 
       <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E9%B8%9F%E5%93%A5%E7%9A%84%E7%A7%81%E6%88%BF%E8%8F%9C/" rel="tag"># 鸟哥的私房菜</a>
-          </div>
 
         
 
@@ -389,7 +391,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

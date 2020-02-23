@@ -46,19 +46,19 @@
   };
 </script>
 
-  <meta name="description" content="一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式通配符：用来匹配值的一部分的特殊字符like：操作符搜索模式：由字面值、通配符或两者组合构成的搜索条件支持的通配符：使用通配符注意事项： 搜索模式中字面值默认不区分大小写若要区分大小写，两种方法:　　①like binary ‘%三%’　　②创建表时，由原来的name varchar(10) 改为name v">
+  <meta name="description" content="在Mysql中单引号、双引号都可以。①理解模糊查询②当用户输入以下通配符等时，要对其转义为普通字符，不能查出模糊查询的内容。一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式通配符：用来匹配值的一部分的特殊字符like：操作符搜索模式：由字面值、通配符或两者组合构成的搜索条件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="查询中使用通配符和正则表达式">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;22&#x2F;%E6%9F%A5%E8%AF%A2%E4%B8%AD%E4%BD%BF%E7%94%A8%E9%80%9A%E9%85%8D%E7%AC%A6%E5%92%8C%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F&#x2F;index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式通配符：用来匹配值的一部分的特殊字符like：操作符搜索模式：由字面值、通配符或两者组合构成的搜索条件支持的通配符：使用通配符注意事项： 搜索模式中字面值默认不区分大小写若要区分大小写，两种方法:　　①like binary ‘%三%’　　②创建表时，由原来的name varchar(10) 改为name v">
+<meta property="og:description" content="在Mysql中单引号、双引号都可以。①理解模糊查询②当用户输入以下通配符等时，要对其转义为普通字符，不能查出模糊查询的内容。一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式通配符：用来匹配值的一部分的特殊字符like：操作符搜索模式：由字面值、通配符或两者组合构成的搜索条件">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75089210-83518c80-5591-11ea-87d5-5f63037e0922.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75090604-6f148c00-559f-11ea-9eef-5c4eeb210ae3.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75090801-9ec49380-55a1-11ea-9f69-606d65751454.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75090887-77ba9180-55a2-11ea-8207-69c585c81d9e.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75090921-c7995880-55a2-11ea-90a2-47da40e77372.png">
-<meta property="og:updated_time" content="2020-02-22T12:21:36.527Z">
+<meta property="og:updated_time" content="2020-02-22T13:30:03.388Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75089210-83518c80-5591-11ea-87d5-5f63037e0922.png">
 
@@ -224,7 +224,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-02-22 17:37:27 / 修改时间：20:21:36" itemprop="dateCreated datePublished" datetime="2020-02-22T17:37:27+08:00">2020-02-22</time>
+              <time title="创建时间：2020-02-22 17:37:27 / 修改时间：21:30:03" itemprop="dateCreated datePublished" datetime="2020-02-22T17:37:27+08:00">2020-02-22</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -256,15 +256,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h3 id="一、模糊查询语句：SELECT-字段-FROM-表-WHERE-某字段-Like-搜索模式"><a href="#一、模糊查询语句：SELECT-字段-FROM-表-WHERE-某字段-Like-搜索模式" class="headerlink" title="一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式"></a>一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式</h3><p>通配符：用来匹配值的一部分的特殊字符<br>like：操作符<br>搜索模式：由字面值、通配符或两者组合构成的搜索条件</p><p><strong>支持的通配符：</strong><br><img src="https://user-images.githubusercontent.com/56629574/75089210-83518c80-5591-11ea-87d5-5f63037e0922.png" alt="1582360593(1)"></p><p><strong>使用通配符注意事项：</strong></p><ol>
+        <p>在Mysql中单引号、双引号都可以。<br>①理解模糊查询<br>②当用户输入以下通配符等时，要对其转义为普通字符，不能查出模糊查询的内容。</p><h3 id="一、模糊查询语句：SELECT-字段-FROM-表-WHERE-某字段-Like-搜索模式"><a href="#一、模糊查询语句：SELECT-字段-FROM-表-WHERE-某字段-Like-搜索模式" class="headerlink" title="一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式"></a>一、模糊查询语句：SELECT 字段 FROM 表 WHERE 某字段 Like 搜索模式</h3><p>通配符：用来匹配值的一部分的特殊字符<br>like：操作符<br>搜索模式：由字面值、通配符或两者组合构成的搜索条件</p><a id="more"></a>
+
+<p><strong>支持的通配符：</strong><br><img src="https://user-images.githubusercontent.com/56629574/75089210-83518c80-5591-11ea-87d5-5f63037e0922.png" alt="1582360593(1)"></p>
+<p><strong>使用通配符注意事项：</strong></p>
+<ol>
 <li>搜索模式中字面值默认不区分大小写<br>若要区分大小写，两种方法:<br>　　①like binary ‘%三%’<br>　　②创建表时，由原来的name varchar(10) 改为name varchar(10) binary</li>
 <li>尾空格会干扰通配符匹配<br>　　若字段值为三space，则where name like ‘%三’不会匹配。<br>　　解决方案：查询语句改成where name like ‘%三%’</li>
 <li>‘%’：会匹配任意个字符，除了null ；’_’会匹配一个字符，除了null</li>
 <li>条件模式必须以单引号，与字段类型无关。<br>　　若字面值包含单引号，则要转义：<br>　　　　SELECT * from  user where name like  ‘Cb&#39;‘; 查询Cb’</li>
-</ol><a id="more"></a>
-
-
-
+</ol>
 <p><strong>使用通配符的技巧</strong></p>
 <ol>
 <li>不要过度使用通配符。如果其他操作能达到同样目的，就使用其他操作符</li>
@@ -308,6 +309,9 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
+                <a href="/2020/02/22/HTML%E8%BD%AC%E4%B9%89%E5%AD%97%E7%AC%A6/" rel="prev" title="HTML转义字符">
+                  HTML转义字符 <i class="fa fa-chevron-right"></i>
+                </a>
             </div>
           </div>
       </footer>
@@ -367,7 +371,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">72</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
