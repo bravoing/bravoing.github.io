@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="转自：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;KZRcd7z10ZADHpCSwcM-UQ作为软件测试工程师，我们不仅要扮演质量检测员，还要扮演用户，要有用户的思维，同时还要有医生的敏锐度，寻找出产品需求中潜在的“隐患”，防患于未然。一个产品能否上线，上线后是否被用户喜爱？这些问题与我们测试工程师息息相关，因为我们是产品上线前最后关卡的守卫员。那么如何给产品需求做一个全面的体检，将病">
+<meta property="og:type" content="article">
+<meta property="og:title" content="给需求的体检">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;24&#x2F;%E7%BB%99%E9%9C%80%E6%B1%82%E7%9A%84%E4%BD%93%E6%A3%80&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="转自：https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;KZRcd7z10ZADHpCSwcM-UQ作为软件测试工程师，我们不仅要扮演质量检测员，还要扮演用户，要有用户的思维，同时还要有医生的敏锐度，寻找出产品需求中潜在的“隐患”，防患于未然。一个产品能否上线，上线后是否被用户喜爱？这些问题与我们测试工程师息息相关，因为我们是产品上线前最后关卡的守卫员。那么如何给产品需求做一个全面的体检，将病">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142260-add84c80-572d-11ea-9394-d94d8074964e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142351-da8c6400-572d-11ea-89d5-33b8681bda93.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142547-453d9f80-572e-11ea-9b0b-5cb954400c6a.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142658-86ce4a80-572e-11ea-9af7-78618c6c69cd.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142734-a796a000-572e-11ea-8abf-80c78143e51d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143665-67382180-5730-11ea-9d89-96fc755f4a70.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142844-e3ca0080-572e-11ea-8d86-a76108a5d899.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143688-77e89780-5730-11ea-8f79-0651776f3dd9.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143714-88990d80-5730-11ea-8c3c-2607ef33ddb1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143040-43c0a700-572f-11ea-8888-b0f7dfa6dcae.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143080-5935d100-572f-11ea-8e17-949458cfb98d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143272-b3369680-572f-11ea-9c3d-7f13447e6e5a.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143282-b7fb4a80-572f-11ea-983e-61270eed36e6.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143305-bdf12b80-572f-11ea-8120-051775d6f3ba.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75143395-eed16080-572f-11ea-91a3-c85716cbb28e.png">
+<meta property="og:updated_time" content="2020-02-24T10:10:06.500Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75142260-add84c80-572d-11ea-9394-d94d8074964e.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/24/%E7%BB%99%E9%9C%80%E6%B1%82%E7%9A%84%E4%BD%93%E6%A3%80/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>给需求的体检 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/24/%E7%BB%99%E9%9C%80%E6%B1%82%E7%9A%84%E4%BD%93%E6%A3%80/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          给需求的体检
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-24 18:09:32 / 修改时间：18:10:06" itemprop="dateCreated datePublished" datetime="2020-02-24T18:09:32+08:00">2020-02-24</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
+                    <span itemprop="name">软件测试</span>
+                  </a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>转自：<a href="https://mp.weixin.qq.com/s/KZRcd7z10ZADHpCSwcM-UQ" target="_blank" rel="noopener">https://mp.weixin.qq.com/s/KZRcd7z10ZADHpCSwcM-UQ</a><br>作为软件测试工程师，我们不仅要扮演质量检测员，还要扮演用户，要有用户的思维，同时还要有医生的敏锐度，寻找出产品需求中潜在的“隐患”，防患于未然。一个产品能否上线，上线后是否被用户喜爱？这些问题与我们测试工程师息息相关，因为我们是产品上线前最后关卡的守卫员。那么如何给产品需求做一个全面的体检，将病变的细胞消灭在萌芽状态，减少修复成本，产品更健康，用户更喜爱？下面的清单就是我们需要检查的项目，让我们一项一项的按序完成它吧。</p><a id="more"></a>
+<h3 id="一、-“体检”的目的"><a href="#一、-“体检”的目的" class="headerlink" title="一、 “体检”的目的"></a>一、 “体检”的目的</h3><p>总的来说，给产品需求做“体检”主要有以下4个目的：</p>
+<p>1）寻找需求的缺陷，比如某些场景没有考虑到</p>
+<p>2）已有的需求是否符合需求的目的</p>
+<p>3）已有的产品在易用性、易操作性、易学习性等方面体验度是否足够好</p>
+<p>4）提出新的需求或建议，让用户体验更好</p>
+<h3 id="二、“体检”项目"><a href="#二、“体检”项目" class="headerlink" title="二、“体检”项目"></a>二、“体检”项目</h3><p><img src="https://user-images.githubusercontent.com/56629574/75142260-add84c80-572d-11ea-9394-d94d8074964e.png" alt="1582537615(1)"></p>
+<h3 id="2-1-产品需求的一致性"><a href="#2-1-产品需求的一致性" class="headerlink" title="2.1 产品需求的一致性"></a>2.1 产品需求的一致性</h3><p><strong>定义</strong>：一致性是指与其它软件需求或相关标准规范不相矛盾<br><strong>1）系统规范</strong>：产品的风格要尽量与系统本身的系统风格保持一致，这样使得产品更专业，也不会让习惯了系统风格的用户感觉不适<br><img src="https://user-images.githubusercontent.com/56629574/75142351-da8c6400-572d-11ea-89d5-33b8681bda93.png" alt="1582537689(1)"></p>
+<p><strong>2）APP整体设计规范</strong>：同一个产品中类似功能要界面风格一致，这样既规范，产品品质也高<br><img src="https://user-images.githubusercontent.com/56629574/75142547-453d9f80-572e-11ea-9b0b-5cb954400c6a.png" alt="1582537854(1)"></p>
+<p><strong>3）借鉴竞品类似功能逻辑</strong>：竞品类似功能如优于我们，可以借鉴与其保持一致<br><img src="https://user-images.githubusercontent.com/56629574/75142658-86ce4a80-572e-11ea-9af7-78618c6c69cd.png" alt="1582537968(1)"></p>
+<h3 id="2-2-产品需求的可行性"><a href="#2-2-产品需求的可行性" class="headerlink" title="2.2 产品需求的可行性"></a>2.2 产品需求的可行性</h3><p><strong>定义</strong>：产品提出的需求可开发实现，且实现的效果达到需求提出的目的，且可验证</p>
+<p><strong>1）无二义性</strong>：对所有需求说明都只能有一个明确统一的解释，由于自然语言极易导致二义性，所以尽量把每项需求用简洁明了的语言表达出来<br><strong>A. 文字本身存在的二义性</strong><br><img src="https://user-images.githubusercontent.com/56629574/75142734-a796a000-572e-11ea-8abf-80c78143e51d.png" alt="1582538042(1)"></p>
+<p><strong>B. 词语背后的扩展义导致的二义性</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143665-67382180-5730-11ea-9d89-96fc755f4a70.png" alt="1582538765(1)"></p>
+<p><strong>2）健壮性</strong>：需求的说明中是否对可能出现的异常进行了分析，并且对这些异常进行了容错处理。此外需求是否符合用户场景<br><strong>A. 针对异常情况进行容错处理</strong><br><img src="https://user-images.githubusercontent.com/56629574/75142844-e3ca0080-572e-11ea-8d86-a76108a5d899.png" alt="1582538132(1)"></p>
+<p><strong>B. 符合用户实际使用场景</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143688-77e89780-5730-11ea-8f79-0651776f3dd9.png" alt="1582538820(1)"></p>
+<p><strong>3）可测试性</strong>：每项需求都能通过设计测试用例或其它的验证方法来进行测试</p>
+<p><strong>4）用户可接受度</strong>：新增需求是否挑战了已有用户的操作习惯，对用户的影响范围有多大**<br><img src="https://user-images.githubusercontent.com/56629574/75143714-88990d80-5730-11ea-8c3c-2607ef33ddb1.png" alt="1582538843(1)"></p>
+<h3 id="2-3产品需求的易用性"><a href="#2-3产品需求的易用性" class="headerlink" title="2.3产品需求的易用性"></a>2.3产品需求的易用性</h3><p><strong>1）易理解：</strong>让用户在使用新功能前体验，视觉了解功能<br><strong>A. 新功能展现的直观性</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143040-43c0a700-572f-11ea-8888-b0f7dfa6dcae.png" alt="1582538284(1)"></p>
+<p><strong>B. 文案的简洁，通俗易懂</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143080-5935d100-572f-11ea-8e17-949458cfb98d.png" alt="1582538322(1)"></p>
+<p><strong>2）易操作</strong>：用户使用某一功能用最少的步骤达到目的或者保留用户已有使用习惯，且操作结果可感知</p>
+<p><strong>A. 减少用户操作</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143272-b3369680-572f-11ea-9c3d-7f13447e6e5a.png" alt="1582538369(1)"></p>
+<p><strong>B. 与用户操作习惯保持一致</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143282-b7fb4a80-572f-11ea-983e-61270eed36e6.png" alt="1582538401(1)"></p>
+<p><strong>C. 对类似于点击类的操作要给用户一个反馈</strong><br><img src="https://user-images.githubusercontent.com/56629574/75143305-bdf12b80-572f-11ea-8120-051775d6f3ba.png" alt="1582538414(1)"></p>
+<p>3）吸引性：功能设计出来的效果是否对用户有吸引力，能否产生使用收益</p>
+<p><img src="https://user-images.githubusercontent.com/56629574/75143395-eed16080-572f-11ea-91a3-c85716cbb28e.png" alt="1582538560(1)"></p>
+<p>备注：</p>
+<p>原需求：产品给出的原始需求</p>
+<p>新需求：提出需求建议后，更改后的需求</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/23/%E5%9F%8B%E7%82%B9/" rel="next" title="埋点">
+                  <i class="fa fa-chevron-left"></i> 埋点
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、-“体检”的目的"><span class="nav-text">一、 “体检”的目的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、“体检”项目"><span class="nav-text">二、“体检”项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-产品需求的一致性"><span class="nav-text">2.1 产品需求的一致性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-产品需求的可行性"><span class="nav-text">2.2 产品需求的可行性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3产品需求的易用性"><span class="nav-text">2.3产品需求的易用性</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
