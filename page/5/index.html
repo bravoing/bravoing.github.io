@@ -191,6 +191,246 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/" class="post-title-link" itemprop="url">GET和POST区别</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-05 15:36:50 / 修改时间：15:37:41" itemprop="dateCreated datePublished" datetime="2020-02-05T15:36:50+08:00">2020-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="一、传输数据方式"><a href="#一、传输数据方式" class="headerlink" title="一、传输数据方式"></a>一、传输数据方式</h3><ul>
+<li>GET : 是放在URL后，？分割请求数据，&amp;分割请求参数</li>
+<li>POST：<a href="https://bravoing.github.io/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" target="_blank" rel="noopener">四种常见的提交方式</a></li>
+</ul><h3 id="二、安全性"><a href="#二、安全性" class="headerlink" title="二、安全性"></a>二、安全性</h3><p>POST将请求数据放在请求体中，GET放在URL中，HTTP是明文传输，所以从攻击角度，为了安全要用HTTPS协议</p><h3 id="三、请求数据大小"><a href="#三、请求数据大小" class="headerlink" title="三、请求数据大小"></a>三、请求数据大小</h3><p>在HTTP协议中，并未对GET请求限制大小，是浏览器限制，并且不同浏览器限制不同。<br>POST无此限制，但理论上，IIS4中最大量为80KB，IIS5中为100KB。<br><strong>为什么GET浏览器会限制？</strong><br>URL这种东西必须当作一个整体看待，无法一块一块处理，于是就处理一个请求时必须分配一整块足够大的内存。如果URL太长，而并发又很高，就容易挤爆服务器的内存；</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/05/GET%E5%92%8CPOST%E5%8C%BA%E5%88%AB/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">POST四种提交数据方式</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-05 13:54:22 / 修改时间：13:59:08" itemprop="dateCreated datePublished" datetime="2020-02-05T13:54:22+08:00">2020-02-05</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HTTP%E5%8D%8F%E8%AE%AE/" itemprop="url" rel="index">
+                    <span itemprop="name">HTTP协议</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>post提交的数据必须放在实体(entry-body)中，但协议没规定必须使用什么编码方式。<br>请求头（heads）中Content-Type字段来获知实体是用何种编码方式，从而对实体进行解析。<br>Accept：是能接受的编码方式，而不是发请求编码方式。</p><h3 id="一、application-x-www-form-urlencoded"><a href="#一、application-x-www-form-urlencoded" class="headerlink" title="一、application/x-www-form-urlencoded"></a>一、application/x-www-form-urlencoded</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/05/POST%E5%9B%9B%E7%A7%8D%E6%8F%90%E4%BA%A4%E6%95%B0%E6%8D%AE%E6%96%B9%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/" class="post-title-link" itemprop="url">Nginx简单介绍</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-02-04 21:41:36" itemprop="dateCreated datePublished" datetime="2020-02-04T21:41:36+08:00">2020-02-04</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-02-07 16:48:03" itemprop="dateModified" datetime="2020-02-07T16:48:03+08:00">2020-02-07</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%BA%92%E8%81%94%E7%BD%91%E6%9E%B6%E6%9E%84/" itemprop="url" rel="index">
+                    <span itemprop="name">互联网架构</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Nginx 是一款自由的、开源的、高性能的 HTTP 服务器和反向代理服务器；同时也是一个 IMAP、POP3、SMTP 代理服务器；是个轻量级的高并发服务器。</p><h3 id="代理服务器概念-proxy"><a href="#代理服务器概念-proxy" class="headerlink" title="代理服务器概念(proxy)"></a>代理服务器概念(proxy)</h3><p>N-UNCOUNT If you do something by proxy, you arrange for someone else to do it for you. 代理权<br>客户端⇄代理服务器⇄目标服务器</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/02/04/Nginx%E7%AE%80%E5%8D%95%E4%BB%8B%E7%BB%8D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/%E5%9C%BA%E6%99%AF%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -738,259 +978,6 @@
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/" class="post-title-link" itemprop="url">中台与测试关系</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-04 11:07:57 / 修改时间：11:10:12" itemprop="dateCreated datePublished" datetime="2020-01-04T11:07:57+08:00">2020-01-04</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="中台"><a href="#中台" class="headerlink" title="中台"></a>中台</h3><h3 id="一、为什么需要中台"><a href="#一、为什么需要中台" class="headerlink" title="一、为什么需要中台"></a>一、为什么需要中台</h3><ul>
-<li>中台出现是因为公司业务高速发展，各个项目相对独立，许多项目都在重复发明相同的轮子，让项目本身越来越臃肿，也让开发效率降低<br>[比如对于阿里，一开始只有淘宝，后来上线了1688、聚划算、天猫，业务针对的领域不同，但都有订单、商品、库存、价格、物流等功能，所以将各个业务部门重复使用、重复建设的功能统一的进行规划和管理]</li>
-<li>已用户为中心，快速响应用户需求、快速创新、快速迭代。也就是快速建设、错了就推翻重来（试错）、不要耗费太大成本</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/04/%E4%B8%AD%E5%8F%B0%E4%B8%8E%E6%B5%8B%E8%AF%95%E5%85%B3%E7%B3%BB/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/03/bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/" class="post-title-link" itemprop="url">bug提交规范</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-03 16:06:50 / 修改时间：16:36:26" itemprop="dateCreated datePublished" datetime="2020-01-03T16:06:50+08:00">2020-01-03</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="一、标题"><a href="#一、标题" class="headerlink" title="一、标题"></a>一、标题</h3><ul>
-<li>缺陷位置+缺陷结果（在什么样的位置，什么样的条件下，发生什么样的结果）</li>
-<li>bug标题清晰易懂，一眼就明白需要反馈的问题</li>
-</ul><h3 id="二、测试环境"><a href="#二、测试环境" class="headerlink" title="二、测试环境"></a>二、测试环境</h3><ul>
-<li>测试环境：如：浏览器及版本号，操作系统，手机app或微信公众号测试明确手机型号，版本号，微信版本号等</li>
-</ul><h3 id="三、必要的步骤描述"><a href="#三、必要的步骤描述" class="headerlink" title="三、必要的步骤描述"></a>三、必要的步骤描述</h3><ul>
-<li>描述要以第三方的角度进行描述，最好能无脑操作一遍（步骤要准确、简短）</li>
-<li>每一个步骤尽量只记录一个操作</li>
-<li>描述复现步骤中的页面切换为避免出现描述不清晰或者有歧义，需用“-&gt;”符号连接 正确示例：（首页-&gt;我的-&gt;我的订单-&gt;未支付，点击一个未支付订单，进入订单详情页）</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/03/bug%E6%8F%90%E4%BA%A4%E8%A7%84%E8%8C%83/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/03/%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/profile.png">
-      <meta itemprop="name" content="John Doe">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Hexo">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/03/%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/" class="post-title-link" itemprop="url">需求评审</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-03 11:37:22" itemprop="dateCreated datePublished" datetime="2020-01-03T11:37:22+08:00">2020-01-03</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-24 18:13:19" itemprop="dateModified" datetime="2020-02-24T18:13:19+08:00">2020-02-24</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">软件测试</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><a href="http://mp.weixin.qq.com/mp/appmsg/show?__biz=MjM5ODczMDc1Mw==&appmsgid=10000039&itemidx=1&sign=9e3298fb644090e2779c05cb45d93558&sessionid=1578992118&scene=126&subscene=0&clicktime=1579000453&enterid=1579000453&ascene=3&fasttmpl_type=0&fasttmpl_fullversion=4928058-zh_CN-zip&fasttmpl_flag=53&realreporttime=1579000454246#wechat_redirect" target="_blank" rel="noopener">从“树上十只鸟，开枪打死一只，还剩几只？”思考产品需求获取与分析</a></p><h3 id="需求评审"><a href="#需求评审" class="headerlink" title="需求评审"></a>需求评审</h3><ul>
-<li>作用：同步产品对于需求的详细设计；收集大家对于需求的各种反馈（重点）</li>
-<li>站在用户角度考虑问题的合理性 （包含产品设计和开发实现逻辑）<br>【比如之前阿里云出现泄漏企业源代码问题：托管提供internal、public、private三个访问权限，平台认为的internal是阿里云平台内登陆可见，而用户认为是公司内部，这不算bug，但属于用户体验类。所以设计者要充分考虑使用者使用场景出现的问题。】</li>
-<li>挖掘隐式需求：就是把习惯性思维明确化，互相理解一致<br>X-Y PROBLEM：<a href="https://coolshell.cn/articles/10804.html" target="_blank" rel="noopener">https://coolshell.cn/articles/10804.html</a><br>X-Y Problem最大的严重的问题就是：在一个根本错误的方向上浪费他人大量的时间和精力！</li>
-</ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/03/%E9%9C%80%E6%B1%82%E8%AF%84%E5%AE%A1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1041,14 +1028,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

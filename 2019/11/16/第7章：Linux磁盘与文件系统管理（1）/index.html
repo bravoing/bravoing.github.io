@@ -62,7 +62,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67261145-01156680-f4d2-11e9-806b-3ab98e3ac640.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67261636-24d9ac00-f4d4-11e9-8c81-2ef7185bb174.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67262138-3f148980-f4d6-11e9-95e9-66ec84488a43.png">
-<meta property="og:updated_time" content="2020-02-22T13:39:06.159Z">
+<meta property="og:updated_time" content="2020-02-25T12:42:29.859Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;67255341-272c0e00-f4b4-11e9-9b77-b2e51ef2b399.png">
 
@@ -234,7 +234,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-02-22 21:39:06" itemprop="dateModified" datetime="2020-02-22T21:39:06+08:00">2020-02-22</time>
+                <time title="修改时间：2020-02-25 20:42:29" itemprop="dateModified" datetime="2020-02-25T20:42:29+08:00">2020-02-25</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -275,7 +275,7 @@
 <p><strong>碎片出现的原因：文件写入的block太过离散，使得文件读取的效能将变得很差。FAT文件系统需要碎片整理，而Ext2索引式文件系统基本不用。</strong></p>
 <p><img src="https://user-images.githubusercontent.com/56629574/67255679-dc12fa80-f4b5-11e9-9fe3-4b350f147619.png" alt="1571710933(1)"><br>FAT这种格式的文件系统没有inode，所以没办法一下子读取出来，每个block号码都记录在前一个block当中。若记录分散，则需要多次转磁盘，读取效率差。</p>
 <h3 id="二、Linux的EXT2文件系统（inode）"><a href="#二、Linux的EXT2文件系统（inode）" class="headerlink" title="二、Linux的EXT2文件系统（inode）"></a>二、Linux的EXT2文件系统（inode）</h3><p>文件系统一开始就将inode与block<br>规划好了，但是若文件系统GB，则将所有的inode与block放在一起是不明智的，为此将文件系统格式化为多个区块<br><img src="https://user-images.githubusercontent.com/56629574/67256617-b3413400-f4ba-11e9-91c9-d4225b733d5e.png" alt="1571713022(1)"></p>
-<h3 id="三、data-block（数据块）"><a href="#三、data-block（数据块）" class="headerlink" title="三、data block（数据块）"></a>三、data block（数据块）</h3><p><img src="https://user-images.githubusercontent.com/56629574/67256690-fb605680-f4ba-11e9-8e73-c15a983ad8bc.png" alt="1571713132(1)"></p>
+<h3 id="data-block（数据块）"><a href="#data-block（数据块）" class="headerlink" title="data block（数据块）"></a>data block（数据块）</h3><p><img src="https://user-images.githubusercontent.com/56629574/67256690-fb605680-f4ba-11e9-8e73-c15a983ad8bc.png" alt="1571713132(1)"></p>
 <ul>
 <li><p>原则上，block的大小与数量在格式化完就不能再改变了（除非重新格式化）</p>
 </li>
@@ -284,7 +284,7 @@
 <li><p>如果文件大于block，则一个文件用多个block块</p>
 </li>
 <li><p>若文件小于block，则block剩余容量不能再被使用（磁盘空间浪费）</p>
-<h3 id="四、inode-table（inode-表格）"><a href="#四、inode-table（inode-表格）" class="headerlink" title="四、inode table（inode 表格）"></a>四、inode table（inode 表格）</h3></li>
+<h3 id="inode-table（inode-表格）"><a href="#inode-table（inode-表格）" class="headerlink" title="inode table（inode 表格）"></a>inode table（inode 表格）</h3></li>
 <li><p>inode数量与大小在格式化时已经固定</p>
 </li>
 <li><p>每个inode大小固定为128bytes</p>
@@ -298,15 +298,15 @@
 <li><p>每个inode是128bytes，记录一个block用掉4byte<br><img src="https://user-images.githubusercontent.com/56629574/67257410-695a4d00-f4be-11e9-90c2-ee042c175152.png" alt="1571714606(1)"><br>每个inode是128bytes，里面有12个直接指向block号码的对照，能直接取得block号码。<br>间接是再拿一个block来当作记录block号码的记录区，若文件太大，则用间接的block来记录编号。<br><img src="https://user-images.githubusercontent.com/56629574/67257515-f00f2a00-f4be-11e9-82f2-bb5f12891d82.png" alt="1571714840(1)"></p>
 </li>
 </ul>
-<h3 id="五、inode剩余部分"><a href="#五、inode剩余部分" class="headerlink" title="五、inode剩余部分"></a>五、inode剩余部分</h3><ul>
+<h3 id="inode剩余部分"><a href="#inode剩余部分" class="headerlink" title="inode剩余部分"></a>inode剩余部分</h3><ul>
 <li>block bitmap（区块对照表）：比如新增文件用到block，需要知道哪些block是空的</li>
 <li>inode bitmap：与上类似</li>
 <li>superblock：记录此filesystem 的整体信息，包括inode/block的总量、使用量、剩余量， 以及档案系统的格式与相关信息等；</li>
-<li>Filesystem Description：每个区组的开始、结束的block号码以及每个区段（superblock、bitmap、inodemap、data block）分别介于哪一个block号码之间。<h3 id="六、目录"><a href="#六、目录" class="headerlink" title="六、目录"></a>六、目录</h3>创建目录，文件系统会分配一个inode与至少一块block给该目录。其中，inode记录该目录的相关权限与属性，并可记录分配到的block号码；block则记录在该目录下的文件名占用的inode号码数据。所以，inode并没有记录文件名：<br><img src="https://user-images.githubusercontent.com/56629574/67261145-01156680-f4d2-11e9-806b-3ab98e3ac640.png" alt="1571723030(1)"></li>
+<li>Filesystem Description：每个区组的开始、结束的block号码以及每个区段（superblock、bitmap、inodemap、data block）分别介于哪一个block号码之间。<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3>创建目录，文件系统会分配一个inode与至少一块block给该目录。其中，inode记录该目录的相关权限与属性，并可记录分配到的block号码；block则记录在该目录下的文件名占用的inode号码数据。所以，inode并没有记录文件名：<br><img src="https://user-images.githubusercontent.com/56629574/67261145-01156680-f4d2-11e9-806b-3ab98e3ac640.png" alt="1571723030(1)"></li>
 </ul>
 <p><strong>inode并不记录文件名，文件名记录在目录的block中。所以新增/删除/更改文件名与目录的w权限有关。</strong><br>因为文件名记录在目录的block块中，因此当我们要读取某个文件时，就必会经过目录的inode与block，然后才能找到待读取的inode号码，最终才会读到正确的文件的block内的数据。</p>
 <p><img src="https://user-images.githubusercontent.com/56629574/67261636-24d9ac00-f4d4-11e9-8c81-2ef7185bb174.png" alt="1571723948(1)"></p>
-<h3 id="七、EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能"><a href="#七、EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能" class="headerlink" title="七、EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能"></a>七、EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能</h3><p><strong>新建文件或目录</strong></p>
+<h3 id="EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能"><a href="#EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能" class="headerlink" title="EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能"></a>EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能</h3><p><strong>新建文件或目录</strong></p>
 <p><img src="https://user-images.githubusercontent.com/56629574/67262138-3f148980-f4d6-11e9-95e9-66ec84488a43.png" alt="1571724857(1)"></p>
 
     </div>
@@ -375,7 +375,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、文件系统特性"><span class="nav-text">一、文件系统特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Linux的EXT2文件系统（inode）"><span class="nav-text">二、Linux的EXT2文件系统（inode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、data-block（数据块）"><span class="nav-text">三、data block（数据块）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、inode-table（inode-表格）"><span class="nav-text">四、inode table（inode 表格）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、inode剩余部分"><span class="nav-text">五、inode剩余部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、目录"><span class="nav-text">六、目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#七、EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能"><span class="nav-text">七、EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、文件系统特性"><span class="nav-text">一、文件系统特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、Linux的EXT2文件系统（inode）"><span class="nav-text">二、Linux的EXT2文件系统（inode）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#data-block（数据块）"><span class="nav-text">data block（数据块）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inode-table（inode-表格）"><span class="nav-text">inode table（inode 表格）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inode剩余部分"><span class="nav-text">inode剩余部分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#目录"><span class="nav-text">目录</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EXT2-EXT3-EXT4文件的存取与日志式文件系统的功能"><span class="nav-text">EXT2/EXT3/EXT4文件的存取与日志式文件系统的功能</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -391,14 +391,14 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">75</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-count">14</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">

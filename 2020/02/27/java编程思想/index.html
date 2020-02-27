@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.0.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.5.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    sidebarPadding: 40
+  };
+</script>
+
+  <meta name="description" content="一、用句柄操作对象句柄（handle）：或者指针或者引用，句柄可以理解为遥控器、电视机是对象，用遥控器控制对象A handle is a small round object or a lever that is attached to a door and is used for opening and closing it. 门把手A handle is the part of an obje">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java编程思想">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2020&#x2F;02&#x2F;27&#x2F;java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3&#x2F;index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、用句柄操作对象句柄（handle）：或者指针或者引用，句柄可以理解为遥控器、电视机是对象，用遥控器控制对象A handle is a small round object or a lever that is attached to a door and is used for opening and closing it. 门把手A handle is the part of an obje">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75322709-51506b00-58ae-11ea-8112-776ee6aa5ce3.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75338214-4f47d580-58c9-11ea-8944-684c828cc08d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75352713-29c8c500-58e5-11ea-8f83-6b524595730b.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75362036-20def000-58f3-11ea-8645-e57124113241.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75334453-dd6c8d80-58c2-11ea-92a6-a12fa4c374c1.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75331884-6df49f00-58be-11ea-98db-30cb318fe43d.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75332050-b14f0d80-58be-11ea-9dba-f5ede2812f7e.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75333053-61714600-58c0-11ea-8239-060d9932ff4e.png">
+<meta property="og:updated_time" content="2020-02-26T16:08:55.164Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;user-images.githubusercontent.com&#x2F;56629574&#x2F;75322709-51506b00-58ae-11ea-8112-776ee6aa5ce3.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/02/27/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true,
+    isPage: false,
+    isArchive: false
+  };
+</script>
+
+  <title>java编程思想 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-fw fa-sitemap"></i>站点地图</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/java%E7%BC%96%E7%A8%8B%E6%80%9D%E6%83%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/profile.png">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          java编程思想
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-02-27 00:08:42 / 修改时间：00:08:55" itemprop="dateCreated datePublished" datetime="2020-02-27T00:08:42+08:00">2020-02-27</time>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="一、用句柄操作对象"><a href="#一、用句柄操作对象" class="headerlink" title="一、用句柄操作对象"></a>一、用句柄操作对象</h3><p>句柄（handle）：或者指针或者引用，句柄可以理解为遥控器、电视机是对象，用遥控器控制对象</p><p>A handle is a small round object or a lever that is attached to a door and is used for opening and closing it. 门把手<br>A handle is the part of an object such as a tool, bag, or cup that you hold in order to be able to pick up and use the object. 柄; 把</p><a id="more"></a>
+
+<p>句柄和对象（遥控器和电视机）是可以独立存在的。也就是说，只是拥有句柄，而不一定就必须有对象与它连接。String s;<br>只是创建句柄，没有指向对象的话，不能对其操作。<br>更安全的做法是：创建句柄时，要初始化。</p>
+<h3 id="二、对象作用域"><a href="#二、对象作用域" class="headerlink" title="二、对象作用域"></a>二、对象作用域</h3><p>{<br>  String s=new String(“abc”);<br>}<br>句柄会在作用域的终点处消失，而对象并不会，但是因为唯一句柄结束，也无法访问到对象，此时需要垃圾处理机制（GC）来处理这些对象<br>具体处理方法：<a href="https://blog.csdn.net/jiangshangchunjiezi/article/details/88688749" target="_blank" rel="noopener">https://blog.csdn.net/jiangshangchunjiezi/article/details/88688749</a></p>
+<h3 id="三、新建数据类型：类"><a href="#三、新建数据类型：类" class="headerlink" title="三、新建数据类型：类"></a>三、新建数据类型：类</h3><p><strong>数据成员（字段）</strong>：包含静态、非静态</p>
+<ul>
+<li>基本数据类型<br>各种类型有自带的默认值<br>与局部变量不同，局部变量只定义，并不会有默认值（是随机值）。为了提高安全性，会有编译错误</li>
+<li>句柄：默认值是null（什么也没有）<br>若不对其初始化，则直接使用，则会有空指针异常（即没有对象）java.lang.NullPointerException<br>静态句柄必须定义时候初始化</li>
+</ul>
+<p><strong>数据成员没有要求定义就初始化的原因？</strong><br>数据成员可以在运行时（构造器、调用方法）初始化，更加灵活。<br><strong>方法</strong></p>
+<ul>
+<li>格式：返回类型 方法名(/<em>自变量列表</em>/) {/<em>方法主体</em>/}</li>
+<li>自变量列表：可以是基本数据类型（传递的是值）和句柄</li>
+</ul>
+<h3 id="static"><a href="#static" class="headerlink" title="static"></a>static</h3><p>创建的句柄放入栈中；创建的对象、基本数据类型放入堆中；</p>
+<p><strong>static适用场景：</strong></p>
+<ul>
+<li><p>数据成员：只用一个存储空间保存一个特定数据。无论创建多少对象或者不创建对象</p>
+</li>
+<li><p>特殊的方法：它与这个类的任何对象没有关联。也就是说即使没有创建对象，也需要一个能调用的方法。比如java程序的入口方法 main</p>
+</li>
+</ul>
+<p>从static适用场景来看，static定义的成员变量或方法与对象（实例）无关。而非静态的成员和方法必须创建一个对象，因为必须知道操作的具体对象。</p>
+<p>由于static不需要创建任何对象，所以不可直接简单的调用其他成员，也不可引用一个已命名的对象，从而直接访问非static成员或方法。<br><img src="https://user-images.githubusercontent.com/56629574/75322709-51506b00-58ae-11ea-8112-776ee6aa5ce3.png" alt="1582702733(1)"></p>
+<h3 id="四、构造器"><a href="#四、构造器" class="headerlink" title="四、构造器"></a>四、构造器</h3><p><strong>初始化顺序</strong>：定义时初始化早于构造器初始化<br><img src="https://user-images.githubusercontent.com/56629574/75338214-4f47d580-58c9-11ea-8944-684c828cc08d.png" alt="1582714412"><br>在这个例子中，句柄t3初始化了2次：一次是定义时；一次是构造器，此时第一次的对象会被清理掉。似乎降低了效率，但能保证正确的初始化。若两处都没初始化，则使用会出现空指针异常。</p>
+<p><strong>静态数据的初始化</strong><br><img src="https://user-images.githubusercontent.com/56629574/75352713-29c8c500-58e5-11ea-8f83-6b524595730b.png" alt="1582726369(1)"><br><strong>上图中若不创建Table对象或者Table.b1(2)，则Table中静态数据t1、t2永远不会创建。若创建，则只创建1次。</strong></p>
+<p><strong>总结一个类中初始化的创建顺序，假设为Dog</strong><br>①对象首次创建或者static字段/方法首次访问时，java解释器必须找到Dog.class（编译会生成此文件）<br>②找到Dog.class后（它会创建一个Class对象），它的所有static初始化模块运行。因此，static初始化仅发生一次，即在Class对象首次载入的时候。<br>③创建new Dog()时，Dog对象的构建进程首先会在内存堆里为Dog对象分配空间<br>④这种空间会清为0，将Dog中的所有基本数据类型（这里已经是非静态了）设为他们的默认值（0用于数字，boolean和char等价设定）<br>⑤进行字段定义时发生的所有初始化都会执行<br>⑥执行构造器。实际要有相当多的操作，特别涉及到构造器时候</p>
+<p><strong>静态代码块</strong><br>在对静态数据初始化时，①可以在定义时初始化②可以用静态代码块初始化static {/<em>静态变量初始化</em>/}</p>
+<p><strong>数组初始化</strong><br>数组代表一系列相同的对象或者基本数据类型</p>
+<ul>
+<li>基本数据类型 int[] a={1,2,3}、int[] a=new int[]{1,2,3}<br>int [] a=new int[3]，这种情况初始值为基本数据类型默认值</li>
+<li>引用类型（对象） Integer[] a1={new Integer(1)}; Integer[] a1=new Integer[]{new Integer(1)};<br>Integer[] a=new Integer[1]; 初始化为null</li>
+<li>有时只是创建句柄，因为可以引用赋值，从而指向同一个对象。a2=a1<br>有时数组的长度是不确定的（即运行时确定数组长度），则可以只创建句柄：<br><img src="https://user-images.githubusercontent.com/56629574/75362036-20def000-58f3-11ea-8645-e57124113241.png" alt="1582732336(1)"></li>
+<li>对相同类型的理解（所有类型的父类均是Object，父类可以指向子类对象，子类只是细分）<br>Object[] o={new Integer(1),new classA()}; </li>
+</ul>
+<p><strong>默认构造器</strong><br>若不显式写，会有默认的构造器；若显式写（即使没有自变量列表），则不会生成默认构造器。<br>构造器是自动调用的，不能像普通方法调用。<br>new classA(); 作用：创建一个对象，并自动调用构造器初始化对象。<br>classA a=new classA();作用：创建一个对象，并自动调用构造器初始化对象。将句柄指向该对象</p>
+<h3 id="五、方法重载"><a href="#五、方法重载" class="headerlink" title="五、方法重载"></a>五、方法重载</h3><p>根据自定义变量列表区分方法，而不是用返回值类型。<br>因为带返回值类型的方法，可以直接function()调用，这让编译器难区分、程序员也难理解。<br>常见应用：构造器  </p>
+<h3 id="六、this关键字（当前对象）：this只能在方法内使用"><a href="#六、this关键字（当前对象）：this只能在方法内使用" class="headerlink" title="六、this关键字（当前对象）：this只能在方法内使用"></a>六、this关键字（当前对象）：this只能在方法内使用</h3><p><strong>方法执行是如何确定哪个对象的？</strong><br>编译器的操作pick(a) 会将对象传入方法中，从而知道是对哪个对象的操作<br><img src="https://user-images.githubusercontent.com/56629574/75334453-dd6c8d80-58c2-11ea-92a6-a12fa4c374c1.png" alt="1582711645(1)"></p>
+<p><strong>类中一个方法（不是构造器）内部调用另一个方法，this可以不加</strong><br><img src="https://user-images.githubusercontent.com/56629574/75331884-6df49f00-58be-11ea-98db-30cb318fe43d.png" alt="1582709732(1)"></p>
+<p><strong>在构造器里调用其他构造器</strong><br>若一个类写了多个构造器，那么经常需要在构造器里调用其他构造器，避免重复代码 （必须写在第一行）<br><strong>形参与成员数据同名，区分</strong><br><img src="https://user-images.githubusercontent.com/56629574/75332050-b14f0d80-58be-11ea-9dba-f5ede2812f7e.png" alt="1582709854(1)"></p>
+<p><strong>通过this返回当前对象的句柄</strong><br><img src="https://user-images.githubusercontent.com/56629574/75333053-61714600-58c0-11ea-8239-060d9932ff4e.png" alt="1582710580(1)"></p>
+<ul>
+<li>进一步理解static中“一个static方法内部不可对非static方法调用”<br>意思：<br>Class A{<br>　　static function(ClassName cn)<br>　　　　{<br>　　　　//可调用静态方法  A.fun2()<br>　　　　//不可调用非静态方法 因为fun1()=this.fun1()<br>　　　　}<br>　　　}<br>非static方法调用需要对象</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+                <a href="/2020/02/25/%E7%A1%AC%E9%93%BE%E6%8E%A5%E4%B8%8E%E8%BD%AF%E9%93%BE%E6%8E%A5/" rel="next" title="硬链接与软链接">
+                  <i class="fa fa-chevron-left"></i> 硬链接与软链接
+                </a>
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+                <a href="/2020/02/27/%E6%88%90%E5%91%98%E5%88%9D%E5%A7%8B%E5%8C%96%E3%80%81%E6%9E%84%E9%80%A0%E5%99%A8%E5%88%9D%E5%A7%8B%E5%8C%96%E3%80%81%E6%95%B0%E7%BB%84%E5%88%9D%E5%A7%8B%E5%8C%96/" rel="prev" title="成员初始化、构造器初始化、数组初始化">
+                  成员初始化、构造器初始化、数组初始化 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments" id="comments">
+    <div id="lv-container" data-id="city" data-uid="MTAyMC80NzU3Mi8yNDA3Mg"></div>
+  </div>
+  
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、用句柄操作对象"><span class="nav-text">一、用句柄操作对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、对象作用域"><span class="nav-text">二、对象作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、新建数据类型：类"><span class="nav-text">三、新建数据类型：类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#static"><span class="nav-text">static</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、构造器"><span class="nav-text">四、构造器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五、方法重载"><span class="nav-text">五、方法重载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#六、this关键字（当前对象）：this只能在方法内使用"><span class="nav-text">六、this关键字（当前对象）：this只能在方法内使用</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="John Doe"
+      src="/images/profile.png">
+  <p class="site-author-name" itemprop="name">John Doe</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="feed-link motion-element">
+    <a href="/atom.xml" rel="alternate">
+      <i class="fa fa-rss"></i>RSS
+    </a>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.0.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.5.0
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  window.livereOptions = {
+    refer: location.pathname.replace(CONFIG.root, '').replace('index.html', '')
+  };
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+    if (typeof LivereTower === 'function') { return; }
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+</body>
+</html>
